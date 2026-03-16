@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7EED6D55EC59051A9E0BF3CC /* Pods_CoffeeShopUMT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFB458A8D1F98BEC28BD4789 /* Pods_CoffeeShopUMT.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		AFB458A8D1F98BEC28BD4789 /* Pods_CoffeeShopUMT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoffeeShopUMT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCEED88A7B8403FA4FD8277D /* Pods-CoffeeShopUMT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeShopUMT.debug.xcconfig"; path = "Target Support Files/Pods-CoffeeShopUMT/Pods-CoffeeShopUMT.debug.xcconfig"; sourceTree = "<group>"; };
 		F43849E52F6298FB00DC8849 /* CoffeeShopUMT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeShopUMT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA07BB9ED438C21436795997 /* Pods-CoffeeShopUMT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoffeeShopUMT.release.xcconfig"; path = "Target Support Files/Pods-CoffeeShopUMT/Pods-CoffeeShopUMT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,17 +43,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EED6D55EC59051A9E0BF3CC /* Pods_CoffeeShopUMT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D710C49AA1702D130F3CF60 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BCEED88A7B8403FA4FD8277D /* Pods-CoffeeShopUMT.debug.xcconfig */,
+				FA07BB9ED438C21436795997 /* Pods-CoffeeShopUMT.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F43849DC2F6298FB00DC8849 = {
 			isa = PBXGroup;
 			children = (
 				F43849E72F6298FC00DC8849 /* CoffeeShopUMT */,
 				F43849E62F6298FB00DC8849 /* Products */,
+				2D710C49AA1702D130F3CF60 /* Pods */,
+				F74095287E0619F15A641EE7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +77,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		F74095287E0619F15A641EE7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFB458A8D1F98BEC28BD4789 /* Pods_CoffeeShopUMT.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F43849F82F6298FC00DC8849 /* Build configuration list for PBXNativeTarget "CoffeeShopUMT" */;
 			buildPhases = (
+				345FB13925B858CF3B840ABF /* [CP] Check Pods Manifest.lock */,
 				F43849E12F6298FB00DC8849 /* Sources */,
 				F43849E22F6298FB00DC8849 /* Frameworks */,
 				F43849E32F6298FB00DC8849 /* Resources */,
+				27A6968157EB215A02A7714A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -77,8 +106,6 @@
 				F43849E72F6298FC00DC8849 /* CoffeeShopUMT */,
 			);
 			name = CoffeeShopUMT;
-			packageProductDependencies = (
-			);
 			productName = CoffeeShopUMT;
 			productReference = F43849E52F6298FB00DC8849 /* CoffeeShopUMT.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +154,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		27A6968157EB215A02A7714A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoffeeShopUMT/Pods-CoffeeShopUMT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CoffeeShopUMT/Pods-CoffeeShopUMT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CoffeeShopUMT/Pods-CoffeeShopUMT-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		345FB13925B858CF3B840ABF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoffeeShopUMT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F43849E12F6298FB00DC8849 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,6 +213,7 @@
 /* Begin XCBuildConfiguration section */
 		F43849F92F6298FC00DC8849 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCEED88A7B8403FA4FD8277D /* Pods-CoffeeShopUMT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -150,9 +224,10 @@
 				INFOPLIST_FILE = CoffeeShopUMT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = Admin;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -172,6 +247,7 @@
 		};
 		F43849FA2F6298FC00DC8849 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA07BB9ED438C21436795997 /* Pods-CoffeeShopUMT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -182,9 +258,10 @@
 				INFOPLIST_FILE = CoffeeShopUMT/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = Admin;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
