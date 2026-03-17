@@ -72,3 +72,8 @@ màu tick thành công: 10B981 (xanh lá)
 fail: EF4444 ( đỏ)
 
 màu làm mờ khi ko dùng đến nút đó: 334155 (xám)
+
+
+
+
+
