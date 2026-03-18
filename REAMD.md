@@ -19,8 +19,9 @@ CoffeeShopUMT (Thư mục màu xanh dương gốc)
 ├── Storyboards/                # File giao diện Kéo thả
 │   ├── Auth.storyboard         # Giao diện Login
 │   ├── Admin.storyboard        # Chứa TabBar và các luồng của Admin
-│   └── Staff.storyboard        # Chứa TabBar và các luồng của Staff
-│
+│   ├── Staff.storyboard        # Chứa TabBar và các luồng của Staff
+│   └──Shared.storyboard        # Chứa các màn hình dùng chung (POS, Zone Layout, Order Detail)
+│   
 ├── Views/                      # (Tùy chọn) Chứa giao diện các Cell lặp đi lặp lại
 │   ├── ItemCollectionViewCell.swift  # Cái ô vuông hiển thị ly cafe trong POS
 │   ├── OrderTableViewCell.swift      # Cái thanh dài hiển thị bill trong Kitchen

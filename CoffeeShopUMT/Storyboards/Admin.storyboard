@@ -938,29 +938,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderWrap">
-                                <rect key="frame" x="96" y="96" width="201" height="118"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle.dashed" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffDashedCircle">
-                                        <rect key="frame" x="66" y="0.0" width="68" height="68"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" red="0.51372549020000002" green="0.31764705879999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderIcon">
-                                        <rect key="frame" x="82" y="16" width="36" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STAFF IDENTITY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderTitle">
-                                        <rect key="frame" x="19" y="84" width="164" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                        <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffFormStack">
                                 <rect key="frame" x="24" y="234" width="345" height="316"/>
                                 <subviews>
@@ -1106,8 +1083,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffActionStack">
                                 <rect key="frame" x="24" y="692" width="50" height="30"/>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffGrantAccountButton">
-                                <rect key="frame" x="24" y="558" width="345" height="64"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffGrantAccountButton">
+                                <rect key="frame" x="24" y="577" width="345" height="45"/>
                                 <color key="backgroundColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1141,6 +1118,39 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderWrap">
+                                <rect key="frame" x="96" y="108" width="201" height="118"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.dashed" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffDashedCircle">
+                                        <rect key="frame" x="66" y="24" width="69" height="19"/>
+                                        <color key="tintColor" red="0.51372549020000002" green="0.31764705879999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="person.crop.circle.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderIcon">
+                                        <rect key="frame" x="82" y="16" width="36" height="36"/>
+                                        <color key="tintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STAFF IDENTITY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderTitle">
+                                        <rect key="frame" x="19" y="59" width="163" height="19"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="centerX" secondItem="addStaffHeaderWrap" secondAttribute="centerX" id="3bq-E4-KY0"/>
+                                    <constraint firstItem="addStaffHeaderIcon" firstAttribute="leading" secondItem="addStaffHeaderWrap" secondAttribute="leading" constant="84.666666666666671" id="8tu-eT-Q49"/>
+                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="leading" secondItem="addStaffHeaderWrap" secondAttribute="leading" constant="19" id="F7S-jT-8Me"/>
+                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="centerX" secondItem="addStaffHeaderIcon" secondAttribute="centerX" id="FqC-3c-TrM"/>
+                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="top" secondItem="addStaffHeaderWrap" secondAttribute="topMargin" id="GV8-ML-6yv"/>
+                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="top" secondItem="addStaffDashedCircle" secondAttribute="bottom" constant="15.33" id="S0G-BS-55O"/>
+                                    <constraint firstItem="addStaffHeaderIcon" firstAttribute="top" secondItem="addStaffHeaderWrap" secondAttribute="top" constant="15.333333333333336" id="df5-ix-kF6"/>
+                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="top" secondItem="addStaffHeaderIcon" secondAttribute="bottom" constant="32.666666666666657" id="ih0-zg-QJt"/>
+                                    <constraint firstItem="addStaffDashedCircle" firstAttribute="centerX" secondItem="addStaffHeaderTitle" secondAttribute="centerX" id="nJm-Z8-Osl"/>
+                                    <constraint firstItem="addStaffDashedCircle" firstAttribute="leading" secondItem="addStaffHeaderWrap" secondAttribute="leading" constant="66" id="uFz-7j-iQS"/>
+                                    <constraint firstItem="addStaffDashedCircle" firstAttribute="centerY" secondItem="addStaffHeaderWrap" secondAttribute="centerY" id="vCC-nf-cNE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EJD-85-WKh"/>
                         <color key="backgroundColor" red="0.066711418329999994" green="0.05438232422" blue="0.04034423828" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

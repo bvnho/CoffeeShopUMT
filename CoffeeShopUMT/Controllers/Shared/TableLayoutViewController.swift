@@ -9,6 +9,8 @@ final class TableLayoutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarItem.title = "Tables"
+            self.tabBarItem.image = UIImage(systemName: "square.grid.2x2")
         setupUI()
     }
 

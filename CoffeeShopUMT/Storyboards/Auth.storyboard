@@ -11,7 +11,7 @@
         <scene sceneID="loginScene">
             <objects>
                 <viewController id="loginVC" customClass="LoginViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="loginView">
+                    <view key="view" contentMode="scaleToFill" id="loginView" customClass="L">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

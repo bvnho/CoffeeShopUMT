@@ -665,10 +665,11 @@
                         <color key="backgroundColor" red="0.070588235289999995" green="0.054901960780000002" blue="0.039215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="WPE-54-II8"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tabTablesFirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-68" y="-225"/>
+            <point key="canvasLocation" x="706" y="-989"/>
         </scene>
     </scenes>
     <resources>
