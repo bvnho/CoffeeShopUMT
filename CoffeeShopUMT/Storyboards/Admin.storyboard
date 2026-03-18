@@ -20,7 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="adminDashboardNav" kind="relationship" relationship="viewControllers" id="tab-dashboard"/>
-                        <segue destination="sharedPosRefVCAdmin" kind="relationship" relationship="viewControllers" id="tab-pos"/>
+                        <segue destination="FtZ-47-e0J" kind="relationship" relationship="viewControllers" id="tab-pos"/>
                         <segue destination="iXl-7U-vbQ" kind="relationship" relationship="viewControllers" id="tab-tables"/>
                         <segue destination="4UZ-i5-WRb" kind="relationship" relationship="viewControllers" id="tab-menu"/>
                         <segue destination="L1S-QB-eEk" kind="relationship" relationship="viewControllers" id="tab-staff"/>
@@ -569,11 +569,11 @@
         <scene sceneID="sharedPosRefSceneAdmin">
             <objects>
                 <viewControllerPlaceholder storyboardName="Shared" referencedIdentifier="POSScreenID" id="sharedPosRefVCAdmin" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="POS" image="desktopcomputer" catalog="system" id="tabBarPOS"/>
+                    <navigationItem key="navigationItem" id="APN-e1-MXS"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sharedPosRefFirstResponderAdmin" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="184" y="-290"/>
+            <point key="canvasLocation" x="1110.6870229007634" y="-290.14084507042253"/>
         </scene>
         <!--TableLayoutScreenID-->
         <scene sceneID="sharedTableRefSceneAdmin">
@@ -955,7 +955,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </imageView>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="full name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffFullNameTextField">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Họ và Tên" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffFullNameTextField">
                                                         <rect key="frame" x="44" y="12" width="286" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1046,7 +1046,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </imageView>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="123456" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffPasswordTextField">
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập mật khẩu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffPasswordTextField">
                                                         <rect key="frame" x="44" y="12" width="286" height="26"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1925,7 +1925,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="revenueDetailResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3096" y="-60"/>
+            <point key="canvasLocation" x="4022.1374045801526" y="-60.563380281690144"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="completedOrdersScene">
@@ -2119,6 +2119,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="completedOrdersResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3363" y="-1387"/>
+        </scene>
+        <!--POS-->
+        <scene sceneID="Mjt-3h-lxw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FtZ-47-e0J" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="POS" image="desktopcomputer" catalog="system" id="tabBarPOS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gUp-wJ-aK3">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sharedPosRefVCAdmin" kind="relationship" relationship="rootViewController" id="OnZ-76-vs0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aWJ-B9-0dE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="183.96946564885496" y="-290.14084507042253"/>
         </scene>
     </scenes>
     <resources>
