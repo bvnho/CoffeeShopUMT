@@ -54,21 +54,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tổng quan và Báo cáo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="titleLabel">
-                                <rect key="frame" x="24" y="65" width="220" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tổng quan và Báo cáo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="titleLabel">
+                                <rect key="frame" x="24" y="90.333333333333329" width="220" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="T2f-Fn-bb5"/>
+                                    <constraint firstAttribute="height" constant="24" id="d0f-JQ-bPA"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bellIcon">
-                                <rect key="frame" x="300" y="65" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bellIcon">
+                                <rect key="frame" x="300" y="90.333333333333343" width="24" height="24"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="9sW-dz-J1V"/>
+                                    <constraint firstAttribute="height" constant="25" id="pOh-YX-URw"/>
+                                </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="segmentedBgView">
-                                <rect key="frame" x="24" y="115" width="345" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="segmentedBgView">
+                                <rect key="frame" x="24" y="140.33333333333334" width="345" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="overviewBtn">
                                         <rect key="frame" x="2" y="2" width="170" height="36"/>
@@ -97,41 +102,60 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Sgo-Il-czn"/>
+                                    <constraint firstAttribute="width" constant="345" id="bNr-Op-6Dc"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cardRevenue">
-                                <rect key="frame" x="24" y="175" width="345" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cardRevenue">
+                                <rect key="frame" x="24" y="200.33333333333334" width="345" height="90.000000000000028"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Revenue Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="revTitle">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Revenue Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="revTitle">
                                         <rect key="frame" x="16" y="16" width="150" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="cP8-FM-pJ6"/>
+                                            <constraint firstAttribute="width" constant="150" id="ftC-1J-Kvb"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1.000.000 VNĐ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="revValue">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.000.000 VNĐ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="revValue">
                                         <rect key="frame" x="16" y="45" width="175" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="175" id="AVt-cl-WIO"/>
+                                            <constraint firstAttribute="height" constant="29" id="abi-rA-lIv"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="revValue" secondAttribute="bottom" constant="16.000000000000028" id="5Bm-FT-EBU"/>
+                                    <constraint firstItem="revValue" firstAttribute="top" secondItem="revTitle" secondAttribute="bottom" constant="12" id="7XO-m6-eZR"/>
+                                    <constraint firstItem="revValue" firstAttribute="leading" secondItem="cardRevenue" secondAttribute="leading" constant="16" id="Pdc-XR-XkP"/>
+                                    <constraint firstItem="revTitle" firstAttribute="leading" secondItem="cardRevenue" secondAttribute="leading" constant="16" id="UCI-kQ-ChW"/>
+                                    <constraint firstItem="revTitle" firstAttribute="top" secondItem="cardRevenue" secondAttribute="top" constant="16" id="Uqx-F7-kr6"/>
+                                    <constraint firstAttribute="width" constant="345" id="cQR-uq-5Qc"/>
+                                    <constraint firstAttribute="trailing" secondItem="revTitle" secondAttribute="trailing" constant="179" id="er7-8w-cyz"/>
+                                    <constraint firstAttribute="trailing" secondItem="revValue" secondAttribute="trailing" constant="154" id="gnx-Hh-vlW"/>
+                                    <constraint firstAttribute="height" constant="90" id="vnT-fr-XAM"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cardOrders">
-                                <rect key="frame" x="24" y="280" width="345" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cardOrders">
+                                <rect key="frame" x="24" y="305.33333333333331" width="345" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Orders in Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ordTitle">
                                         <rect key="frame" x="16" y="16" width="150" height="17"/>
@@ -149,15 +173,18 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="345" id="FXe-6v-Vl1"/>
+                                    <constraint firstAttribute="height" constant="90" id="mvE-oG-vjz"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cardCompleted">
-                                <rect key="frame" x="24" y="385" width="345" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cardCompleted">
+                                <rect key="frame" x="24" y="410.33333333333331" width="345" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Completed Orders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="compTitle">
                                         <rect key="frame" x="16" y="16" width="150" height="17"/>
@@ -175,15 +202,18 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="4RN-g4-XD6"/>
+                                    <constraint firstAttribute="width" constant="345" id="q7H-6R-rgZ"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cardChart">
-                                <rect key="frame" x="24" y="490" width="345" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cardChart">
+                                <rect key="frame" x="24" y="515.33333333333337" width="345" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weekly Revenue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="chartTitle">
                                         <rect key="frame" x="16" y="16" width="150" height="17"/>
@@ -206,16 +236,23 @@
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="345" id="30J-CQ-IKc"/>
+                                    <constraint firstAttribute="height" constant="200" id="FKF-Fn-Mwt"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="profileIcon">
-                                <rect key="frame" x="337" y="65.333333333333329" width="29" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="profileIcon">
+                                <rect key="frame" x="337" y="90.333333333333329" width="29" height="23"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="29" id="0gk-T3-B78"/>
+                                    <constraint firstAttribute="height" constant="25.666666666666671" id="aAH-QY-kXm"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="17"/>
@@ -225,6 +262,34 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.098039215690000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="segmentedBgView" secondAttribute="trailing" constant="24" id="1HK-gQ-lQS"/>
+                            <constraint firstItem="cardCompleted" firstAttribute="top" secondItem="cardOrders" secondAttribute="bottom" constant="15" id="1h9-MK-vDA"/>
+                            <constraint firstItem="profileIcon" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="-28.999999999999844" id="5ll-b8-qah"/>
+                            <constraint firstItem="cardCompleted" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="CwL-dP-gHe"/>
+                            <constraint firstItem="profileIcon" firstAttribute="leading" secondItem="bellIcon" secondAttribute="trailing" constant="13" id="EUJ-mS-7tP"/>
+                            <constraint firstItem="bellIcon" firstAttribute="leading" secondItem="titleLabel" secondAttribute="trailing" constant="56" id="L99-de-Lhf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="cardChart" secondAttribute="bottom" constant="19.666666666666515" id="NIv-Gl-Eq8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cardRevenue" secondAttribute="trailing" constant="24" id="NNA-dH-aGV"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cardChart" secondAttribute="trailing" constant="24" id="PAQ-Gt-1q0"/>
+                            <constraint firstItem="cardChart" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="UdL-RM-PQG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="profileIcon" secondAttribute="trailing" constant="11" id="Wdi-Jz-eTG"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cardCompleted" secondAttribute="trailing" constant="24" id="YFx-gZ-RKM"/>
+                            <constraint firstItem="segmentedBgView" firstAttribute="top" secondItem="profileIcon" secondAttribute="bottom" constant="25.666666666666657" id="aeS-bz-oIy"/>
+                            <constraint firstItem="bellIcon" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="-28.333333333333186" id="d1d-MI-u9o"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="cardOrders" secondAttribute="trailing" constant="24" id="eLs-Ia-RWo"/>
+                            <constraint firstItem="cardOrders" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="egC-nn-qC5"/>
+                            <constraint firstItem="titleLabel" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="-27.666666666666515" id="gQo-0x-o1c"/>
+                            <constraint firstItem="cardRevenue" firstAttribute="top" secondItem="segmentedBgView" secondAttribute="bottom" constant="20" id="hGb-LX-Jh0"/>
+                            <constraint firstItem="segmentedBgView" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="jX6-tc-z2y"/>
+                            <constraint firstItem="segmentedBgView" firstAttribute="top" secondItem="bellIcon" secondAttribute="bottom" constant="25.666666666666671" id="jZG-QT-aMY"/>
+                            <constraint firstItem="cardOrders" firstAttribute="top" secondItem="cardRevenue" secondAttribute="bottom" constant="15" id="mtn-4W-qOR"/>
+                            <constraint firstItem="segmentedBgView" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="22.333333333333485" id="ndZ-l9-7td"/>
+                            <constraint firstItem="titleLabel" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leadingMargin" constant="8" id="oLy-OJ-Nf0"/>
+                            <constraint firstItem="segmentedBgView" firstAttribute="top" secondItem="titleLabel" secondAttribute="bottom" constant="26" id="ovD-1y-Szc"/>
+                            <constraint firstItem="cardChart" firstAttribute="top" secondItem="cardCompleted" secondAttribute="bottom" constant="15" id="uTq-3J-pjc"/>
+                            <constraint firstItem="cardRevenue" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="ywI-0K-l3I"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UBu-SK-54K"/>
                 </viewController>
@@ -240,38 +305,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="headerView">
-                                <rect key="frame" x="0.0" y="47" width="393" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="headerView">
+                                <rect key="frame" x="0.0" y="73" width="393" height="60"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bellIconHeader">
-                                        <rect key="frame" x="323" y="18" width="24" height="24"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tổng quan và Báo cáo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y6j-ho-StX">
+                                        <rect key="frame" x="25" y="18.333333333333485" width="220" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tổng quan và báo cáo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="headerTitle">
-                                        <rect key="frame" x="26" y="18" width="233" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="profileIconHeader">
-                                        <rect key="frame" x="358" y="17.333333333333485" width="24" height="22"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bell" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6uK-5o-Fvk">
+                                        <rect key="frame" x="301" y="18.333333333333485" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ckL-26-4Nn">
+                                        <rect key="frame" x="338" y="18.333333333333485" width="29" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="15"/>
+                                                <integer key="value" value="17"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Ypi-j4-sfl"/>
+                                    <constraint firstAttribute="width" constant="393" id="aEx-sS-g9S"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="segmentedAnalyticsBgView">
-                                <rect key="frame" x="24" y="117" width="345" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="segmentedAnalyticsBgView">
+                                <rect key="frame" x="24" y="143" width="345" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="overviewAnalyticsBtn">
                                         <rect key="frame" x="2" y="2" width="170" height="36"/>
@@ -300,15 +367,18 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="345" id="5gg-FR-iOo"/>
+                                    <constraint firstAttribute="height" constant="40" id="SCD-CO-uL4"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="timeFilterView">
-                                <rect key="frame" x="24" y="167" width="220" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="timeFilterView">
+                                <rect key="frame" x="24" y="193" width="220" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="filterDayBtn">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
@@ -351,10 +421,13 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="02y-qZ-eMm"/>
+                                    <constraint firstAttribute="width" constant="220" id="8b8-wb-hLQ"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cardTotalSales">
-                                <rect key="frame" x="24" y="217" width="165" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cardTotalSales">
+                                <rect key="frame" x="24" y="243" width="165" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Sales" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="totalSalesTitle">
                                         <rect key="frame" x="16" y="16" width="100" height="17"/>
@@ -372,15 +445,18 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165" id="7eK-jE-22Z"/>
+                                    <constraint firstAttribute="height" constant="90" id="aSU-UD-JSY"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cardAvgOrder">
-                                <rect key="frame" x="204" y="217" width="165" height="90"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cardAvgOrder">
+                                <rect key="frame" x="204" y="243" width="165" height="90"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Avg Order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avgOrderTitle">
                                         <rect key="frame" x="16" y="16" width="100" height="17"/>
@@ -398,15 +474,18 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165" id="gSr-lE-Atq"/>
+                                    <constraint firstAttribute="height" constant="90" id="lGc-IG-O4a"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="12"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bestSellersContainerView">
-                                <rect key="frame" x="24" y="327" width="345" height="230"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bestSellersContainerView">
+                                <rect key="frame" x="24" y="353" width="345" height="230"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BEST SELLERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bestSellersTitle">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="20"/>
@@ -554,10 +633,35 @@
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="Ged-4a-Jef"/>
+                                    <constraint firstAttribute="width" constant="345" id="z1K-Xa-f2W"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="analyticsVCGuide"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.098039215690000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cardAvgOrder" firstAttribute="top" secondItem="timeFilterView" secondAttribute="bottom" constant="20" id="05a-fz-fhV"/>
+                            <constraint firstItem="cardTotalSales" firstAttribute="leading" secondItem="analyticsVCGuide" secondAttribute="leading" constant="24" id="5YM-zD-yFd"/>
+                            <constraint firstItem="bestSellersContainerView" firstAttribute="leading" secondItem="analyticsVCGuide" secondAttribute="leading" constant="24" id="8Ld-24-9zL"/>
+                            <constraint firstItem="bestSellersContainerView" firstAttribute="top" secondItem="cardTotalSales" secondAttribute="bottom" constant="20" id="NXt-6w-X0B"/>
+                            <constraint firstItem="headerView" firstAttribute="trailing" secondItem="analyticsVCGuide" secondAttribute="trailing" id="POk-fQ-xCS"/>
+                            <constraint firstItem="headerView" firstAttribute="top" secondItem="mainView" secondAttribute="topMargin" constant="-45" id="QNN-Yh-22Z"/>
+                            <constraint firstItem="analyticsVCGuide" firstAttribute="bottom" secondItem="bestSellersContainerView" secondAttribute="bottom" constant="201" id="R5w-HY-4lS"/>
+                            <constraint firstItem="cardAvgOrder" firstAttribute="leading" secondItem="cardTotalSales" secondAttribute="trailing" constant="15" id="VCK-xp-GZM"/>
+                            <constraint firstItem="analyticsVCGuide" firstAttribute="trailing" secondItem="segmentedAnalyticsBgView" secondAttribute="trailing" constant="24" id="VPG-V5-0ez"/>
+                            <constraint firstItem="timeFilterView" firstAttribute="leading" secondItem="analyticsVCGuide" secondAttribute="leading" constant="24" id="W2U-in-b2V"/>
+                            <constraint firstItem="analyticsVCGuide" firstAttribute="trailing" secondItem="timeFilterView" secondAttribute="trailing" constant="149" id="Yj0-I6-inG"/>
+                            <constraint firstItem="timeFilterView" firstAttribute="top" secondItem="segmentedAnalyticsBgView" secondAttribute="bottom" constant="10" id="d2b-U4-Q2f"/>
+                            <constraint firstItem="bestSellersContainerView" firstAttribute="top" secondItem="cardAvgOrder" secondAttribute="bottom" constant="20" id="efj-d5-hic"/>
+                            <constraint firstItem="segmentedAnalyticsBgView" firstAttribute="top" secondItem="headerView" secondAttribute="bottom" constant="10" id="gNx-ZN-kj3"/>
+                            <constraint firstItem="cardTotalSales" firstAttribute="top" secondItem="timeFilterView" secondAttribute="bottom" constant="20" id="mv7-03-nMK"/>
+                            <constraint firstItem="headerView" firstAttribute="leading" secondItem="analyticsVCGuide" secondAttribute="leading" id="oCP-BJ-133"/>
+                            <constraint firstItem="analyticsVCGuide" firstAttribute="trailing" secondItem="bestSellersContainerView" secondAttribute="trailing" constant="24" id="qvJ-hk-ff0"/>
+                            <constraint firstItem="segmentedAnalyticsBgView" firstAttribute="leading" secondItem="analyticsVCGuide" secondAttribute="leading" constant="24" id="rJX-aQ-u0a"/>
+                            <constraint firstItem="analyticsVCGuide" firstAttribute="trailing" secondItem="cardAvgOrder" secondAttribute="trailing" constant="24" id="wdQ-XQ-hPv"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Frq-62-6nl"/>
                 </viewController>
@@ -1644,7 +1748,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ordersInProgressResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2346" y="-1830"/>
+            <point key="canvasLocation" x="2363" y="-1858"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="revenueDetailScene">
