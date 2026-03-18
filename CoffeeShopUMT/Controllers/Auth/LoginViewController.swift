@@ -1,7 +1,30 @@
 import UIKit
 
+enum UserRole {
+    case admin
+    case staff
+}
+
+struct DemoAccount {
+    let username: String
+    let password: String
+    let role: UserRole
+}
+
 final class LoginViewModel {
-    // TODO: Add authentication logic
+    private let accounts: [DemoAccount] = [
+        DemoAccount(username: "admin", password: "123456", role: .admin),
+        DemoAccount(username: "staff", password: "123456", role: .staff)
+    ]
+
+    func authenticate(username: String, password: String) -> UserRole? {
+        let normalizedUsername = username.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        let normalizedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        return accounts.first {
+            $0.username.lowercased() == normalizedUsername && $0.password == normalizedPassword
+        }?.role
+    }
 }
 
 final class LoginViewController: UIViewController {
@@ -41,6 +64,12 @@ final class LoginViewController: UIViewController {
         signInButton?.backgroundColor = UIColor(hex: "#BD660F")
         signInButton?.setTitleColor(.white, for: .normal)
         signInButton?.layer.cornerRadius = 10
+
+        signInButton?.addTarget(self, action: #selector(handleSignInTapped), for: .touchUpInside)
+        usernameTextField?.returnKeyType = .next
+        passwordTextField?.returnKeyType = .go
+        usernameTextField?.addTarget(self, action: #selector(handleUsernameReturn), for: .editingDidEndOnExit)
+        passwordTextField?.addTarget(self, action: #selector(handlePasswordReturn), for: .editingDidEndOnExit)
     }
 
     private func registerKeyboardNotifications() {
@@ -55,6 +84,61 @@ final class LoginViewController: UIViewController {
 
     @objc private func handleKeyboardWillHide(_ notification: Notification) {
         view.frame.origin.y = 0
+    }
+
+    @objc private func handleSignInTapped() {
+        let username = usernameTextField?.text ?? ""
+        let password = passwordTextField?.text ?? ""
+
+        guard !username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
+              !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            showAlert(title: "Thiếu thông tin", message: "Vui lòng nhập tài khoản và mật khẩu.")
+            return
+        }
+
+        guard let role = viewModel.authenticate(username: username, password: password) else {
+            showAlert(title: "Đăng nhập thất bại", message: "Sai tài khoản hoặc mật khẩu.")
+            return
+        }
+
+        navigateToMainScreen(for: role)
+    }
+
+    @objc private func handleUsernameReturn() {
+        passwordTextField?.becomeFirstResponder()
+    }
+
+    @objc private func handlePasswordReturn() {
+        passwordTextField?.resignFirstResponder()
+        handleSignInTapped()
+    }
+
+    private func navigateToMainScreen(for role: UserRole) {
+        let storyboardName = role == .admin ? "Admin" : "Staff"
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+
+        guard let destination = storyboard.instantiateInitialViewController() else {
+            showAlert(title: "Lỗi", message: "Không mở được màn hình \(storyboardName).")
+            return
+        }
+
+        if let windowScene = view.window?.windowScene,
+           let sceneDelegate = windowScene.delegate as? SceneDelegate,
+           let window = sceneDelegate.window {
+            window.rootViewController = destination
+            UIView.transition(with: window, duration: 0.25, options: .transitionCrossDissolve, animations: nil)
+            window.makeKeyAndVisible()
+            return
+        }
+
+        destination.modalPresentationStyle = .fullScreen
+        present(destination, animated: true)
+    }
+
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 

@@ -2,6 +2,8 @@ import UIKit
 
 final class DashboardViewModel {
     // TODO: Add dashboard overview logic
+    
+    
 }
 
 final class DashboardViewController: UIViewController {
@@ -13,7 +15,8 @@ final class DashboardViewController: UIViewController {
     }
     
     
-    // Nối nút "Analytics" trên giao diện vào hàm này
+    
+    
     @IBAction func goToAnalyticsTapped(_ sender: UIButton) {
         // Đã sửa lại tên ID thành "AnalyticsViewController" cho khớp với cài đặt của bạn
         if let storyboard = self.storyboard,
