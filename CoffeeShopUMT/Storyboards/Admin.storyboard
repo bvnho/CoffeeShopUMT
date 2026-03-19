@@ -687,162 +687,131 @@
             </objects>
             <point key="canvasLocation" x="1111" y="-1042"/>
         </scene>
-        <!--Menu List View Controller-->
+        <!--Menu Management-->
         <scene sceneID="tabMenuScene">
             <objects>
-                <viewController id="tabMenuVC" customClass="MenuListViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tabMenuView">
+                <viewController id="tabMenuVC" customClass="MenuListViewController" customModule="CoffeeShopUMT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Bs-ff-QV0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Menu Management" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="menuTitle">
-                                <rect key="frame" x="24" y="65" width="220" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bellIconMenu">
-                                <rect key="frame" x="345" y="65" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="menuSearchBg">
-                                <rect key="frame" x="24" y="105" width="345" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="menuHeaderView">
+                                <rect key="frame" x="0.0" y="172" width="393" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🔍 Search menu, items..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="searchMenuLbl">
-                                        <rect key="frame" x="15" y="10" width="200" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="hea-ht-zUO">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                                        <color key="barTintColor" red="0.1333333333" green="0.098039215690000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
                                 </subviews>
-                                <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="hea-ht-zUO" firstAttribute="height" constant="44" id="Jh7-wy-8eV"/>
+                                    <constraint firstItem="hea-ht-zUO" firstAttribute="top" secondItem="menuHeaderView" secondAttribute="bottom" constant="-44" id="Pc5-Uq-rbR"/>
+                                    <constraint firstItem="hea-ht-zUO" firstAttribute="leading" secondItem="menuHeaderView" secondAttribute="leading" id="Wwy-HD-gii"/>
+                                    <constraint firstAttribute="trailing" secondItem="hea-ht-zUO" secondAttribute="trailing" id="b0c-GO-bcK"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="menuCats">
-                                <rect key="frame" x="24" y="160" width="345" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcat1">
-                                        <rect key="frame" x="0.0" y="0.0" width="60" height="20"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="menuCategoryCollectionView">
+                                <rect key="frame" x="0.0" y="224" width="393" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="menuCategoryFlow">
+                                    <size key="itemSize" width="100" height="36"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="12" minY="6" maxX="12" maxY="6"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCell" id="menuCategoryCell">
+                                        <rect key="frame" x="12" y="6" width="100" height="36"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="36"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="menuTableView">
+                                <rect key="frame" x="0.0" y="250" width="393" height="461"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="100" id="menuPrototypeCell" customClass="MenuTableViewCell" customModule="CoffeeShopUMT" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                        <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coffee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcat2">
-                                        <rect key="frame" x="75" y="0.0" width="50" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tea" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcat3">
-                                        <rect key="frame" x="140" y="0.0" width="30" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pastries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mcat4">
-                                        <rect key="frame" x="185" y="0.0" width="60" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="menuItem1">
-                                <rect key="frame" x="24" y="200" width="345" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mimg1">
-                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Matcha Latte" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlbl1">
-                                        <rect key="frame" x="85" y="15" width="96" height="18"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="80.000đ" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mprc1">
-                                        <rect key="frame" x="85" y="40" width="80" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mswitch1">
-                                        <rect key="frame" x="286" y="25" width="49" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="onTintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </switch>
-                                </subviews>
-                                <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="menuItem2">
-                                <rect key="frame" x="24" y="295" width="345" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mimg2">
-                                        <rect key="frame" x="10" y="10" width="60" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Coffee Đen" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlbl2">
-                                        <rect key="frame" x="85" y="15" width="150" height="18"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="23.000đ" textAlignment="natural" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mprc2">
-                                        <rect key="frame" x="85" y="40" width="80" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mswitch2">
-                                        <rect key="frame" x="286" y="25" width="49" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="onTintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </switch>
-                                </subviews>
-                                <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="12"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fabAddMenu">
-                                <rect key="frame" x="309" y="650" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="menuPrototypeCell" id="menuPrototypeContent">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellImageView">
+                                                    <rect key="frame" x="16" y="12" width="76" height="76"/>
+                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.25490196079999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellNameLabel">
+                                                    <rect key="frame" x="104" y="26" width="92" height="20"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55.000 đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellPriceLabel">
+                                                    <rect key="frame" x="104" y="52" width="67" height="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellSwitch">
+                                                    <rect key="frame" x="208" y="36" width="63" height="28"/>
+                                                    <color key="onTintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="availabilitySwitchChanged:" destination="menuPrototypeCell" eventType="valueChanged" id="menuCellSwitchAction"/>
+                                                    </connections>
+                                                </switch>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellEditButton">
+                                                    <rect key="frame" x="281" y="38" width="96" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" image="pencil" catalog="system">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="editButtonTapped:" destination="menuPrototypeCell" eventType="touchUpInside" id="menuCellEditAction"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="menuCellEditButton" firstAttribute="centerY" secondItem="menuPrototypeContent" secondAttribute="centerY" id="menuCellEditCenterY"/>
+                                                <constraint firstItem="menuCellEditButton" firstAttribute="leading" secondItem="menuCellSwitch" secondAttribute="trailing" constant="12" id="menuCellEditLeading"/>
+                                                <constraint firstAttribute="trailing" secondItem="menuCellEditButton" secondAttribute="trailing" constant="16" id="menuCellEditTrailing"/>
+                                                <constraint firstItem="menuCellImageView" firstAttribute="centerY" secondItem="menuPrototypeContent" secondAttribute="centerY" id="menuCellImageCenterY"/>
+                                                <constraint firstItem="menuCellImageView" firstAttribute="height" constant="76" id="menuCellImageHeight"/>
+                                                <constraint firstItem="menuCellImageView" firstAttribute="leading" secondItem="menuPrototypeContent" secondAttribute="leading" constant="16" id="menuCellImageLeading"/>
+                                                <constraint firstItem="menuCellImageView" firstAttribute="width" constant="76" id="menuCellImageWidth"/>
+                                                <constraint firstItem="menuCellNameLabel" firstAttribute="leading" secondItem="menuCellImageView" secondAttribute="trailing" constant="12" id="menuCellNameLeading"/>
+                                                <constraint firstItem="menuCellNameLabel" firstAttribute="top" secondItem="menuPrototypeContent" secondAttribute="top" constant="26" id="menuCellNameTop"/>
+                                                <constraint firstItem="menuCellPriceLabel" firstAttribute="leading" secondItem="menuCellImageView" secondAttribute="trailing" constant="12" id="menuCellPriceLeading"/>
+                                                <constraint firstItem="menuCellPriceLabel" firstAttribute="top" secondItem="menuCellNameLabel" secondAttribute="bottom" constant="6" id="menuCellPriceTop"/>
+                                                <constraint firstItem="menuCellSwitch" firstAttribute="centerY" secondItem="menuPrototypeContent" secondAttribute="centerY" id="menuCellSwitchCenterY"/>
+                                                <constraint firstItem="menuCellSwitch" firstAttribute="leading" secondItem="menuCellNameLabel" secondAttribute="trailing" constant="12" id="menuCellSwitchLeading"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="availabilitySwitch" destination="menuCellSwitch" id="menuCellSwitchOutlet"/>
+                                            <outlet property="editButton" destination="menuCellEditButton" id="menuCellEditOutlet"/>
+                                            <outlet property="itemImageView" destination="menuCellImageView" id="menuCellImageOutlet"/>
+                                            <outlet property="nameLabel" destination="menuCellNameLabel" id="menuCellNameOutlet"/>
+                                            <outlet property="priceLabel" destination="menuCellPriceLabel" id="menuCellPriceOutlet"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="menuFabButton">
+                                <rect key="frame" x="317" y="663" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -852,14 +821,38 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="addNewItemVC" kind="show" id="b9P-9K-011"/>
+                                    <action selector="addButtonTapped:" destination="tabMenuVC" eventType="touchUpInside" id="menuFabTapAction"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="tabMenuSafe"/>
-                        <color key="backgroundColor" red="0.070588235289999995" green="0.054901960780000002" blue="0.039215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="zxL-aq-aDP"/>
+                        <color key="backgroundColor" red="0.1333333333" green="0.098039215690000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="menuCategoryCollectionView" firstAttribute="top" secondItem="menuHeaderView" secondAttribute="bottom" constant="8" id="82e-w9-bLZ"/>
+                            <constraint firstItem="menuCategoryCollectionView" firstAttribute="height" constant="50" id="menuCategoryHeight"/>
+                            <constraint firstItem="menuCategoryCollectionView" firstAttribute="leading" secondItem="0Bs-ff-QV0" secondAttribute="leading" id="menuCategoryLeading"/>
+                            <constraint firstAttribute="trailing" secondItem="menuCategoryCollectionView" secondAttribute="trailing" id="menuCategoryTrailing"/>
+                            <constraint firstItem="zxL-aq-aDP" firstAttribute="bottom" secondItem="menuFabButton" secondAttribute="bottom" constant="12" id="menuFabBottom"/>
+                            <constraint firstItem="menuFabButton" firstAttribute="height" constant="60" id="menuFabHeight"/>
+                            <constraint firstItem="zxL-aq-aDP" firstAttribute="trailing" secondItem="menuFabButton" secondAttribute="trailing" constant="16" id="menuFabTrailing"/>
+                            <constraint firstItem="menuFabButton" firstAttribute="width" constant="60" id="menuFabWidth"/>
+                            <constraint firstItem="menuHeaderView" firstAttribute="height" constant="44" id="menuHeaderHeight"/>
+                            <constraint firstItem="menuHeaderView" firstAttribute="leading" secondItem="0Bs-ff-QV0" secondAttribute="leading" id="menuHeaderLeading"/>
+                            <constraint firstItem="menuHeaderView" firstAttribute="top" secondItem="zxL-aq-aDP" secondAttribute="top" id="menuHeaderTop"/>
+                            <constraint firstAttribute="trailing" secondItem="menuHeaderView" secondAttribute="trailing" id="menuHeaderTrailing"/>
+                            <constraint firstItem="zxL-aq-aDP" firstAttribute="bottom" secondItem="menuTableView" secondAttribute="bottom" id="menuTableBottom"/>
+                            <constraint firstItem="menuTableView" firstAttribute="leading" secondItem="0Bs-ff-QV0" secondAttribute="leading" id="menuTableLeading"/>
+                            <constraint firstItem="menuTableView" firstAttribute="top" secondItem="menuCategoryCollectionView" secondAttribute="bottom" id="menuTableTop"/>
+                            <constraint firstAttribute="trailing" secondItem="menuTableView" secondAttribute="trailing" id="menuTableTrailing"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="frs-Ba-9pk"/>
+                    <navigationItem key="navigationItem" title="Menu Management" leftItemsSupplementBackButton="YES" id="frs-Ba-9pk"/>
+                    <connections>
+                        <outlet property="addButton" destination="menuFabButton" id="menuAddButtonOutlet"/>
+                        <outlet property="categoryCollectionView" destination="menuCategoryCollectionView" id="menuCategoryCollectionOutlet"/>
+                        <outlet property="searchBar" destination="hea-ht-zUO" id="menuSearchBarOutlet"/>
+                        <outlet property="tableView" destination="menuTableView" id="menuTableViewOutlet"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tabMenuFirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1319,285 +1312,233 @@
             </objects>
             <point key="canvasLocation" x="183.96946564885496" y="-1042.2535211267607"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Menu Item View Controller-->
         <scene sceneID="addNewItemScene">
             <objects>
-                <viewController storyboardIdentifier="AddNewItemViewController" id="addNewItemVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddMenuItemViewController" id="addNewItemVC" customClass="AddMenuItemViewController" customModule="CoffeeShopUMT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="addNewItemMainView">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemTopNav">
-                                <rect key="frame" x="0.0" y="47" width="393" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemUploadArea">
-                                <rect key="frame" x="24" y="121" width="345" height="180"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="addItemScrollView">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="camera.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCameraIcon">
-                                        <rect key="frame" x="153" y="24" width="40" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Upload Item Photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemUploadTitle">
-                                        <rect key="frame" x="102" y="68" width="141" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemUploadSubtitle">
-                                        <rect key="frame" x="108" y="92" width="130" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemChoosePhotoBtn">
-                                        <rect key="frame" x="117" y="96" width="111" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <state key="normal" title="Choose Photo">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="rectangle.dashed" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDashedBorder">
-                                        <rect key="frame" x="0.0" y="1" width="345" height="180"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="tintColor" red="0.20000000000000001" green="0.25490196079999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="addItemFormStack">
-                                <rect key="frame" x="24" y="321" width="345" height="332"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemNameWrap">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="76"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="addItemContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="900"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemNameLabel">
-                                                <rect key="frame" x="0.0" y="1.666666666666667" width="65" height="14.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemNameInputBg">
-                                                <rect key="frame" x="0.0" y="24" width="345" height="52"/>
-                                                <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="addItemNameInputBg" firstAttribute="leading" secondItem="addItemNameWrap" secondAttribute="leading" id="1gD-ob-SLk"/>
-                                            <constraint firstAttribute="bottom" secondItem="addItemNameInputBg" secondAttribute="bottom" id="GR3-rp-Jgw"/>
-                                            <constraint firstItem="addItemNameInputBg" firstAttribute="centerX" secondItem="addItemNameWrap" secondAttribute="centerX" id="Ihn-fd-otN"/>
-                                            <constraint firstItem="addItemNameInputBg" firstAttribute="top" secondItem="addItemNameLabel" secondAttribute="bottom" constant="8" id="OqE-G4-dRL"/>
-                                            <constraint firstItem="addItemNameInputBg" firstAttribute="top" secondItem="addItemNameWrap" secondAttribute="top" constant="24" id="POb-Fp-HFl"/>
-                                            <constraint firstItem="addItemNameInputBg" firstAttribute="leading" secondItem="addItemNameLabel" secondAttribute="leading" id="VAJ-ao-8wx"/>
-                                            <constraint firstAttribute="height" constant="76" id="addItemNameWrapHeight"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCategoryWrap">
-                                        <rect key="frame" x="0.0" y="88" width="345" height="76"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCategoryLabel">
-                                                <rect key="frame" x="0.0" y="1.6666666666666723" width="56" height="14.333333333333336"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCategoryRow">
-                                                <rect key="frame" x="0.0" y="24" width="345" height="52"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="addItemTopNav">
+                                                <rect key="frame" x="0.0" y="56" width="393" height="50"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCoffeeBtn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="52"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <color key="backgroundColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                        <state key="normal" title="Coffee">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCloseButton">
+                                                        <rect key="frame" x="16" y="9" width="40" height="32"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                        <state key="normal" title="✕">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="closeButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemCloseAction"/>
+                                                        </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemTeaBtn">
-                                                        <rect key="frame" x="87" y="0.0" width="84" height="52"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <state key="normal" title="Tea">
-                                                            <color key="titleColor" red="0.20000000000000001" green="0.25490196079999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                                <integer key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                                <color key="value" red="0.20000000000000001" green="0.25490196079999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPastriesBtn">
-                                                        <rect key="frame" x="174" y="0.0" width="84" height="52"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <state key="normal" title="Pastries">
-                                                            <color key="titleColor" red="0.20000000000000001" green="0.25490196079999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                                <integer key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                                <color key="value" red="0.20000000000000001" green="0.25490196079999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemOthersBtn">
-                                                        <rect key="frame" x="261" y="0.0" width="84" height="52"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                        <state key="normal" title="Others">
-                                                            <color key="titleColor" red="0.20000000000000001" green="0.25490196079999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                                <integer key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                                <color key="value" red="0.20000000000000001" green="0.25490196079999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="8"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="addItemCategoryRow" firstAttribute="leading" secondItem="addItemCategoryWrap" secondAttribute="leading" id="CSo-Uq-pgc"/>
-                                            <constraint firstItem="addItemCategoryRow" firstAttribute="centerX" secondItem="addItemCategoryWrap" secondAttribute="centerX" id="F94-BH-Jul"/>
-                                            <constraint firstAttribute="bottom" secondItem="addItemCategoryRow" secondAttribute="bottom" id="FkU-Mp-mt9"/>
-                                            <constraint firstItem="addItemCategoryRow" firstAttribute="leading" secondItem="addItemCategoryLabel" secondAttribute="leading" id="aau-O6-q58"/>
-                                            <constraint firstAttribute="height" constant="76" id="addItemCategoryWrapHeight"/>
-                                            <constraint firstItem="addItemCategoryRow" firstAttribute="top" secondItem="addItemCategoryWrap" secondAttribute="top" constant="24" id="fam-q1-yQC"/>
-                                            <constraint firstItem="addItemCategoryRow" firstAttribute="top" secondItem="addItemCategoryLabel" secondAttribute="bottom" constant="8" id="vmq-KW-xJy"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPriceWrap">
-                                        <rect key="frame" x="0.0" y="176" width="345" height="76"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPriceLabel">
-                                                <rect key="frame" x="0.0" y="1.6666666666666581" width="31.333333333333332" height="14.333333333333336"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPriceInputBg">
-                                                <rect key="frame" x="0.0" y="24" width="345" height="52"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPricePrefix">
-                                                        <rect key="frame" x="14" y="16" width="10" height="20"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemTitleLabel">
+                                                        <rect key="frame" x="176.5" y="14" width="40" height="22"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemSaveButton">
+                                                        <rect key="frame" x="313" y="9" width="64" height="32"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                        <state key="normal" title="Save">
+                                                            <color key="titleColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="saveButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemSaveAction"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
+                                                <constraints>
+                                                    <constraint firstItem="addItemCloseButton" firstAttribute="leading" secondItem="addItemTopNav" secondAttribute="leading" constant="16" id="addTopCloseLeading"/>
+                                                    <constraint firstItem="addItemCloseButton" firstAttribute="centerY" secondItem="addItemTopNav" secondAttribute="centerY" id="addTopCloseCenterY"/>
+                                                    <constraint firstItem="addItemTitleLabel" firstAttribute="centerX" secondItem="addItemTopNav" secondAttribute="centerX" id="addTopTitleCenterX"/>
+                                                    <constraint firstItem="addItemTitleLabel" firstAttribute="centerY" secondItem="addItemTopNav" secondAttribute="centerY" id="addTopTitleCenterY"/>
+                                                    <constraint firstAttribute="trailing" secondItem="addItemSaveButton" secondAttribute="trailing" constant="16" id="addTopSaveTrailing"/>
+                                                    <constraint firstItem="addItemSaveButton" firstAttribute="centerY" secondItem="addItemTopNav" secondAttribute="centerY" id="addTopSaveCenterY"/>
+                                                </constraints>
                                             </view>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="addItemPriceInputBg" firstAttribute="leading" secondItem="addItemPriceLabel" secondAttribute="leading" id="6T9-wS-Ct1"/>
-                                            <constraint firstAttribute="bottom" secondItem="addItemPriceInputBg" secondAttribute="bottom" id="9CC-oj-YKb"/>
-                                            <constraint firstItem="addItemPriceInputBg" firstAttribute="top" secondItem="addItemPriceLabel" secondAttribute="bottom" constant="8" id="CEt-ku-A6s"/>
-                                            <constraint firstItem="addItemPriceInputBg" firstAttribute="centerX" secondItem="addItemPriceWrap" secondAttribute="centerX" id="LfC-YL-UON"/>
-                                            <constraint firstAttribute="height" constant="76" id="addItemPriceWrapHeight"/>
-                                            <constraint firstItem="addItemPriceInputBg" firstAttribute="leading" secondItem="addItemPriceWrap" secondAttribute="leading" id="nxI-0u-S2N"/>
-                                            <constraint firstItem="addItemPriceInputBg" firstAttribute="top" secondItem="addItemPriceWrap" secondAttribute="top" constant="24" id="tbj-B4-cfb"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDescriptionWrap">
-                                        <rect key="frame" x="0.0" y="264" width="345" height="68"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDescriptionLabel">
-                                                <rect key="frame" x="0.0" y="1.6666666666666865" width="70" height="14.333333333333336"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemNameLabel">
+                                                <rect key="frame" x="24" y="130" width="74" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDescriptionInputBg">
-                                                <rect key="frame" x="0.0" y="24" width="345" height="44"/>
-                                                <color key="backgroundColor" red="0.18823529410000001" green="0.14117647059999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" borderStyle="roundedRect" placeholder="Enter item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addItemNameTextField">
+                                                <rect key="frame" x="24" y="155" width="345" height="44"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCategoryLabel">
+                                                <rect key="frame" x="24" y="215" width="64" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="horizontal" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCategoryStackView">
+                                                <rect key="frame" x="24" y="240" width="345" height="44"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCoffeeBtn">
+                                                        <rect key="frame" x="0.0" y="0.0" width="80.5" height="44"/>
+                                                        <state key="normal" title="Coffee"/>
+                                                        <connections>
+                                                            <action selector="categoryButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemCoffeeAction"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemTeaBtn">
+                                                        <rect key="frame" x="88.5" y="0.0" width="80.5" height="44"/>
+                                                        <state key="normal" title="Tea"/>
+                                                        <connections>
+                                                            <action selector="categoryButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemTeaAction"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPastriesBtn">
+                                                        <rect key="frame" x="177" y="0.0" width="80.5" height="44"/>
+                                                        <state key="normal" title="Pastries"/>
+                                                        <connections>
+                                                            <action selector="categoryButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemPastriesAction"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemOthersBtn">
+                                                        <rect key="frame" x="265.5" y="0.0" width="79.5" height="44"/>
+                                                        <state key="normal" title="Others"/>
+                                                        <connections>
+                                                            <action selector="categoryButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemOthersAction"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price (VNĐ)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPriceLabel">
+                                                <rect key="frame" x="24" y="300" width="83" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" borderStyle="roundedRect" placeholder="55000" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPriceTextField">
+                                                <rect key="frame" x="24" y="325" width="345" height="44"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDescriptionLabel">
+                                                <rect key="frame" x="24" y="385" width="80" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDescriptionTextView">
+                                                <rect key="frame" x="24" y="410" width="345" height="100"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textView>
+
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available in POS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableLabel">
+                                                <rect key="frame" x="24" y="536" width="112" height="17"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableSwitch">
+                                                <rect key="frame" x="318" y="529" width="51" height="31"/>
+                                            </switch>
+
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDeleteButton">
+                                                <rect key="frame" x="24" y="583" width="345" height="44"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <state key="normal" title="Delete Item"/>
+                                                <connections>
+                                                    <action selector="deleteButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemDeleteAction"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
+                                        <color key="backgroundColor" red="0.1333333333" green="0.098039215690000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="addItemDescriptionInputBg" firstAttribute="leading" secondItem="addItemDescriptionLabel" secondAttribute="leading" id="3dD-fB-VOt"/>
-                                            <constraint firstItem="addItemDescriptionInputBg" firstAttribute="centerX" secondItem="addItemDescriptionWrap" secondAttribute="centerX" id="JUd-P7-IBL"/>
-                                            <constraint firstAttribute="bottom" secondItem="addItemDescriptionInputBg" secondAttribute="bottom" id="MZ4-yj-Lw8"/>
-                                            <constraint firstAttribute="height" constant="68" id="addItemDescriptionWrapHeight"/>
-                                            <constraint firstItem="addItemDescriptionInputBg" firstAttribute="top" secondItem="addItemDescriptionLabel" secondAttribute="bottom" constant="8" id="mjM-eP-6sZ"/>
-                                            <constraint firstItem="addItemDescriptionInputBg" firstAttribute="leading" secondItem="addItemDescriptionWrap" secondAttribute="leading" id="nRr-Ks-ihF"/>
-                                            <constraint firstItem="addItemDescriptionInputBg" firstAttribute="top" secondItem="addItemDescriptionWrap" secondAttribute="top" constant="24" id="zcS-9j-Qq4"/>
+                                            <constraint firstItem="addItemTopNav" firstAttribute="top" secondItem="addItemContentView" secondAttribute="top" constant="56" id="addTopNavTop"/>
+                                            <constraint firstItem="addItemTopNav" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" id="addTopNavLeading"/>
+                                            <constraint firstAttribute="trailing" secondItem="addItemTopNav" secondAttribute="trailing" id="addTopNavTrailing"/>
+                                            <constraint firstItem="addItemTopNav" firstAttribute="height" constant="50" id="addTopNavHeight"/>
+
+                                            <constraint firstItem="addItemNameLabel" firstAttribute="top" secondItem="addItemTopNav" secondAttribute="bottom" constant="24" id="addNameLabelTop"/>
+                                            <constraint firstItem="addItemNameLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addNameLabelLeading"/>
+                                            <constraint firstItem="addItemNameTextField" firstAttribute="top" secondItem="addItemNameLabel" secondAttribute="bottom" constant="8" id="addNameFieldTop"/>
+                                            <constraint firstItem="addItemNameTextField" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addNameFieldLeading"/>
+                                            <constraint firstAttribute="trailing" secondItem="addItemNameTextField" secondAttribute="trailing" constant="24" id="addNameFieldTrailing"/>
+                                            <constraint firstItem="addItemNameTextField" firstAttribute="height" constant="44" id="addNameFieldHeight"/>
+
+                                            <constraint firstItem="addItemCategoryLabel" firstAttribute="top" secondItem="addItemNameTextField" secondAttribute="bottom" constant="16" id="addCategoryLabelTop"/>
+                                            <constraint firstItem="addItemCategoryLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addCategoryLabelLeading"/>
+                                            <constraint firstItem="addItemCategoryStackView" firstAttribute="top" secondItem="addItemCategoryLabel" secondAttribute="bottom" constant="8" id="addCategoryStackTop"/>
+                                            <constraint firstItem="addItemCategoryStackView" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addCategoryStackLeading"/>
+                                            <constraint firstAttribute="trailing" secondItem="addItemCategoryStackView" secondAttribute="trailing" constant="24" id="addCategoryStackTrailing"/>
+                                            <constraint firstItem="addItemCategoryStackView" firstAttribute="height" constant="44" id="addCategoryStackHeight"/>
+
+                                            <constraint firstItem="addItemPriceLabel" firstAttribute="top" secondItem="addItemCategoryStackView" secondAttribute="bottom" constant="16" id="addPriceLabelTop"/>
+                                            <constraint firstItem="addItemPriceLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addPriceLabelLeading"/>
+                                            <constraint firstItem="addItemPriceTextField" firstAttribute="top" secondItem="addItemPriceLabel" secondAttribute="bottom" constant="8" id="addPriceFieldTop"/>
+                                            <constraint firstItem="addItemPriceTextField" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addPriceFieldLeading"/>
+                                            <constraint firstAttribute="trailing" secondItem="addItemPriceTextField" secondAttribute="trailing" constant="24" id="addPriceFieldTrailing"/>
+                                            <constraint firstItem="addItemPriceTextField" firstAttribute="height" constant="44" id="addPriceFieldHeight"/>
+
+                                            <constraint firstItem="addItemDescriptionLabel" firstAttribute="top" secondItem="addItemPriceTextField" secondAttribute="bottom" constant="16" id="addDescriptionLabelTop"/>
+                                            <constraint firstItem="addItemDescriptionLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addDescriptionLabelLeading"/>
+                                            <constraint firstItem="addItemDescriptionTextView" firstAttribute="top" secondItem="addItemDescriptionLabel" secondAttribute="bottom" constant="8" id="addDescriptionTop"/>
+                                            <constraint firstItem="addItemDescriptionTextView" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addDescriptionLeading"/>
+                                            <constraint firstAttribute="trailing" secondItem="addItemDescriptionTextView" secondAttribute="trailing" constant="24" id="addDescriptionTrailing"/>
+                                            <constraint firstItem="addItemDescriptionTextView" firstAttribute="height" constant="100" id="addDescriptionHeight"/>
+
+                                            <constraint firstItem="addItemAvailableLabel" firstAttribute="top" secondItem="addItemDescriptionTextView" secondAttribute="bottom" constant="26" id="addAvailableLabelTop"/>
+                                            <constraint firstItem="addItemAvailableLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addAvailableLabelLeading"/>
+                                            <constraint firstItem="addItemAvailableSwitch" firstAttribute="centerY" secondItem="addItemAvailableLabel" secondAttribute="centerY" id="addAvailableSwitchCenterY"/>
+                                            <constraint firstAttribute="trailing" secondItem="addItemAvailableSwitch" secondAttribute="trailing" constant="24" id="addAvailableSwitchTrailing"/>
+
+                                            <constraint firstItem="addItemDeleteButton" firstAttribute="top" secondItem="addItemAvailableLabel" secondAttribute="bottom" constant="30" id="addDeleteTop"/>
+                                            <constraint firstItem="addItemDeleteButton" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addDeleteLeading"/>
+                                            <constraint firstAttribute="trailing" secondItem="addItemDeleteButton" secondAttribute="trailing" constant="24" id="addDeleteTrailing"/>
+                                            <constraint firstItem="addItemDeleteButton" firstAttribute="height" constant="44" id="addDeleteHeight"/>
+                                            <constraint firstAttribute="bottom" secondItem="addItemDeleteButton" secondAttribute="bottom" constant="273" id="addContentBottomSpacer"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDeleteButton">
-                                <rect key="frame" x="32" y="661" width="345" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="tintColor" red="0.93725490200000006" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Delete Item" image="trash" catalog="system">
-                                    <color key="titleColor" red="0.93725490200000006" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
+                                <constraints>
+                                    <constraint firstItem="addItemContentView" firstAttribute="leading" secondItem="addItemScrollView" secondAttribute="leading" id="addContentLeading"/>
+                                    <constraint firstAttribute="trailing" secondItem="addItemContentView" secondAttribute="trailing" id="addContentTrailing"/>
+                                    <constraint firstItem="addItemContentView" firstAttribute="top" secondItem="addItemScrollView" secondAttribute="top" id="addContentTop"/>
+                                    <constraint firstAttribute="bottom" secondItem="addItemContentView" secondAttribute="bottom" id="addContentBottom"/>
+                                    <constraint firstItem="addItemContentView" firstAttribute="width" secondItem="addNewItemMainView" secondAttribute="width" id="addContentEqualWidth"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="addNewItemSafe"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.098039215690000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="addItemScrollView" firstAttribute="leading" secondItem="addNewItemMainView" secondAttribute="leading" id="addScrollLeading"/>
+                            <constraint firstAttribute="trailing" secondItem="addItemScrollView" secondAttribute="trailing" id="addScrollTrailing"/>
+                            <constraint firstItem="addItemScrollView" firstAttribute="top" secondItem="addNewItemMainView" secondAttribute="top" id="addScrollTop"/>
+                            <constraint firstAttribute="bottom" secondItem="addItemScrollView" secondAttribute="bottom" id="addScrollBottom"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="addNewItemNav"/>
+                    <connections>
+                        <outlet property="availableSwitch" destination="addItemAvailableSwitch" id="addItemAvailableSwitchOutlet"/>
+                        <outlet property="coffeeButton" destination="addItemCoffeeBtn" id="addItemCoffeeOutlet"/>
+                        <outlet property="deleteButton" destination="addItemDeleteButton" id="addItemDeleteOutlet"/>
+                        <outlet property="descriptionTextView" destination="addItemDescriptionTextView" id="addItemDescriptionOutlet"/>
+                        <outlet property="itemNameTextField" destination="addItemNameTextField" id="addItemNameTextOutlet"/>
+                        <outlet property="othersButton" destination="addItemOthersBtn" id="addItemOthersOutlet"/>
+                        <outlet property="pastriesButton" destination="addItemPastriesBtn" id="addItemPastriesOutlet"/>
+                        <outlet property="priceTextField" destination="addItemPriceTextField" id="addItemPriceOutlet"/>
+                        <outlet property="teaButton" destination="addItemTeaBtn" id="addItemTeaOutlet"/>
+                        <outlet property="titleLabel" destination="addItemTitleLabel" id="addItemTitleOutlet"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="addNewItemResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2214.5038167938928" y="574.64788732394368"/>
+            <point key="canvasLocation" x="2212.9770992366412" y="574.64788732394368"/>
         </scene>
         <!--Menu-->
         <scene sceneID="V8Q-M4-tfa">
@@ -1715,7 +1656,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Takeaway" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orderTableLabel2">
+                                    <label opaque="NO" usserInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Takeaway" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orderTableLabel2">
                                         <rect key="frame" x="136" y="14" width="90" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -2256,6 +2197,7 @@
         <image name="creditcard.fill" catalog="system" width="128" height="88"/>
         <image name="desktopcomputer" catalog="system" width="128" height="101"/>
         <image name="lock" catalog="system" width="111" height="128"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="person.3.fill" catalog="system" width="128" height="66"/>
         <image name="person.badge.key" catalog="system" width="128" height="128"/>
@@ -2263,8 +2205,6 @@
         <image name="person.text.rectangle" catalog="system" width="128" height="93"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
         <image name="receipt" catalog="system" width="111" height="128"/>
-        <image name="rectangle.dashed" catalog="system" width="128" height="93"/>
         <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
-        <image name="trash" catalog="system" width="117" height="128"/>
     </resources>
 </document>
