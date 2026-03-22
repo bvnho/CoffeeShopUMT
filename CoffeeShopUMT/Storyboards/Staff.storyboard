@@ -38,54 +38,208 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-ord-vw">
-                                <rect key="frame" x="0.0" y="172" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoffeeShopUMT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-ord-title">
-                                        <rect key="frame" x="60" y="10" width="143" height="22"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Trang chủ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-ord-title">
+                                        <rect key="frame" x="50" y="20" width="142.33333333333337" height="21.666666666666671"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đơn hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-ord-sub">
-                                        <rect key="frame" x="60" y="34" width="57" height="15"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                        <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cup.and.saucer.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="img-ord-logo">
-                                        <rect key="frame" x="16" y="13" width="36" height="34"/>
-                                        <color key="tintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="hgt-lg-01"/>
-                                            <constraint firstAttribute="width" constant="36" id="wdt-lg-01"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="img-ord-logo" firstAttribute="centerY" secondItem="hdr-ord-vw" secondAttribute="centerY" id="cns-lc-01"/>
-                                    <constraint firstItem="img-ord-logo" firstAttribute="leading" secondItem="hdr-ord-vw" secondAttribute="leading" constant="16" id="cns-ll-01"/>
-                                    <constraint firstItem="lbl-ord-sub" firstAttribute="leading" secondItem="img-ord-logo" secondAttribute="trailing" constant="8" id="cns-sl-01"/>
-                                    <constraint firstItem="lbl-ord-sub" firstAttribute="top" secondItem="lbl-ord-title" secondAttribute="bottom" constant="2" id="cns-st-01"/>
-                                    <constraint firstItem="lbl-ord-title" firstAttribute="leading" secondItem="img-ord-logo" secondAttribute="trailing" constant="8" id="cns-tl-01"/>
                                     <constraint firstItem="lbl-ord-title" firstAttribute="top" secondItem="hdr-ord-vw" secondAttribute="top" constant="10" id="cns-tt-01"/>
                                     <constraint firstAttribute="height" constant="60" id="hgt-hd-01"/>
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="seg-ord-tabs">
-                                <rect key="frame" x="16" y="248" width="361" height="41"/>
+                                <rect key="frame" x="16" y="194" width="361" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="hgt-sg-01"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Đơn đang hoạt động"/>
-                                    <segment title="Đã hoàn thành"/>
+                                    <segment title="Đơn đã hoàn thành"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="240" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tbl-ord-list">
-                                <rect key="frame" x="16" y="304" width="361" height="431"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="line-sep">
+                                <rect key="frame" x="0.0" y="250" width="393" height="1"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.16078431369999999" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="sep-hg-1"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="250" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tbl-ord-list">
+                                <rect key="frame" x="16" y="267" width="361" height="468"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="240" id="TlR-cB-Pib">
+                                        <rect key="frame" x="0.0" y="50" width="361" height="240"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TlR-cB-Pib" id="0Op-ON-SIo">
+                                            <rect key="frame" x="0.0" y="0.0" width="361" height="240"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="card-vw">
+                                                    <rect key="frame" x="0.0" y="8" width="361" height="224"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="badge-vw">
+                                                            <rect key="frame" x="15.999999999999996" y="15.999999999999998" width="58.666666666666657" height="21.333333333333329"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tại quán" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-badge">
+                                                                    <rect key="frame" x="6" y="4.0000000000000009" width="46.666666666666664" height="13.333333333333336"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                                                    <color key="textColor" red="0.94117647059999998" green="0.67843137249999996" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="0.30196078430000001" green="0.18823529410000001" blue="0.08235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="lbl-badge" secondAttribute="bottom" constant="4" id="bdg-bt-1"/>
+                                                                <constraint firstItem="lbl-badge" firstAttribute="leading" secondItem="badge-vw" secondAttribute="leading" constant="6" id="bdg-ld-1"/>
+                                                                <constraint firstItem="lbl-badge" firstAttribute="top" secondItem="badge-vw" secondAttribute="top" constant="4" id="bdg-tp-1"/>
+                                                                <constraint firstAttribute="trailing" secondItem="lbl-badge" secondAttribute="trailing" constant="6" id="bdg-tr-1"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="4"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bàn 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-table">
+                                                            <rect key="frame" x="82.666666666666671" y="18.333333333333332" width="37.333333333333329" height="16.999999999999996"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.70980392160000005" green="0.70980392160000005" blue="0.70980392160000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="stk-time">
+                                                            <rect key="frame" x="263" y="18.666666666666668" width="82" height="16.000000000000004"/>
+                                                            <subviews>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="img-clock">
+                                                                    <rect key="frame" x="0.0" y="0.66666666666666607" width="16" height="14.666666666666668"/>
+                                                                    <color key="tintColor" red="0.94117647059999998" green="0.67843137249999996" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="16" id="clk-hg-1"/>
+                                                                        <constraint firstAttribute="width" constant="16" id="clk-wd-1"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 mins ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-time">
+                                                                    <rect key="frame" x="20" y="0.0" width="62" height="16"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" red="0.94117647059999998" green="0.67843137249999996" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã đơn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-orderId">
+                                                            <rect key="frame" x="16" y="45.333333333333336" width="69.333333333333329" height="24.000000000000007"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="div-line">
+                                                            <rect key="frame" x="16" y="81.333333333333329" width="329" height="1"/>
+                                                            <color key="backgroundColor" red="0.2156862745" green="0.16078431369999999" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="1" id="div-hg-1"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="stk-items">
+                                                            <rect key="frame" x="16" y="98.333333333333329" width="329" height="41.666666666666671"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="stk-item1">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="329" height="41.666666666666664"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="1x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-qty1">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="17" height="19.333333333333332"/>
+                                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                            <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="stk-desc1">
+                                                                            <rect key="frame" x="29" y="0.0" width="300" height="40.333333333333336"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên món nước" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-name1">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="19.333333333333332"/>
+                                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ghi chú" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-opt1">
+                                                                                    <rect key="frame" x="0.0" y="23.333333333333329" width="300" height="17"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                    <color key="textColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                </stackView>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btn-complete">
+                                                            <rect key="frame" x="16" y="160" width="329" height="48"/>
+                                                            <color key="backgroundColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="48" id="btn-hg-1"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                                            <state key="normal" title="Xác nhận" image="checkmark.circle" catalog="system"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="8"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.1450980392" green="0.1019607843" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="badge-vw" firstAttribute="leading" secondItem="card-vw" secondAttribute="leading" constant="16" id="crd-bdg-1"/>
+                                                        <constraint firstItem="badge-vw" firstAttribute="top" secondItem="card-vw" secondAttribute="top" constant="16" id="crd-bdg-2"/>
+                                                        <constraint firstAttribute="bottom" secondItem="btn-complete" secondAttribute="bottom" constant="16" id="crd-bt-1"/>
+                                                        <constraint firstItem="btn-complete" firstAttribute="leading" secondItem="card-vw" secondAttribute="leading" constant="16" id="crd-btn-1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="btn-complete" secondAttribute="trailing" constant="16" id="crd-btn-2"/>
+                                                        <constraint firstItem="btn-complete" firstAttribute="top" secondItem="stk-items" secondAttribute="bottom" constant="20" id="crd-btn-3"/>
+                                                        <constraint firstItem="div-line" firstAttribute="leading" secondItem="card-vw" secondAttribute="leading" constant="16" id="crd-div-1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="div-line" secondAttribute="trailing" constant="16" id="crd-div-2"/>
+                                                        <constraint firstItem="div-line" firstAttribute="top" secondItem="lbl-orderId" secondAttribute="bottom" constant="12" id="crd-div-3"/>
+                                                        <constraint firstItem="lbl-orderId" firstAttribute="top" secondItem="badge-vw" secondAttribute="bottom" constant="8" id="crd-oid-1"/>
+                                                        <constraint firstItem="lbl-orderId" firstAttribute="leading" secondItem="card-vw" secondAttribute="leading" constant="16" id="crd-oid-2"/>
+                                                        <constraint firstItem="stk-items" firstAttribute="top" secondItem="div-line" secondAttribute="bottom" constant="16" id="crd-stk-1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="stk-items" secondAttribute="trailing" constant="16" id="crd-stk-2"/>
+                                                        <constraint firstItem="stk-items" firstAttribute="leading" secondItem="card-vw" secondAttribute="leading" constant="16" id="crd-stk-3"/>
+                                                        <constraint firstItem="lbl-table" firstAttribute="centerY" secondItem="badge-vw" secondAttribute="centerY" id="crd-tb-1"/>
+                                                        <constraint firstItem="lbl-table" firstAttribute="leading" secondItem="badge-vw" secondAttribute="trailing" constant="8" id="crd-tb-2"/>
+                                                        <constraint firstAttribute="trailing" secondItem="stk-time" secondAttribute="trailing" constant="16" id="crd-tm-1"/>
+                                                        <constraint firstItem="stk-time" firstAttribute="centerY" secondItem="badge-vw" secondAttribute="centerY" id="crd-tm-2"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="12"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                            <color key="value" red="0.2156862745" green="0.16078431369999999" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="card-vw" secondAttribute="bottom" constant="8" id="cvw-bt-1"/>
+                                                <constraint firstItem="card-vw" firstAttribute="leading" secondItem="0Op-ON-SIo" secondAttribute="leading" id="cvw-ld-1"/>
+                                                <constraint firstItem="card-vw" firstAttribute="top" secondItem="0Op-ON-SIo" secondAttribute="top" constant="8" id="cvw-tp-1"/>
+                                                <constraint firstAttribute="trailing" secondItem="card-vw" secondAttribute="trailing" id="cvw-tr-1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="92O-XJ-QvA"/>
@@ -93,12 +247,15 @@
                         <constraints>
                             <constraint firstItem="92O-XJ-QvA" firstAttribute="bottom" secondItem="tbl-ord-list" secondAttribute="bottom" id="bot-tb-01"/>
                             <constraint firstItem="hdr-ord-vw" firstAttribute="leading" secondItem="92O-XJ-QvA" secondAttribute="leading" id="led-hd-01"/>
+                            <constraint firstItem="line-sep" firstAttribute="leading" secondItem="92O-XJ-QvA" secondAttribute="leading" id="led-ln-1"/>
                             <constraint firstItem="seg-ord-tabs" firstAttribute="leading" secondItem="92O-XJ-QvA" secondAttribute="leading" constant="16" id="led-sg-01"/>
                             <constraint firstItem="tbl-ord-list" firstAttribute="leading" secondItem="92O-XJ-QvA" secondAttribute="leading" constant="16" id="led-tb-01"/>
                             <constraint firstItem="hdr-ord-vw" firstAttribute="top" secondItem="92O-XJ-QvA" secondAttribute="top" id="top-hd-01"/>
+                            <constraint firstItem="line-sep" firstAttribute="top" secondItem="seg-ord-tabs" secondAttribute="bottom" constant="16" id="top-ln-1"/>
                             <constraint firstItem="seg-ord-tabs" firstAttribute="top" secondItem="hdr-ord-vw" secondAttribute="bottom" constant="16" id="top-sg-01"/>
-                            <constraint firstItem="tbl-ord-list" firstAttribute="top" secondItem="seg-ord-tabs" secondAttribute="bottom" constant="16" id="top-tb-01"/>
+                            <constraint firstItem="tbl-ord-list" firstAttribute="top" secondItem="line-sep" secondAttribute="bottom" constant="16" id="top-tb-01"/>
                             <constraint firstItem="92O-XJ-QvA" firstAttribute="trailing" secondItem="hdr-ord-vw" secondAttribute="trailing" id="tra-hd-01"/>
+                            <constraint firstItem="92O-XJ-QvA" firstAttribute="trailing" secondItem="line-sep" secondAttribute="trailing" id="tra-ln-1"/>
                             <constraint firstItem="92O-XJ-QvA" firstAttribute="trailing" secondItem="seg-ord-tabs" secondAttribute="trailing" constant="16" id="tra-sg-01"/>
                             <constraint firstItem="92O-XJ-QvA" firstAttribute="trailing" secondItem="tbl-ord-list" secondAttribute="trailing" constant="16" id="tra-tb-01"/>
                         </constraints>
@@ -107,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QiQ-rK-WhA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-40" y="-1223"/>
+            <point key="canvasLocation" x="-40.458015267175568" y="-1223.2394366197184"/>
         </scene>
         <!--POSScreenID-->
         <scene sceneID="sharedPosRefSceneStaff">
@@ -129,63 +286,43 @@
             </objects>
             <point key="canvasLocation" x="-111" y="-534"/>
         </scene>
-        <!--View Controller-->
+        <!--Staff Profile View Controller-->
         <scene sceneID="tabStaffScene">
             <objects>
-                <viewController id="tabStaffVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StaffProfileViewController" id="tabStaffVC" customClass="StaffProfileViewController" customModule="CoffeeShopUMT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tabStaffView">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-set-vw">
-                                <rect key="frame" x="0.0" y="172" width="393" height="60"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cup.and.saucer.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="img-set-logo">
-                                        <rect key="frame" x="16" y="13" width="36" height="34"/>
-                                        <color key="tintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="shg-lg-01"/>
-                                            <constraint firstAttribute="width" constant="36" id="swd-lg-01"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoffeeShopUMT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-set-title">
-                                        <rect key="frame" x="60.000000000000014" y="19.333333333333343" width="142.33333333333337" height="21.666666666666671"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hdr-set-vw">
+                                <rect key="frame" x="0.0" y="116" width="393" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="img-set-logo" firstAttribute="centerY" secondItem="hdr-set-vw" secondAttribute="centerY" id="scns-cy-01"/>
-                                    <constraint firstItem="img-set-logo" firstAttribute="leading" secondItem="hdr-set-vw" secondAttribute="leading" constant="16" id="scns-ll-01"/>
-                                    <constraint firstItem="lbl-set-title" firstAttribute="centerY" secondItem="hdr-set-vw" secondAttribute="centerY" id="scns-tc-01"/>
-                                    <constraint firstItem="lbl-set-title" firstAttribute="leading" secondItem="img-set-logo" secondAttribute="trailing" constant="8" id="scns-tl-01"/>
                                     <constraint firstAttribute="height" constant="60" id="shgt-hd-01"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="img-set-avatar">
-                                <rect key="frame" x="136.66666666666666" y="272.66666666666669" width="119.99999999999997" height="118.66666666666669"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="img-set-avatar">
+                                <rect key="frame" x="137" y="217" width="119.99999999999997" height="118.66666666666669"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="ahgt-pr-01"/>
                                     <constraint firstAttribute="width" constant="120" id="awdt-pr-01"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-set-name">
-                                <rect key="frame" x="16" y="416" width="361" height="28.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tên" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-set-name">
+                                <rect key="frame" x="16" y="360" width="361" height="28.666666666666686"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chức vụ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-set-role">
-                                <rect key="frame" x="16" y="448.66666666666669" width="361" height="19.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Chức vụ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbl-set-role">
+                                <rect key="frame" x="16" y="393" width="361" height="19.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="stk-set-actions">
-                                <rect key="frame" x="24" y="508" width="345" height="136"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="stk-set-actions">
+                                <rect key="frame" x="24" y="452" width="345" height="136"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btn-set-pwd">
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="56"/>
@@ -253,10 +390,10 @@
             </objects>
             <point key="canvasLocation" x="-121.37404580152672" y="922.53521126760563"/>
         </scene>
-        <!--View Controller-->
+        <!--Reset Password View Controller-->
         <scene sceneID="scene-pwd-modal">
             <objects>
-                <viewController storyboardIdentifier="ChangePasswordVC" id="chg-pwd-vc" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResetPasswordViewController" id="chg-pwd-vc" customClass="ResetPasswordViewController" customModule="CoffeeShopUMT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vw-pwd-main">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -392,11 +529,10 @@
         <!--Orders-->
         <scene sceneID="aDA-4K-o8i">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SFb-b4-U74" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="SFb-b4-U74" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Orders" image="list.bullet.clipboard.fill" catalog="system" selectedImage="list.clipboard.fill" id="rEV-fi-VfW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d85-vz-qwy">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -448,7 +584,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cup.and.saucer.fill" catalog="system" width="128" height="91"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="123"/>
+        <image name="clock" catalog="system" width="128" height="123"/>
         <image name="desktopcomputer" catalog="system" width="128" height="101"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="list.bullet.clipboard.fill" catalog="system" width="98" height="128"/>
