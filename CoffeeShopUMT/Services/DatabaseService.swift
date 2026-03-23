@@ -5,7 +5,7 @@ final class DatabaseService {
     static let shared = DatabaseService()
     private init() {}
 
-    private let db = Firestore.firestore()
+    private lazy var db = Firestore.firestore()
 
     func fetchStaffAndAdmins(completion: @escaping (Result<[User], Error>) -> Void) {
         db.collection("Users")
