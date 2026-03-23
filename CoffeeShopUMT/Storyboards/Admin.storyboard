@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -657,12 +658,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="menuCategoryCollectionView">
-                                <rect key="frame" x="0.0" y="224" width="393" height="50"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="menuCategoryCollectionView">
+                                <rect key="frame" x="0.0" y="204" width="393" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="MXZ-nW-Uep"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="menuCategoryFlow">
                                     <size key="itemSize" width="100" height="36"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -680,11 +678,11 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="menuTableView">
-                                <rect key="frame" x="0.0" y="273" width="393" height="579"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="menuTableView">
+                                <rect key="frame" x="0.0" y="262" width="393" height="590"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="602" id="6Rs-xr-w21"/>
+                                    <constraint firstAttribute="height" constant="590" id="GW4-1d-lkN"/>
                                 </constraints>
                                 <color key="separatorColor" red="0.1274414062" green="0.09924316406" blue="0.06732177734" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -695,40 +693,41 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellImageView">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellImageView">
                                                     <rect key="frame" x="16" y="15" width="70" height="70"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.25490196079999999" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="70" id="1ZO-9d-nkn"/>
-                                                        <constraint firstAttribute="height" constant="70" id="lRX-dp-KaX"/>
-                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="10"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Menu Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellNameLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Menu Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellNameLabel">
                                                     <rect key="frame" x="104" y="26" width="92" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <color key="textColor" red="0.6953125" green="0.4169921875" blue="0.1625976562" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="55.000 đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellPriceLabel">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="55.000 đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellPriceLabel">
                                                     <rect key="frame" x="104" y="52" width="92" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellSwitch">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellSwitch">
                                                     <rect key="frame" x="202" y="36" width="63" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="availabilitySwitchChanged:" destination="menuPrototypeCell" eventType="valueChanged" id="menuCellSwitchAction"/>
                                                     </connections>
                                                 </switch>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellEditButton">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="menuCellEditButton">
                                                     <rect key="frame" x="281" y="38" width="96" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <state key="normal" image="pencil" catalog="system">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -739,20 +738,6 @@
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.1019287109" green="0.07934570312" blue="0.053833015259999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            <constraints>
-                                                <constraint firstItem="menuCellImageView" firstAttribute="centerY" secondItem="menuCellSwitch" secondAttribute="centerY" id="35l-Ee-dcP"/>
-                                                <constraint firstItem="menuCellNameLabel" firstAttribute="leading" secondItem="menuCellImageView" secondAttribute="trailing" constant="12" id="3QQ-w5-9X7"/>
-                                                <constraint firstItem="menuCellEditButton" firstAttribute="leading" secondItem="menuCellSwitch" secondAttribute="trailing" constant="18" id="4vM-oN-6b2"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="menuCellEditButton" secondAttribute="trailing" constant="-4" id="O4Y-XG-sYU"/>
-                                                <constraint firstItem="menuCellPriceLabel" firstAttribute="top" secondItem="menuCellNameLabel" secondAttribute="bottom" constant="6" id="Tvp-ad-eCo"/>
-                                                <constraint firstItem="menuCellNameLabel" firstAttribute="top" secondItem="menuPrototypeContent" secondAttribute="topMargin" constant="11" id="aSN-Ob-7MF"/>
-                                                <constraint firstItem="menuCellImageView" firstAttribute="centerY" secondItem="menuPrototypeContent" secondAttribute="centerY" id="dN0-na-7ty"/>
-                                                <constraint firstItem="menuCellSwitch" firstAttribute="leading" secondItem="menuCellNameLabel" secondAttribute="trailing" constant="12" id="kXD-73-iIq"/>
-                                                <constraint firstItem="menuCellNameLabel" firstAttribute="trailing" secondItem="menuCellPriceLabel" secondAttribute="trailing" id="n2d-5Q-LpL"/>
-                                                <constraint firstItem="menuCellNameLabel" firstAttribute="leading" secondItem="menuCellPriceLabel" secondAttribute="leading" id="wxf-BB-0XS"/>
-                                                <constraint firstItem="menuCellImageView" firstAttribute="centerY" secondItem="menuCellEditButton" secondAttribute="centerY" id="yVm-CX-cyJ"/>
-                                                <constraint firstItem="menuCellImageView" firstAttribute="leading" secondItem="menuPrototypeContent" secondAttribute="leadingMargin" constant="-4" id="yb6-FP-JJ8"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="availabilitySwitch" destination="menuCellSwitch" id="menuCellSwitchOutlet"/>
@@ -791,11 +776,13 @@
                         <viewLayoutGuide key="safeArea" id="zxL-aq-aDP"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.098039215690000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="menuTableView" firstAttribute="leading" secondItem="zxL-aq-aDP" secondAttribute="leading" id="4HU-dj-uA5"/>
-                            <constraint firstAttribute="bottom" secondItem="menuTableView" secondAttribute="bottom" id="Jdd-WN-0T6"/>
-                            <constraint firstItem="menuTableView" firstAttribute="trailing" secondItem="menuCategoryCollectionView" secondAttribute="trailing" id="fGO-No-Fob"/>
-                            <constraint firstItem="menuTableView" firstAttribute="leading" secondItem="menuCategoryCollectionView" secondAttribute="leading" id="nbw-7e-jLi"/>
-                            <constraint firstItem="menuTableView" firstAttribute="centerX" secondItem="0Bs-ff-QV0" secondAttribute="centerX" id="nyD-Nl-aBG"/>
+                            <constraint firstItem="menuTableView" firstAttribute="leading" secondItem="hea-ht-zUO" secondAttribute="leading" id="0ey-oX-06W"/>
+                            <constraint firstItem="menuTableView" firstAttribute="leading" secondItem="menuCategoryCollectionView" secondAttribute="leading" id="41P-aP-Fbr"/>
+                            <constraint firstAttribute="bottom" secondItem="menuTableView" secondAttribute="bottom" id="4c6-cE-5kf"/>
+                            <constraint firstItem="menuTableView" firstAttribute="trailing" secondItem="hea-ht-zUO" secondAttribute="trailing" id="8iD-e2-n2D"/>
+                            <constraint firstItem="menuCategoryCollectionView" firstAttribute="top" secondItem="hea-ht-zUO" secondAttribute="bottom" id="Q5y-nk-8f1"/>
+                            <constraint firstItem="menuTableView" firstAttribute="trailing" secondItem="menuCategoryCollectionView" secondAttribute="trailing" id="fko-QK-4bL"/>
+                            <constraint firstItem="menuTableView" firstAttribute="top" secondItem="menuCategoryCollectionView" secondAttribute="bottom" constant="8" symbolic="YES" id="wFx-uD-i6m"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Menu Management" leftItemsSupplementBackButton="YES" id="frs-Ba-9pk"/>
@@ -810,58 +797,138 @@
             </objects>
             <point key="canvasLocation" x="1110.6870229007634" y="574.64788732394368"/>
         </scene>
-        <!--Staff List View Controller-->
+        <!--Staff Management-->
         <scene sceneID="tabStaffScene">
             <objects>
-                <viewController id="tabStaffVC" customClass="StaffListViewController" sceneMemberID="viewController">
+                <viewController id="tabStaffVC" customClass="StaffListViewController" customModule="CoffeeShopUMT" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xHV-j3-4pq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IlM-ZR-Z37">
-                                <rect key="frame" x="0.0" y="118" width="393" height="617"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlM-ZR-Z37">
+                                <rect key="frame" x="0.0" y="117" width="393" height="618"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Staff Management" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3w-aM-ZEn">
-                                        <rect key="frame" x="84" y="8" width="254" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="29"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P2x-Eu-oMH">
-                                        <rect key="frame" x="0.0" y="43" width="393" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="TpU-I1-A4L">
+                                        <rect key="frame" x="0.0" y="64" width="393" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="khn-2q-U6y"/>
+                                        </constraints>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
-                                            <outlet property="delegate" destination="tabStaffVC" id="we8-UU-d9e"/>
+                                            <outlet property="delegate" destination="tabStaffVC" id="zgi-jk-VYQ"/>
                                         </connections>
                                     </searchBar>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Staff List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Il-SR-B01">
-                                        <rect key="frame" x="162" y="101" width="91" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
-                                        <color key="textColor" red="0.810546875" green="0.5551757812" blue="0.2805175781" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <color key="highlightedColor" red="0.810546875" green="0.5551757812" blue="0.2805175781" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6mG-HT-4Up">
+                                        <rect key="frame" x="0.0" y="108" width="393" height="510"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="161" id="KEe-PK-Ic0">
+                                                <rect key="frame" x="0.0" y="50" width="393" height="161"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="StaffCell" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KEe-PK-Ic0" id="t2G-po-wgy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="161"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-XA-zrB">
+                                                            <rect key="frame" x="14" y="15" width="90" height="76"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJQ-ne-HrN">
+                                                            <rect key="frame" x="112" y="15" width="45" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Role" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wT-K6-UUU">
+                                                            <rect key="frame" x="112" y="43" width="34" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wf-NQ-maO">
+                                                            <rect key="frame" x="112" y="72" width="41" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EHH-wg-H6k">
+                                                            <rect key="frame" x="76" y="101" width="241" height="38.333333333333343"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leM-Ur-OAO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="80.333333333333329" height="38.333333333333336"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="gray" title="Reset"/>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wD-Cs-L3X">
+                                                                    <rect key="frame" x="80.333333333333343" y="0.0" width="80.333333333333343" height="38.333333333333336"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="gray" title="Edit"/>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2e-Z1-bOx">
+                                                                    <rect key="frame" x="160.66666666666666" y="0.0" width="80.333333333333343" height="38.333333333333336"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="gray" title="Disable"/>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.06805419922" green="0.05548095703" blue="0.041137687860000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="6mG-HT-4Up" secondAttribute="bottom" id="Bdn-B8-JMU"/>
+                                    <constraint firstAttribute="trailing" secondItem="6mG-HT-4Up" secondAttribute="trailing" id="ayS-wx-Mcd"/>
+                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="leading" secondItem="6mG-HT-4Up" secondAttribute="leading" id="bqW-eo-yYP"/>
+                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="trailing" secondItem="6mG-HT-4Up" secondAttribute="trailing" id="e3J-zI-9Dv"/>
+                                    <constraint firstItem="6mG-HT-4Up" firstAttribute="top" secondItem="TpU-I1-A4L" secondAttribute="bottom" id="rMR-WY-MzT"/>
+                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="top" secondItem="IlM-ZR-Z37" secondAttribute="top" constant="64" id="rWH-QS-xT5"/>
+                                    <constraint firstItem="6mG-HT-4Up" firstAttribute="leading" secondItem="IlM-ZR-Z37" secondAttribute="leading" id="ymS-Sn-o7V"/>
+                                </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nF-dK-il7">
+                                <rect key="frame" x="317" y="680" width="60" height="47"/>
+                                <color key="backgroundColor" red="0.810546875" green="0.5551757812" blue="0.2805175781" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" image="plus" catalog="system"/>
+                                <connections>
+                                    <segue destination="vzH-xH-If2" kind="show" id="UWB-gQ-6SA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="I76-eT-ofC"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IlM-ZR-Z37" firstAttribute="bottom" secondItem="I76-eT-ofC" secondAttribute="bottom" id="6V8-eG-vad"/>
+                            <constraint firstItem="9nF-dK-il7" firstAttribute="leading" secondItem="I76-eT-ofC" secondAttribute="leading" constant="317" id="Uim-PR-LqK"/>
+                            <constraint firstItem="IlM-ZR-Z37" firstAttribute="centerY" secondItem="xHV-j3-4pq" secondAttribute="centerY" id="ZWM-ht-VWJ"/>
+                            <constraint firstItem="I76-eT-ofC" firstAttribute="trailing" secondItem="9nF-dK-il7" secondAttribute="trailing" constant="16" id="Zet-hy-cR0"/>
+                            <constraint firstAttribute="trailing" secondItem="IlM-ZR-Z37" secondAttribute="trailing" id="h94-DY-iIT"/>
+                            <constraint firstItem="I76-eT-ofC" firstAttribute="bottom" secondItem="9nF-dK-il7" secondAttribute="bottom" constant="8" id="i9L-oz-CK1"/>
+                            <constraint firstItem="IlM-ZR-Z37" firstAttribute="leading" secondItem="xHV-j3-4pq" secondAttribute="leading" id="jge-Cj-sP6"/>
+                            <constraint firstItem="9nF-dK-il7" firstAttribute="top" secondItem="I76-eT-ofC" secondAttribute="top" constant="508" id="nln-ci-Rsj"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="jCB-OX-9G9"/>
+                    <navigationItem key="navigationItem" title="Staff Management" id="jCB-OX-9G9"/>
+                    <connections>
+                        <outlet property="searchBar" destination="TpU-I1-A4L" id="kOU-Bh-B2I"/>
+                        <outlet property="tableView" destination="6mG-HT-4Up" id="1Fl-0r-iR9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tabStaffFirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1110.6870229007634" y="1438.7323943661972"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Staff-->
         <scene sceneID="oEc-yF-JBL">
             <objects>
-                <viewController id="vzH-xH-If2" sceneMemberID="viewController">
+                <viewController id="vzH-xH-If2" customClass="CreateStaffViewController" customModule="CoffeeShopUMT" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P9l-8x-qhP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1004,11 +1071,11 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="addStaffUsernameFieldWrap" firstAttribute="centerY" secondItem="addStaffFormStack" secondAttribute="centerY" id="BTa-Ip-9JY"/>
-                                    <constraint firstItem="addStaffUsernameFieldWrap" firstAttribute="top" secondItem="addStaffFormStack" secondAttribute="top" constant="104" id="k5M-dP-yRI"/>
+                                    <constraint firstItem="addStaffUsernameFieldWrap" firstAttribute="centerY" secondItem="addStaffFormStack" secondAttribute="centerY" id="Otm-Ti-vEN"/>
+                                    <constraint firstItem="addStaffUsernameFieldWrap" firstAttribute="top" secondItem="addStaffFormStack" secondAttribute="top" constant="104" id="mLx-re-gw7"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffGrantAccountButton">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffGrantAccountButton">
                                 <rect key="frame" x="24" y="577" width="345" height="45"/>
                                 <color key="backgroundColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -1021,11 +1088,14 @@
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="grantAccountTapped:" destination="vzH-xH-If2" eventType="touchUpInside" id="tcy-fH-UEb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffCancelButton">
                                 <rect key="frame" x="171" y="696" width="51" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ei2-fg-8nV"/>
+                                    <constraint firstAttribute="height" constant="30" id="0ij-IV-cfu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Cancel">
@@ -1042,62 +1112,64 @@
                                         <color key="value" red="0.35686274509999999" green="0.25098039220000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelTapped:" destination="vzH-xH-If2" eventType="touchUpInside" id="oIW-JH-Gwn"/>
+                                </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderWrap">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderWrap">
                                 <rect key="frame" x="96" y="108" width="201" height="118"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.dashed" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffDashedCircle">
-                                        <rect key="frame" x="66" y="76.666666666666671" width="69" height="19"/>
-                                        <color key="tintColor" red="0.51372549020000002" green="0.31764705879999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="person.crop.circle.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderIcon">
-                                        <rect key="frame" x="82" y="16" width="36" height="36"/>
-                                        <color key="tintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STAFF IDENTITY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderTitle">
-                                        <rect key="frame" x="19" y="111.33333333333334" width="163" height="19.333333333333343"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="STAFF IDENTITY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderTitle">
+                                        <rect key="frame" x="-37" y="78" width="163" height="19.333333333333329"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="centerX" secondItem="addStaffHeaderWrap" secondAttribute="centerX" id="3bq-E4-KY0"/>
-                                    <constraint firstItem="addStaffHeaderIcon" firstAttribute="leading" secondItem="addStaffHeaderWrap" secondAttribute="leading" constant="84.666666666666671" id="8tu-eT-Q49"/>
-                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="leading" secondItem="addStaffHeaderWrap" secondAttribute="leading" constant="19" id="F7S-jT-8Me"/>
-                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="centerX" secondItem="addStaffHeaderIcon" secondAttribute="centerX" id="FqC-3c-TrM"/>
-                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="top" secondItem="addStaffHeaderWrap" secondAttribute="topMargin" id="GV8-ML-6yv"/>
-                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="top" secondItem="addStaffDashedCircle" secondAttribute="bottom" constant="15.33" id="S0G-BS-55O"/>
-                                    <constraint firstItem="addStaffHeaderIcon" firstAttribute="top" secondItem="addStaffHeaderWrap" secondAttribute="top" constant="15.333333333333336" id="df5-ix-kF6"/>
-                                    <constraint firstItem="addStaffHeaderTitle" firstAttribute="top" secondItem="addStaffHeaderIcon" secondAttribute="bottom" constant="32.666666666666657" id="ih0-zg-QJt"/>
-                                    <constraint firstItem="addStaffDashedCircle" firstAttribute="centerX" secondItem="addStaffHeaderTitle" secondAttribute="centerX" id="nJm-Z8-Osl"/>
-                                    <constraint firstItem="addStaffDashedCircle" firstAttribute="leading" secondItem="addStaffHeaderWrap" secondAttribute="leading" constant="66" id="uFz-7j-iQS"/>
-                                    <constraint firstItem="addStaffDashedCircle" firstAttribute="centerY" secondItem="addStaffHeaderWrap" secondAttribute="centerY" id="vCC-nf-cNE"/>
-                                </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.crop.circle.badge.plus" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffHeaderIcon">
+                                <rect key="frame" x="21.333333333333258" y="177.66666666666674" width="36" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle.dashed" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="addStaffDashedCircle">
+                                <rect key="frame" x="19" y="194.66666666666674" width="69" height="17"/>
+                                <color key="tintColor" red="0.51372549020000002" green="0.31764705879999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EJD-85-WKh"/>
                         <color key="backgroundColor" red="0.066711418329999994" green="0.05438232422" blue="0.04034423828" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="addStaffHeaderWrap" firstAttribute="leading" secondItem="EJD-85-WKh" secondAttribute="leading" constant="96" id="1s8-rg-Osf"/>
-                            <constraint firstItem="EJD-85-WKh" firstAttribute="bottom" secondItem="addStaffCancelButton" secondAttribute="bottom" constant="58" id="1zT-4D-clD"/>
-                            <constraint firstItem="addStaffFormStack" firstAttribute="leading" secondItem="EJD-85-WKh" secondAttribute="leading" constant="24" id="96a-fD-mZK"/>
-                            <constraint firstItem="addStaffFormStack" firstAttribute="centerX" secondItem="P9l-8x-qhP" secondAttribute="centerX" id="9l8-Gr-fR0"/>
-                            <constraint firstItem="addStaffFormStack" firstAttribute="top" secondItem="P9l-8x-qhP" secondAttribute="top" constant="234" id="D3Y-pn-WgF"/>
-                            <constraint firstItem="addStaffCancelButton" firstAttribute="top" secondItem="addStaffGrantAccountButton" secondAttribute="bottom" constant="25" id="DxX-HQ-9mo"/>
-                            <constraint firstItem="addStaffCancelButton" firstAttribute="leading" secondItem="EJD-85-WKh" secondAttribute="leading" constant="171" id="Gxy-Ko-AP2"/>
-                            <constraint firstItem="addStaffGrantAccountButton" firstAttribute="top" secondItem="addStaffFormStack" secondAttribute="bottom" constant="8" id="NGq-QT-OX7"/>
-                            <constraint firstItem="addStaffHeaderWrap" firstAttribute="top" secondItem="P9l-8x-qhP" secondAttribute="topMargin" constant="-76" id="PTp-mB-kE4"/>
-                            <constraint firstItem="addStaffFormStack" firstAttribute="trailing" secondItem="addStaffGrantAccountButton" secondAttribute="trailing" id="ZTn-DE-RXD"/>
-                            <constraint firstAttribute="bottom" secondItem="addStaffFormStack" secondAttribute="bottom" constant="302" id="ZvI-y9-22p"/>
-                            <constraint firstItem="addStaffFormStack" firstAttribute="centerX" secondItem="addStaffCancelButton" secondAttribute="centerX" id="ZwO-j8-HfM"/>
-                            <constraint firstItem="addStaffFormStack" firstAttribute="centerX" secondItem="addStaffHeaderWrap" secondAttribute="centerX" id="ksh-ik-FXD"/>
-                            <constraint firstItem="addStaffFormStack" firstAttribute="leading" secondItem="addStaffGrantAccountButton" secondAttribute="leading" id="vvY-Qx-U4G"/>
-                            <constraint firstItem="addStaffFormStack" firstAttribute="top" secondItem="addStaffHeaderWrap" secondAttribute="bottom" constant="20" id="yM6-fR-HZd"/>
+                            <constraint firstItem="EJD-85-WKh" firstAttribute="trailing" secondItem="addStaffHeaderWrap" secondAttribute="trailing" constant="96" id="0vj-f5-GDV"/>
+                            <constraint firstItem="EJD-85-WKh" firstAttribute="bottom" secondItem="addStaffCancelButton" secondAttribute="bottom" constant="9" id="3iL-nn-qqE"/>
+                            <constraint firstItem="addStaffGrantAccountButton" firstAttribute="top" secondItem="addStaffFormStack" secondAttribute="bottom" constant="27" id="DrH-cW-aIx"/>
+                            <constraint firstAttribute="bottom" secondItem="addStaffFormStack" secondAttribute="bottom" constant="302" id="Eao-H9-qbF"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="centerX" secondItem="addStaffCancelButton" secondAttribute="centerX" id="K4e-tU-L3C"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="top" secondItem="P9l-8x-qhP" secondAttribute="top" constant="234" id="Nr6-EC-EQr"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="centerX" secondItem="addStaffHeaderWrap" secondAttribute="centerX" id="PgP-lr-JGT"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="leading" secondItem="addStaffGrantAccountButton" secondAttribute="leading" id="RgW-1t-kL6"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="trailing" secondItem="addStaffGrantAccountButton" secondAttribute="trailing" id="aZU-7N-wOV"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="top" secondItem="addStaffHeaderWrap" secondAttribute="bottom" constant="8" symbolic="YES" id="hqG-Ix-lws"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="leading" secondItem="EJD-85-WKh" secondAttribute="leading" constant="24" id="jUi-2d-bMn"/>
+                            <constraint firstItem="addStaffDashedCircle" firstAttribute="leading" secondItem="EJD-85-WKh" secondAttribute="leading" constant="19" id="jnT-tO-ReA"/>
+                            <constraint firstItem="addStaffHeaderWrap" firstAttribute="top" secondItem="P9l-8x-qhP" secondAttribute="topMargin" constant="-64" id="jvB-KV-uOu"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="centerX" secondItem="P9l-8x-qhP" secondAttribute="centerX" id="lwm-xm-Frb"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="top" secondItem="addStaffDashedCircle" secondAttribute="bottom" constant="21.6666666666666" id="njg-W4-NpJ"/>
+                            <constraint firstItem="addStaffFormStack" firstAttribute="top" secondItem="addStaffHeaderWrap" secondAttribute="bottom" constant="8" id="pM7-Gf-eLV"/>
+                            <constraint firstItem="addStaffCancelButton" firstAttribute="leading" secondItem="EJD-85-WKh" secondAttribute="leading" constant="171" id="pq8-4n-FOx"/>
+                            <constraint firstItem="addStaffCancelButton" firstAttribute="top" secondItem="addStaffGrantAccountButton" secondAttribute="bottom" constant="74" id="tOm-B1-jR3"/>
+                            <constraint firstItem="addStaffHeaderWrap" firstAttribute="leading" secondItem="addStaffDashedCircle" secondAttribute="trailing" constant="8" symbolic="YES" id="vvu-1U-h88"/>
+                            <constraint firstItem="addStaffDashedCircle" firstAttribute="top" secondItem="EJD-85-WKh" secondAttribute="top" constant="22.000000000000085" id="zrt-bg-q8R"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Lhj-dS-l9B"/>
+                    <navigationItem key="navigationItem" title="Create Staff" id="Lhj-dS-l9B"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="addStaffUsernameTextField" id="dP6-yR-PHh"/>
+                        <outlet property="fullNameTextField" destination="addStaffFullNameTextField" id="Pp8-gg-cQq"/>
+                        <outlet property="passwordTextField" destination="addStaffPasswordTextField" id="0Un-pR-AnS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mK4-2H-4c1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1106,10 +1178,11 @@
         <!--Staff-->
         <scene sceneID="kGH-fN-VcH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="L1S-QB-eEk" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L1S-QB-eEk" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Staff" image="person.3.fill" catalog="system" id="tabBarStaff"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pdu-PC-pNP">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1261,13 +1334,13 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Available in POS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableLabel">
-                                                <rect key="frame" x="24" y="606" width="111.33333333333331" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available in POS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableLabel">
+                                                <rect key="frame" x="23.999999999999993" y="536" width="111.33333333333331" height="17"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableSwitch">
-                                                <rect key="frame" x="308" y="600" width="63" height="28"/>
+                                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableSwitch">
+                                                <rect key="frame" x="308" y="530.66666666666663" width="63" height="28"/>
                                             </switch>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDeleteButton">
                                                 <rect key="frame" x="24" y="653" width="345" height="44"/>
@@ -1363,7 +1436,6 @@
                     <tabBarItem key="tabBarItem" title="Menu" image="book.fill" catalog="system" id="tabBarMenu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="2J3-Nd-Pzg">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2018,8 +2090,12 @@
         <image name="person.badge.key" catalog="system" width="128" height="128"/>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>
         <image name="person.text.rectangle" catalog="system" width="128" height="93"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
         <image name="receipt" catalog="system" width="111" height="128"/>
         <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

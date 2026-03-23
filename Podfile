@@ -14,5 +14,5 @@ target 'CoffeeShopUMT' do
   pod 'SnapKit'   # Hỗ trợ code Auto Layout nhanh gọn
   pod 'DGCharts'                # Đọc dữ liệu JSON cho dễ
   pod 'Firebase/Auth'           # Quản lý tài khoản Admin/Staff
-  pod 'Firebase/Firestore
+  pod 'Firebase/Firestore'
 end
