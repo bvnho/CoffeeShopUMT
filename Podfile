@@ -15,4 +15,5 @@ target 'CoffeeShopUMT' do
   pod 'DGCharts'                # Đọc dữ liệu JSON cho dễ
   pod 'Firebase/Auth'           # Quản lý tài khoản Admin/Staff
   pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
 end

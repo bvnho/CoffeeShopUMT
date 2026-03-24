@@ -1206,6 +1206,9 @@ PODS:
   - Firebase/Firestore (12.10.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 12.10.0)
+  - Firebase/Storage (12.10.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 12.10.0)
   - FirebaseAppCheckInterop (12.10.0)
   - FirebaseAuth (12.10.0):
     - FirebaseAppCheckInterop (~> 12.10.0)
@@ -1246,6 +1249,13 @@ PODS:
     - leveldb-library (~> 1.22)
     - nanopb (~> 3.30910.0)
   - FirebaseSharedSwift (12.10.0)
+  - FirebaseStorage (12.10.0):
+    - FirebaseAppCheckInterop (~> 12.10.0)
+    - FirebaseAuthInterop (~> 12.10.0)
+    - FirebaseCore (~> 12.10.0)
+    - FirebaseCoreExtension (~> 12.10.0)
+    - GoogleUtilities/Environment (~> 8.1)
+    - GTMSessionFetcher/Core (< 6.0, >= 3.4)
   - GoogleUtilities/AppDelegateSwizzler (8.1.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -1415,6 +1425,7 @@ DEPENDENCIES:
   - DGCharts
   - Firebase/Auth
   - Firebase/Firestore
+  - Firebase/Storage
   - IQKeyboardManagerSwift
   - Kingfisher (~> 7.0)
   - SnapKit
@@ -1437,6 +1448,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseFirestoreInternal
     - FirebaseSharedSwift
+    - FirebaseStorage
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
@@ -1472,6 +1484,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 3c85b7fc1cbad3bcfc0ba807861aa55e0ad4af22
   FirebaseFirestoreInternal: a5120d3aea03c837ff9937c90e8a95f81e6a0706
   FirebaseSharedSwift: 3d1e448b7202e36821a492941c84592d1308ea14
+  FirebaseStorage: dd2dcbd47f603777206c04d2bd837e5f47ca3f4d
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   "gRPC-C++": cc207623316fb041a7a3e774c252cf68a058b9e8
   gRPC-Core: 860978b7db482de8b4f5e10677216309b5ff6330
@@ -1492,6 +1505,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   Toast-Swift: 7a03a532afe3a560d4044bc7c237e2864d295173
 
-PODFILE CHECKSUM: 4c47351cdba7f2b637b380e5884cbd12fa417eba
+PODFILE CHECKSUM: cd84ee8d5ca0a7827a39f4625bd76f4dc7a14d75
 
 COCOAPODS: 1.16.2

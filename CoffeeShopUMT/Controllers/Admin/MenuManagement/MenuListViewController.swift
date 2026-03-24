@@ -1,8 +1,9 @@
 import UIKit
+import FirebaseFirestore
 
 final class MenuListViewController: UIViewController {
     @IBOutlet private weak var categoryCollectionView: UICollectionView?
-    @IBOutlet private weak var tableView: UITableView?
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar?
     @IBOutlet private weak var addButton: UIButton?
 
@@ -10,14 +11,20 @@ final class MenuListViewController: UIViewController {
     private var selectedCategory = "All"
     private var searchKeyword = ""
 
-    private var allItems: [MenuItem] = []
+    var menuItems: [MenuItem] = []
     private var displayItems: [MenuItem] = []
+    private let db = Firestore.firestore()
+    private var listener: ListenerRegistration?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearance()
         setupBindings()
-        loadMockData()
+        observeMenuItems()
+    }
+
+    deinit {
+        listener?.remove()
     }
 
     private func setupAppearance() {
@@ -41,27 +48,25 @@ final class MenuListViewController: UIViewController {
     }
 
     private func setupBindings() {
-        tableView?.dataSource = self
-        tableView?.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         categoryCollectionView?.dataSource = self
         categoryCollectionView?.delegate = self
         searchBar?.delegate = self
     }
 
-    private func loadMockData() {
-        allItems = [
-            MenuItem(id: "1", name: "Caramel Latte", price: 55000, imageURL: nil, category: "Coffee", isAvailable: true),
-            MenuItem(id: "2", name: "Americano", price: 40000, imageURL: nil, category: "Coffee", isAvailable: true),
-            MenuItem(id: "3", name: "Espresso", price: 35000, imageURL: nil, category: "Coffee", isAvailable: true),
-            MenuItem(id: "4", name: "Matcha Latte", price: 60000, imageURL: nil, category: "Tea", isAvailable: true),
-            MenuItem(id: "5", name: "Peach Tea", price: 45000, imageURL: nil, category: "Tea", isAvailable: false),
-            MenuItem(id: "6", name: "Croissant", price: 30000, imageURL: nil, category: "Pastries", isAvailable: true),
-            MenuItem(id: "7", name: "Chocolate Muffin", price: 32000, imageURL: nil, category: "Pastries", isAvailable: true),
-            MenuItem(id: "8", name: "Orange Juice", price: 42000, imageURL: nil, category: "Others", isAvailable: true),
-            MenuItem(id: "9", name: "Mineral Water", price: 20000, imageURL: nil, category: "Others", isAvailable: true)
-        ]
+    private func observeMenuItems() {
+        listener?.remove()
+        listener = db.collection("MenuItems").addSnapshotListener { [weak self] snapshot, error in
+            guard let self else { return }
+            if let error {
+                self.showAlert(message: "Không thể tải dữ liệu menu: \(error.localizedDescription)")
+                return
+            }
 
-        applyFilterAndSearch()
+            self.menuItems = snapshot?.documents.compactMap { try? $0.data(as: MenuItem.self) } ?? []
+            self.applyFilterAndSearch()
+        }
     }
 
     private func applyFilterAndSearch() {
@@ -69,7 +74,7 @@ final class MenuListViewController: UIViewController {
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .lowercased()
 
-        displayItems = allItems.filter { item in
+        displayItems = menuItems.filter { item in
             let categoryMatched = selectedCategory == "All" || item.category == selectedCategory
             let searchMatched: Bool
 
@@ -82,14 +87,12 @@ final class MenuListViewController: UIViewController {
             return categoryMatched && searchMatched
         }
 
-        tableView?.reloadData()
+        tableView.reloadData()
         categoryCollectionView?.reloadData()
     }
 
     private func updateAvailability(for itemID: String, isAvailable: Bool) {
-        guard let index = allItems.firstIndex(where: { $0.id == itemID }) else { return }
-        allItems[index].isAvailable = isAvailable
-        applyFilterAndSearch()
+        db.collection("MenuItems").document(itemID).updateData(["isAvailable": isAvailable])
     }
 
     private func showAddEditScreen(with item: MenuItem?) {
@@ -99,36 +102,22 @@ final class MenuListViewController: UIViewController {
         }
 
         addEditViewController.menuItem = item
-        addEditViewController.onSave = { [weak self] newItem in
-            self?.upsertMenuItem(newItem)
-        }
 
-        addEditViewController.onDelete = { [weak self] itemID in
-            self?.deleteItem(itemID: itemID)
-        }
-
-        let navigationController = UINavigationController(rootViewController: addEditViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true)
-    }
-
-    private func upsertMenuItem(_ updatedItem: MenuItem) {
-        if let index = allItems.firstIndex(where: { $0.id == updatedItem.id }) {
-            allItems[index] = updatedItem
+        if let navigationController = navigationController {
+            navigationController.pushViewController(addEditViewController, animated: true)
         } else {
-            allItems.append(updatedItem)
+            let nav = UINavigationController(rootViewController: addEditViewController)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true)
         }
-
-        applyFilterAndSearch()
     }
 
-    private func deleteItem(itemID: String) {
-        allItems.removeAll { $0.id == itemID }
-        applyFilterAndSearch()
+    @IBAction func addMenuButtonTapped(_ sender: UIButton) {
+        showAddEditScreen(with: nil)
     }
 
     @IBAction private func addButtonTapped(_ sender: UIButton) {
-        showAddEditScreen(with: nil)
+        addMenuButtonTapped(sender)
     }
 }
 
@@ -138,24 +127,31 @@ extension MenuListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.identifier, for: indexPath) as? MenuTableViewCell else {
-            return UITableViewCell()
-        }
-
         let item = displayItems[indexPath.row]
-        cell.configure(with: item)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell")
+            ?? UITableViewCell(style: .subtitle, reuseIdentifier: "MenuCell")
 
-        cell.onToggleAvailability = { [weak self] itemID, isAvailable in
-            self?.updateAvailability(for: itemID, isAvailable: isAvailable)
-        }
+        let priceString = Self.currencyFormatter.string(from: NSNumber(value: item.price)) ?? "\(item.price)"
+        cell.textLabel?.text = item.name
+        cell.detailTextLabel?.text = "\(item.category) • \(priceString)"
+        cell.selectionStyle = .none
 
-        cell.onTapEdit = { [weak self] itemID in
-            guard let self,
-                  let selectedItem = self.allItems.first(where: { $0.id == itemID }) else { return }
-            self.showAddEditScreen(with: selectedItem)
+        if let imageURL = item.imageURL,
+           let url = URL(string: imageURL) {
+            loadImage(from: url) { image in
+                cell.imageView?.image = image ?? UIImage(systemName: "cup.and.saucer.fill")
+                cell.setNeedsLayout()
+            }
+        } else {
+            cell.imageView?.image = UIImage(systemName: "cup.and.saucer.fill")
         }
 
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        showAddEditScreen(with: displayItems[indexPath.row])
     }
 }
 
@@ -206,6 +202,32 @@ extension MenuListViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
+    }
+}
+
+private extension MenuListViewController {
+    static let currencyFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = "đ"
+        formatter.maximumFractionDigits = 0
+        formatter.locale = Locale(identifier: "vi_VN")
+        return formatter
+    }()
+
+    func loadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, _, _ in
+            let image = data.flatMap { UIImage(data: $0) }
+            DispatchQueue.main.async {
+                completion(image)
+            }
+        }.resume()
+    }
+
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Thông báo", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 
