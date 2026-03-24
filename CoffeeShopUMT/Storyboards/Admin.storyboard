@@ -764,6 +764,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="addButtonTapped:" destination="tabMenuVC" eventType="touchUpInside" id="menuFabTapAction"/>
+                                    <segue destination="addNewItemVC" kind="show" id="Fv3-YF-Fej"/>
                                 </connections>
                             </button>
                             <searchBar contentMode="redraw" id="hea-ht-zUO">
@@ -808,70 +809,72 @@
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlM-ZR-Z37">
                                 <rect key="frame" x="0.0" y="117" width="393" height="618"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="TpU-I1-A4L">
-                                        <rect key="frame" x="0.0" y="64" width="393" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="khn-2q-U6y"/>
-                                        </constraints>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="tabStaffVC" id="zgi-jk-VYQ"/>
-                                        </connections>
-                                    </searchBar>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6mG-HT-4Up">
-                                        <rect key="frame" x="0.0" y="108" width="393" height="510"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="179" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6mG-HT-4Up">
+                                        <rect key="frame" x="0.0" y="64" width="393" height="554"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StaffCell" rowHeight="161" id="KEe-PK-Ic0" customClass="StaffCell" customModule="CoffeeShopUMT">
-                                                <rect key="frame" x="0.0" y="50" width="393" height="161"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StaffCell" rowHeight="179" id="KEe-PK-Ic0" customClass="StaffCell" customModule="CoffeeShopUMT">
+                                                <rect key="frame" x="0.0" y="50" width="393" height="179"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="StaffCell" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KEe-PK-Ic0" id="t2G-po-wgy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="161"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="179"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V8e-XA-zrB">
-                                                            <rect key="frame" x="14" y="15" width="90" height="76"/>
+                                                            <rect key="frame" x="10" y="15" width="90" height="76"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJQ-ne-HrN">
-                                                            <rect key="frame" x="112" y="15" width="45" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Role" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wT-K6-UUU">
-                                                            <rect key="frame" x="112" y="43" width="34" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wf-NQ-maO">
-                                                            <rect key="frame" x="112" y="72" width="41" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EHH-wg-H6k">
-                                                            <rect key="frame" x="76" y="101" width="241" height="38.333333333333343"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tHr-IF-mc8">
+                                                            <rect key="frame" x="116" y="31" width="241" height="117.33333333333331"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leM-Ur-OAO">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="80.333333333333329" height="38.333333333333336"/>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="gray" title="Reset"/>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wD-Cs-L3X">
-                                                                    <rect key="frame" x="80.333333333333343" y="0.0" width="80.333333333333343" height="38.333333333333336"/>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="gray" title="Edit"/>
-                                                                </button>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2e-Z1-bOx">
-                                                                    <rect key="frame" x="160.66666666666666" y="0.0" width="80.333333333333343" height="38.333333333333336"/>
-                                                                    <state key="normal" title="Button"/>
-                                                                    <buttonConfiguration key="configuration" style="gray" title="Disable"/>
-                                                                </button>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="vlf-qp-bQ0">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="69"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJQ-ne-HrN">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="20.333333333333332"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Role" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wT-K6-UUU">
+                                                                            <rect key="frame" x="0.0" y="24.333333333333336" width="33.333333333333336" height="20.333333333333336"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wf-NQ-maO">
+                                                                            <rect key="frame" x="0.0" y="48.666666666666664" width="40.666666666666664" height="20.333333333333336"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lgF-cg-lo0">
+                                                                    <rect key="frame" x="0.0" y="79" width="241" height="38.333333333333343"/>
+                                                                    <subviews>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHH-wg-H6k">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="241" height="38.333333333333336"/>
+                                                                            <subviews>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leM-Ur-OAO">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="80.333333333333329" height="38.333333333333336"/>
+                                                                                    <state key="normal" title="Button"/>
+                                                                                    <buttonConfiguration key="configuration" style="gray" title="Reset"/>
+                                                                                </button>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4wD-Cs-L3X">
+                                                                                    <rect key="frame" x="80.333333333333343" y="0.0" width="80.333333333333343" height="38.333333333333336"/>
+                                                                                    <state key="normal" title="Button"/>
+                                                                                    <buttonConfiguration key="configuration" style="gray" title="Edit"/>
+                                                                                </button>
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2e-Z1-bOx">
+                                                                                    <rect key="frame" x="160.66666666666666" y="0.0" width="80.333333333333343" height="38.333333333333336"/>
+                                                                                    <state key="normal" title="Button"/>
+                                                                                    <buttonConfiguration key="configuration" style="gray" title="Disable"/>
+                                                                                </button>
+                                                                            </subviews>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
@@ -885,21 +888,32 @@
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
+                                    <searchBar contentMode="redraw" text="" translatesAutoresizingMaskIntoConstraints="NO" id="TpU-I1-A4L">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="64"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="tabStaffVC" id="zgi-jk-VYQ"/>
+                                        </connections>
+                                    </searchBar>
                                 </subviews>
                                 <color key="backgroundColor" red="0.06805419922" green="0.05548095703" blue="0.041137687860000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="6mG-HT-4Up" secondAttribute="bottom" id="Bdn-B8-JMU"/>
-                                    <constraint firstAttribute="trailing" secondItem="6mG-HT-4Up" secondAttribute="trailing" id="ayS-wx-Mcd"/>
-                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="leading" secondItem="6mG-HT-4Up" secondAttribute="leading" id="bqW-eo-yYP"/>
-                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="trailing" secondItem="6mG-HT-4Up" secondAttribute="trailing" id="e3J-zI-9Dv"/>
-                                    <constraint firstItem="6mG-HT-4Up" firstAttribute="top" secondItem="TpU-I1-A4L" secondAttribute="bottom" id="rMR-WY-MzT"/>
-                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="top" secondItem="IlM-ZR-Z37" secondAttribute="top" constant="64" id="rWH-QS-xT5"/>
-                                    <constraint firstItem="6mG-HT-4Up" firstAttribute="leading" secondItem="IlM-ZR-Z37" secondAttribute="leading" id="ymS-Sn-o7V"/>
+                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="leading" secondItem="IlM-ZR-Z37" secondAttribute="leading" id="5zL-iV-rSf"/>
+                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="leading" secondItem="IlM-ZR-Z37" secondAttribute="leading" id="7WE-CV-mqo"/>
+                                    <constraint firstItem="6mG-HT-4Up" firstAttribute="top" secondItem="TpU-I1-A4L" secondAttribute="bottom" id="O3h-Yb-6cx"/>
+                                    <constraint firstItem="6mG-HT-4Up" firstAttribute="leading" secondItem="IlM-ZR-Z37" secondAttribute="leading" id="UnL-G5-7X6"/>
+                                    <constraint firstAttribute="bottom" secondItem="6mG-HT-4Up" secondAttribute="bottom" id="W0O-ij-Abu"/>
+                                    <constraint firstAttribute="trailing" secondItem="6mG-HT-4Up" secondAttribute="trailing" id="hxr-A2-Jhd"/>
+                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="top" secondItem="IlM-ZR-Z37" secondAttribute="top" id="ipn-ka-CJz"/>
+                                    <constraint firstAttribute="trailing" secondItem="TpU-I1-A4L" secondAttribute="trailing" id="jGg-lh-oCE"/>
+                                    <constraint firstItem="TpU-I1-A4L" firstAttribute="top" secondItem="IlM-ZR-Z37" secondAttribute="top" id="pVV-UK-it5"/>
+                                    <constraint firstAttribute="trailing" secondItem="TpU-I1-A4L" secondAttribute="trailing" id="rar-3B-eRd"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nF-dK-il7">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9nF-dK-il7">
                                 <rect key="frame" x="317" y="680" width="60" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.810546875" green="0.5551757812" blue="0.2805175781" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" image="plus" catalog="system"/>
@@ -911,14 +925,10 @@
                         <viewLayoutGuide key="safeArea" id="I76-eT-ofC"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="IlM-ZR-Z37" firstAttribute="bottom" secondItem="I76-eT-ofC" secondAttribute="bottom" id="6V8-eG-vad"/>
-                            <constraint firstItem="9nF-dK-il7" firstAttribute="leading" secondItem="I76-eT-ofC" secondAttribute="leading" constant="317" id="Uim-PR-LqK"/>
-                            <constraint firstItem="IlM-ZR-Z37" firstAttribute="centerY" secondItem="xHV-j3-4pq" secondAttribute="centerY" id="ZWM-ht-VWJ"/>
-                            <constraint firstItem="I76-eT-ofC" firstAttribute="trailing" secondItem="9nF-dK-il7" secondAttribute="trailing" constant="16" id="Zet-hy-cR0"/>
-                            <constraint firstAttribute="trailing" secondItem="IlM-ZR-Z37" secondAttribute="trailing" id="h94-DY-iIT"/>
-                            <constraint firstItem="I76-eT-ofC" firstAttribute="bottom" secondItem="9nF-dK-il7" secondAttribute="bottom" constant="8" id="i9L-oz-CK1"/>
-                            <constraint firstItem="IlM-ZR-Z37" firstAttribute="leading" secondItem="xHV-j3-4pq" secondAttribute="leading" id="jge-Cj-sP6"/>
-                            <constraint firstItem="9nF-dK-il7" firstAttribute="top" secondItem="I76-eT-ofC" secondAttribute="top" constant="508" id="nln-ci-Rsj"/>
+                            <constraint firstItem="IlM-ZR-Z37" firstAttribute="leading" secondItem="xHV-j3-4pq" secondAttribute="leading" id="Laf-kn-XJN"/>
+                            <constraint firstItem="IlM-ZR-Z37" firstAttribute="centerY" secondItem="xHV-j3-4pq" secondAttribute="centerY" id="UTN-qp-FXj"/>
+                            <constraint firstAttribute="trailing" secondItem="IlM-ZR-Z37" secondAttribute="trailing" id="deR-Ve-bpc"/>
+                            <constraint firstItem="IlM-ZR-Z37" firstAttribute="bottom" secondItem="I76-eT-ofC" secondAttribute="bottom" id="fdR-6G-MOf"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Staff Management" id="jCB-OX-9G9"/>
@@ -1207,7 +1217,7 @@
             </objects>
             <point key="canvasLocation" x="183.96946564885496" y="-1042.2535211267607"/>
         </scene>
-        <!--Add Menu Item View Controller-->
+        <!--Add/Edit Menu-->
         <scene sceneID="addNewItemScene">
             <objects>
                 <viewController storyboardIdentifier="AddMenuItemViewController" id="addNewItemVC" customClass="AddMenuItemViewController" customModule="CoffeeShopUMT" customModuleProvider="target" sceneMemberID="viewController">
@@ -1215,92 +1225,114 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="addItemScrollView">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemScrollView">
+                                <rect key="frame" x="0.0" y="172" width="393" height="680"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="addItemContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="900"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="801"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemTopNav">
-                                                <rect key="frame" x="0.0" y="126" width="393" height="50"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCloseButton">
-                                                        <rect key="frame" x="16" y="7" width="30" height="36"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                        <state key="normal" title="✕">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="closeButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemCloseAction"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemTitleLabel">
-                                                        <rect key="frame" x="179" y="14.33333333333333" width="35" height="21.666666666666671"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemSaveButton">
-                                                        <rect key="frame" x="339" y="9" width="38" height="32"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                                        <state key="normal" title="Save">
-                                                            <color key="titleColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="saveButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemSaveAction"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="addItemCloseButton" firstAttribute="centerY" secondItem="addItemTopNav" secondAttribute="centerY" id="addTopCloseCenterY"/>
-                                                    <constraint firstItem="addItemCloseButton" firstAttribute="leading" secondItem="addItemTopNav" secondAttribute="leading" constant="16" id="addTopCloseLeading"/>
-                                                    <constraint firstItem="addItemSaveButton" firstAttribute="centerY" secondItem="addItemTopNav" secondAttribute="centerY" id="addTopSaveCenterY"/>
-                                                    <constraint firstAttribute="trailing" secondItem="addItemSaveButton" secondAttribute="trailing" constant="16" id="addTopSaveTrailing"/>
-                                                    <constraint firstItem="addItemTitleLabel" firstAttribute="centerX" secondItem="addItemTopNav" secondAttribute="centerX" id="addTopTitleCenterX"/>
-                                                    <constraint firstItem="addItemTitleLabel" firstAttribute="centerY" secondItem="addItemTopNav" secondAttribute="centerY" id="addTopTitleCenterY"/>
-                                                </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemNameLabel">
-                                                <rect key="frame" x="24" y="200" width="74.666666666666671" height="17"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WZ3-Vh-xpx">
+                                                <rect key="frame" x="16" y="29" width="104" height="84"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="tintColor" red="0.74117647060000003" green="0.40000000000000002" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sp3-pQ-Nnb">
+                                                <rect key="frame" x="148" y="51" width="132" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Choose Photo">
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="baseBackgroundColor" red="0.810546875" green="0.5551757812" blue="0.2805175781" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemNameLabel">
+                                                <rect key="frame" x="24" y="138" width="75" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addItemNameTextField">
-                                                <rect key="frame" x="24" y="225" width="345" height="44"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter item name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addItemNameTextField">
+                                                <rect key="frame" x="24" y="184" width="345" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCategoryLabel">
-                                                <rect key="frame" x="24" y="285" width="64" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCategoryLabel">
+                                                <rect key="frame" x="24" y="251" width="64" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCategoryStackView">
-                                                <rect key="frame" x="24" y="310" width="345" height="44"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price (VNĐ)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPriceLabel">
+                                                <rect key="frame" x="27" y="345" width="82" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="55000" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPriceTextField">
+                                                <rect key="frame" x="24" y="392" width="345" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDescriptionLabel">
+                                                <rect key="frame" x="24" y="455" width="80" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDescriptionTextView">
+                                                <rect key="frame" x="24" y="486" width="345" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Available in POS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableLabel">
+                                                <rect key="frame" x="24" y="605" width="111.33333333333326" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableSwitch">
+                                                <rect key="frame" x="308" y="605" width="63" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </switch>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDeleteButton">
+                                                <rect key="frame" x="24" y="711" width="345" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <state key="normal" title="Delete Item"/>
+                                                <connections>
+                                                    <action selector="deleteButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemDeleteAction"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCategoryStackView">
+                                                <rect key="frame" x="24" y="291" width="244" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemCoffeeBtn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="80.333333333333329" height="44"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="55" height="30"/>
                                                         <state key="normal" title="Coffee"/>
                                                         <connections>
                                                             <action selector="categoryButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemCoffeeAction"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemTeaBtn">
-                                                        <rect key="frame" x="88.333333333333343" y="0.0" width="80.333333333333343" height="44"/>
+                                                        <rect key="frame" x="63" y="0.0" width="55" height="30"/>
                                                         <state key="normal" title="Tea"/>
                                                         <connections>
                                                             <action selector="categoryButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemTeaAction"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPastriesBtn">
-                                                        <rect key="frame" x="176.66666666666666" y="0.0" width="79.999999999999972" height="44"/>
+                                                        <rect key="frame" x="126" y="0.0" width="55" height="30"/>
                                                         <state key="normal" title="Pastries"/>
                                                         <connections>
                                                             <action selector="categoryButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemPastriesAction"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemOthersBtn">
-                                                        <rect key="frame" x="264.66666666666669" y="0.0" width="80.333333333333314" height="44"/>
+                                                        <rect key="frame" x="189" y="0.0" width="55" height="30"/>
                                                         <state key="normal" title="Others"/>
                                                         <connections>
                                                             <action selector="categoryButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemOthersAction"/>
@@ -1308,104 +1340,16 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Price (VNĐ)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPriceLabel">
-                                                <rect key="frame" x="24" y="370" width="82" height="17"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="55000" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="addItemPriceTextField">
-                                                <rect key="frame" x="24" y="395" width="345" height="44"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDescriptionLabel">
-                                                <rect key="frame" x="24" y="455" width="80" height="17"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDescriptionTextView">
-                                                <rect key="frame" x="24" y="480" width="345" height="100"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available in POS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableLabel">
-                                                <rect key="frame" x="23.999999999999993" y="536" width="111.33333333333331" height="17"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="addItemAvailableSwitch">
-                                                <rect key="frame" x="308" y="530.66666666666663" width="63" height="28"/>
-                                            </switch>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="addItemDeleteButton">
-                                                <rect key="frame" x="24" y="653" width="345" height="44"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <state key="normal" title="Delete Item"/>
-                                                <connections>
-                                                    <action selector="deleteButtonTapped:" destination="addNewItemVC" eventType="touchUpInside" id="addItemDeleteAction"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.1333333333" green="0.098039215690000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="addItemAvailableLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addAvailableLabelLeading"/>
-                                            <constraint firstItem="addItemAvailableLabel" firstAttribute="top" secondItem="addItemDescriptionTextView" secondAttribute="bottom" constant="26" id="addAvailableLabelTop"/>
-                                            <constraint firstItem="addItemAvailableSwitch" firstAttribute="centerY" secondItem="addItemAvailableLabel" secondAttribute="centerY" id="addAvailableSwitchCenterY"/>
-                                            <constraint firstAttribute="trailing" secondItem="addItemAvailableSwitch" secondAttribute="trailing" constant="24" id="addAvailableSwitchTrailing"/>
-                                            <constraint firstItem="addItemCategoryLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addCategoryLabelLeading"/>
-                                            <constraint firstItem="addItemCategoryLabel" firstAttribute="top" secondItem="addItemNameTextField" secondAttribute="bottom" constant="16" id="addCategoryLabelTop"/>
-                                            <constraint firstItem="addItemCategoryStackView" firstAttribute="height" constant="44" id="addCategoryStackHeight"/>
-                                            <constraint firstItem="addItemCategoryStackView" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addCategoryStackLeading"/>
-                                            <constraint firstItem="addItemCategoryStackView" firstAttribute="top" secondItem="addItemCategoryLabel" secondAttribute="bottom" constant="8" id="addCategoryStackTop"/>
-                                            <constraint firstAttribute="trailing" secondItem="addItemCategoryStackView" secondAttribute="trailing" constant="24" id="addCategoryStackTrailing"/>
-                                            <constraint firstAttribute="bottom" secondItem="addItemDeleteButton" secondAttribute="bottom" constant="273" id="addContentBottomSpacer"/>
-                                            <constraint firstItem="addItemDeleteButton" firstAttribute="height" constant="44" id="addDeleteHeight"/>
-                                            <constraint firstItem="addItemDeleteButton" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addDeleteLeading"/>
-                                            <constraint firstItem="addItemDeleteButton" firstAttribute="top" secondItem="addItemAvailableLabel" secondAttribute="bottom" constant="30" id="addDeleteTop"/>
-                                            <constraint firstAttribute="trailing" secondItem="addItemDeleteButton" secondAttribute="trailing" constant="24" id="addDeleteTrailing"/>
-                                            <constraint firstItem="addItemDescriptionTextView" firstAttribute="height" constant="100" id="addDescriptionHeight"/>
-                                            <constraint firstItem="addItemDescriptionLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addDescriptionLabelLeading"/>
-                                            <constraint firstItem="addItemDescriptionLabel" firstAttribute="top" secondItem="addItemPriceTextField" secondAttribute="bottom" constant="16" id="addDescriptionLabelTop"/>
-                                            <constraint firstItem="addItemDescriptionTextView" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addDescriptionLeading"/>
-                                            <constraint firstItem="addItemDescriptionTextView" firstAttribute="top" secondItem="addItemDescriptionLabel" secondAttribute="bottom" constant="8" id="addDescriptionTop"/>
-                                            <constraint firstAttribute="trailing" secondItem="addItemDescriptionTextView" secondAttribute="trailing" constant="24" id="addDescriptionTrailing"/>
-                                            <constraint firstItem="addItemNameTextField" firstAttribute="height" constant="44" id="addNameFieldHeight"/>
-                                            <constraint firstItem="addItemNameTextField" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addNameFieldLeading"/>
-                                            <constraint firstItem="addItemNameTextField" firstAttribute="top" secondItem="addItemNameLabel" secondAttribute="bottom" constant="8" id="addNameFieldTop"/>
-                                            <constraint firstAttribute="trailing" secondItem="addItemNameTextField" secondAttribute="trailing" constant="24" id="addNameFieldTrailing"/>
-                                            <constraint firstItem="addItemNameLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addNameLabelLeading"/>
-                                            <constraint firstItem="addItemNameLabel" firstAttribute="top" secondItem="addItemTopNav" secondAttribute="bottom" constant="24" id="addNameLabelTop"/>
-                                            <constraint firstItem="addItemPriceTextField" firstAttribute="height" constant="44" id="addPriceFieldHeight"/>
-                                            <constraint firstItem="addItemPriceTextField" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addPriceFieldLeading"/>
-                                            <constraint firstItem="addItemPriceTextField" firstAttribute="top" secondItem="addItemPriceLabel" secondAttribute="bottom" constant="8" id="addPriceFieldTop"/>
-                                            <constraint firstAttribute="trailing" secondItem="addItemPriceTextField" secondAttribute="trailing" constant="24" id="addPriceFieldTrailing"/>
-                                            <constraint firstItem="addItemPriceLabel" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" constant="24" id="addPriceLabelLeading"/>
-                                            <constraint firstItem="addItemPriceLabel" firstAttribute="top" secondItem="addItemCategoryStackView" secondAttribute="bottom" constant="16" id="addPriceLabelTop"/>
-                                            <constraint firstItem="addItemTopNav" firstAttribute="height" constant="50" id="addTopNavHeight"/>
-                                            <constraint firstItem="addItemTopNav" firstAttribute="leading" secondItem="addItemContentView" secondAttribute="leading" id="addTopNavLeading"/>
-                                            <constraint firstItem="addItemTopNav" firstAttribute="top" secondItem="addItemContentView" secondAttribute="top" constant="56" id="addTopNavTop"/>
-                                            <constraint firstAttribute="trailing" secondItem="addItemTopNav" secondAttribute="trailing" id="addTopNavTrailing"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="addItemContentView" secondAttribute="bottom" id="addContentBottom"/>
-                                    <constraint firstItem="addItemContentView" firstAttribute="leading" secondItem="addItemScrollView" secondAttribute="leading" id="addContentLeading"/>
-                                    <constraint firstItem="addItemContentView" firstAttribute="top" secondItem="addItemScrollView" secondAttribute="top" id="addContentTop"/>
-                                    <constraint firstAttribute="trailing" secondItem="addItemContentView" secondAttribute="trailing" id="addContentTrailing"/>
-                                </constraints>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="addNewItemSafe"/>
                         <color key="backgroundColor" red="0.1333333333" green="0.098039215690000001" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="addItemContentView" firstAttribute="width" secondItem="addNewItemMainView" secondAttribute="width" id="addContentEqualWidth"/>
-                            <constraint firstAttribute="bottom" secondItem="addItemScrollView" secondAttribute="bottom" id="addScrollBottom"/>
-                            <constraint firstItem="addItemScrollView" firstAttribute="leading" secondItem="addNewItemMainView" secondAttribute="leading" id="addScrollLeading"/>
-                            <constraint firstItem="addItemScrollView" firstAttribute="top" secondItem="addNewItemMainView" secondAttribute="top" id="addScrollTop"/>
-                            <constraint firstAttribute="trailing" secondItem="addItemScrollView" secondAttribute="trailing" id="addScrollTrailing"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="addNewItemNav"/>
+                    <navigationItem key="navigationItem" title="Add/Edit Menu" id="addNewItemNav"/>
                     <connections>
                         <outlet property="availableSwitch" destination="addItemAvailableSwitch" id="addItemAvailableSwitchOutlet"/>
                         <outlet property="coffeeButton" destination="addItemCoffeeBtn" id="addItemCoffeeOutlet"/>
@@ -1416,7 +1360,6 @@
                         <outlet property="pastriesButton" destination="addItemPastriesBtn" id="addItemPastriesOutlet"/>
                         <outlet property="priceTextField" destination="addItemPriceTextField" id="addItemPriceOutlet"/>
                         <outlet property="teaButton" destination="addItemTeaBtn" id="addItemTeaOutlet"/>
-                        <outlet property="titleLabel" destination="addItemTitleLabel" id="addItemTitleOutlet"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="addNewItemResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2085,6 +2028,7 @@
         <image name="person.badge.key" catalog="system" width="128" height="128"/>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="114"/>
         <image name="person.text.rectangle" catalog="system" width="128" height="93"/>
+        <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="qrcode" catalog="system" width="128" height="114"/>
         <image name="receipt" catalog="system" width="111" height="128"/>

@@ -1,38 +1,12 @@
 import UIKit
-
-enum UserRole {
-    case admin
-    case staff
-}
-
-struct DemoAccount {
-    let username: String
-    let password: String
-    let role: UserRole
-}
-
-final class LoginViewModel {
-    private let accounts: [DemoAccount] = [
-        DemoAccount(username: "admin", password: "123456", role: .admin),
-        DemoAccount(username: "staff", password: "123456", role: .staff)
-    ]
-
-    func authenticate(username: String, password: String) -> UserRole? {
-        let normalizedUsername = username.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        let normalizedPassword = password.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        return accounts.first {
-            $0.username.lowercased() == normalizedUsername && $0.password == normalizedPassword
-        }?.role
-    }
-}
+import FirebaseAuth
+import FirebaseFirestore
 
 final class LoginViewController: UIViewController {
+    
     @IBOutlet private weak var usernameTextField: UITextField?
     @IBOutlet private weak var passwordTextField: UITextField?
     @IBOutlet private weak var signInButton: UIButton?
-
-    private let viewModel = LoginViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +30,13 @@ final class LoginViewController: UIViewController {
         usernameTextField?.textColor = .white
         usernameTextField?.backgroundColor = UIColor(hex: "#120E0A")
         usernameTextField?.borderStyle = .roundedRect
+        usernameTextField?.placeholder = "Email hoặc Tài khoản"
 
         passwordTextField?.textColor = .white
         passwordTextField?.backgroundColor = UIColor(hex: "#120E0A")
         passwordTextField?.borderStyle = .roundedRect
+        passwordTextField?.placeholder = "Mật khẩu"
+        passwordTextField?.isSecureTextEntry = true // Che mật khẩu bằng dấu ***
 
         signInButton?.backgroundColor = UIColor(hex: "#BD660F")
         signInButton?.setTitleColor(.white, for: .normal)
@@ -87,21 +64,65 @@ final class LoginViewController: UIViewController {
     }
 
     @objc private func handleSignInTapped() {
-        let username = usernameTextField?.text ?? ""
+        let email = usernameTextField?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let password = passwordTextField?.text ?? ""
 
-        guard !username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
-              !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+        guard !email.isEmpty, !password.isEmpty else {
             showAlert(title: "Thiếu thông tin", message: "Vui lòng nhập tài khoản và mật khẩu.")
             return
         }
 
-        guard let role = viewModel.authenticate(username: username, password: password) else {
-            showAlert(title: "Đăng nhập thất bại", message: "Sai tài khoản hoặc mật khẩu.")
-            return
-        }
+        signInButton?.isEnabled = false
+        signInButton?.setTitle("Đang xử lý...", for: .normal)
 
-        navigateToMainScreen(for: role)
+        // CHỈ DÙNG FIREBASE ĐỂ KIỂM TRA ĐĂNG NHẬP (Cho cả Admin và Staff)
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                self.resetSignInButton()
+                self.showAlert(title: "Đăng nhập thất bại", message: "Sai tài khoản hoặc mật khẩu.")
+                return
+            }
+            
+            guard let uid = authResult?.user.uid else {
+                self.resetSignInButton()
+                return
+            }
+            
+            // Lấy thông tin phân quyền từ Firestore Bảng "Users"
+            let db = Firestore.firestore()
+            db.collection("Users").document(uid).getDocument { snapshot, error in
+                self.resetSignInButton()
+                
+                if let error = error {
+                    self.showAlert(title: "Lỗi dữ liệu", message: error.localizedDescription)
+                    return
+                }
+                
+                guard let data = snapshot?.data(),
+                      let role = data["role"] as? String,
+                      let isActive = data["isActive"] as? Bool else {
+                    self.showAlert(title: "Truy cập bị từ chối", message: "Tài khoản của bạn chưa được thiết lập quyền hợp lệ.")
+                    return
+                }
+                
+                // Kiểm tra xem Admin có đang khóa tài khoản này không
+                if !isActive {
+                    self.showAlert(title: "Tài khoản bị khóa", message: "Vui lòng liên hệ quản lý để được mở khóa.")
+                    try? Auth.auth().signOut()
+                    return
+                }
+                
+                // Thành công! Chuyển trang dựa theo Role
+                self.navigateToMainScreen(for: role)
+            }
+        }
+    }
+    
+    private func resetSignInButton() {
+        signInButton?.isEnabled = true
+        signInButton?.setTitle("Sign In", for: .normal)
     }
 
     @objc private func handleUsernameReturn() {
@@ -113,20 +134,22 @@ final class LoginViewController: UIViewController {
         handleSignInTapped()
     }
 
-    private func navigateToMainScreen(for role: UserRole) {
-        let storyboardName = role == .admin ? "Admin" : "Staff"
+    private func navigateToMainScreen(for role: String) {
+        // Ánh xạ role thành tên Storyboard
+        let storyboardName = (role == "Admin") ? "Admin" : "Staff"
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
 
         guard let destination = storyboard.instantiateInitialViewController() else {
-            showAlert(title: "Lỗi", message: "Không mở được màn hình \(storyboardName).")
+            showAlert(title: "Lỗi hệ thống", message: "Không tìm thấy màn hình \(storyboardName).")
             return
         }
 
+        // Đổi màn hình mượt mà
         if let windowScene = view.window?.windowScene,
            let sceneDelegate = windowScene.delegate as? SceneDelegate,
            let window = sceneDelegate.window {
             window.rootViewController = destination
-            UIView.transition(with: window, duration: 0.25, options: .transitionCrossDissolve, animations: nil)
+            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: nil)
             window.makeKeyAndVisible()
             return
         }
@@ -142,6 +165,7 @@ final class LoginViewController: UIViewController {
     }
 }
 
+// MARK: - UIColor Extension
 private extension UIColor {
     convenience init?(hex: String) {
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines)
