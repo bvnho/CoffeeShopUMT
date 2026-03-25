@@ -6,31 +6,31 @@ final class MenuListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar?
     @IBOutlet private weak var addButton: UIButton?
-
+    
     private let categories = ["All", "Coffee", "Tea", "Pastries", "Others"]
     private var selectedCategory = "All"
     private var searchKeyword = ""
-
+    
     var menuItems: [MenuItem] = []
     private var displayItems: [MenuItem] = []
     private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearance()
         setupBindings()
         observeMenuItems()
     }
-
+    
     deinit {
         listener?.remove()
     }
-
+    
     private func setupAppearance() {
         view.backgroundColor = UIColor(hex: "#221910")
         navigationItem.title = "Menu Management"
-
+        
         searchBar?.barTintColor = UIColor(hex: "#221910")
         searchBar?.searchTextField.backgroundColor = UIColor(hex: "#120E0A")
         searchBar?.searchTextField.textColor = .white
@@ -38,15 +38,15 @@ final class MenuListViewController: UIViewController {
             string: "Search menu items...",
             attributes: [.foregroundColor: UIColor(hex: "#334155") ?? UIColor.gray]
         )
-
+        
         addButton?.backgroundColor = UIColor(hex: "#BD660F")
         addButton?.setTitleColor(.white, for: .normal)
         addButton?.layer.cornerRadius = (addButton?.frame.height ?? 44) / 2
-
+        
         tableView?.backgroundColor = .clear
         categoryCollectionView?.backgroundColor = .clear
     }
-
+    
     private func setupBindings() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -54,7 +54,7 @@ final class MenuListViewController: UIViewController {
         categoryCollectionView?.delegate = self
         searchBar?.delegate = self
     }
-
+    
     private func observeMenuItems() {
         listener?.remove()
         listener = db.collection("MenuItems").addSnapshotListener { [weak self] snapshot, error in
@@ -63,46 +63,46 @@ final class MenuListViewController: UIViewController {
                 self.showAlert(message: "Không thể tải dữ liệu menu: \(error.localizedDescription)")
                 return
             }
-
+            
             self.menuItems = snapshot?.documents.compactMap { try? $0.data(as: MenuItem.self) } ?? []
             self.applyFilterAndSearch()
         }
     }
-
+    
     private func applyFilterAndSearch() {
         let normalizedSearchText = searchKeyword
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .lowercased()
-
+        
         displayItems = menuItems.filter { item in
             let categoryMatched = selectedCategory == "All" || item.category == selectedCategory
             let searchMatched: Bool
-
+            
             if normalizedSearchText.isEmpty {
                 searchMatched = true
             } else {
                 searchMatched = item.name.lowercased().contains(normalizedSearchText)
             }
-
+            
             return categoryMatched && searchMatched
         }
-
+        
         tableView.reloadData()
         categoryCollectionView?.reloadData()
     }
-
+    
     private func updateAvailability(for itemID: String, isAvailable: Bool) {
         db.collection("MenuItems").document(itemID).updateData(["isAvailable": isAvailable])
     }
-
+    
     private func showAddEditScreen(with item: MenuItem?) {
         let storyboard = UIStoryboard(name: "Admin", bundle: nil)
         guard let addEditViewController = storyboard.instantiateViewController(withIdentifier: "AddMenuItemViewController") as? AddMenuItemViewController else {
             return
         }
-
+        
         addEditViewController.menuItem = item
-
+        
         if let navigationController = navigationController {
             navigationController.pushViewController(addEditViewController, animated: true)
         } else {
@@ -110,14 +110,6 @@ final class MenuListViewController: UIViewController {
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true)
         }
-    }
-
-    @IBAction func addMenuButtonTapped(_ sender: UIButton) {
-        showAddEditScreen(with: nil)
-    }
-
-    @IBAction private func addButtonTapped(_ sender: UIButton) {
-        addMenuButtonTapped(sender)
     }
 }
 
@@ -128,22 +120,20 @@ extension MenuListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = displayItems[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell")
-            ?? UITableViewCell(style: .subtitle, reuseIdentifier: "MenuCell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuTableViewCell.identifier, for: indexPath) as? MenuTableViewCell else {
+            return UITableViewCell()
+        }
 
-        let priceString = Self.currencyFormatter.string(from: NSNumber(value: item.price)) ?? "\(item.price)"
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "\(item.category) • \(priceString)"
-        cell.selectionStyle = .none
+        cell.configure(with: item)
 
-        if let imageURL = item.imageURL,
-           let url = URL(string: imageURL) {
-            loadImage(from: url) { image in
-                cell.imageView?.image = image ?? UIImage(systemName: "cup.and.saucer.fill")
-                cell.setNeedsLayout()
-            }
-        } else {
-            cell.imageView?.image = UIImage(systemName: "cup.and.saucer.fill")
+        cell.onToggleAvailability = { [weak self] itemID, isAvailable in
+            self?.updateAvailability(for: itemID, isAvailable: isAvailable)
+        }
+
+        cell.onTapEdit = { [weak self] itemID in
+            guard let self,
+                  let selectedItem = self.menuItems.first(where: { $0.id == itemID }) else { return }
+            self.showAddEditScreen(with: selectedItem)
         }
 
         return cell
@@ -206,24 +196,6 @@ extension MenuListViewController: UISearchBarDelegate {
 }
 
 private extension MenuListViewController {
-    static let currencyFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencySymbol = "đ"
-        formatter.maximumFractionDigits = 0
-        formatter.locale = Locale(identifier: "vi_VN")
-        return formatter
-    }()
-
-    func loadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, _, _ in
-            let image = data.flatMap { UIImage(data: $0) }
-            DispatchQueue.main.async {
-                completion(image)
-            }
-        }.resume()
-    }
-
     func showAlert(message: String) {
         let alert = UIAlertController(title: "Thông báo", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))

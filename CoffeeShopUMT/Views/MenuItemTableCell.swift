@@ -18,6 +18,10 @@ final class MenuTableViewCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
         availabilitySwitch?.onTintColor = UIColor(hex: "#BD660F")
+
+        itemImageView?.layer.cornerRadius = 8
+        itemImageView?.clipsToBounds = true
+        itemImageView?.contentMode = .scaleAspectFill
     }
 
     override func prepareForReuse() {
@@ -35,14 +39,23 @@ final class MenuTableViewCell: UITableViewCell {
         priceLabel?.text = Self.currencyFormatter.string(from: NSNumber(value: item.price)) ?? "\(Int(item.price)) đ"
         availabilitySwitch?.isOn = item.isAvailable
 
-        if let imageURL = item.imageURL,
-           let url = URL(string: imageURL),
-           let data = try? Data(contentsOf: url),
-           let image = UIImage(data: data) {
-            itemImageView?.image = image
-        } else {
-            itemImageView?.image = UIImage(systemName: "cup.and.saucer.fill")
-            itemImageView?.tintColor = UIColor(hex: "#BD660F")
+        itemImageView?.image = UIImage(systemName: "cup.and.saucer.fill")
+        itemImageView?.tintColor = UIColor(hex: "#BD660F")
+
+        if let imageString = item.imageURL, !imageString.isEmpty {
+            if imageString.starts(with: "http") {
+                if let url = URL(string: imageString) {
+                    URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
+                        if let data = data, let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                self?.itemImageView?.image = image
+                            }
+                        }
+                    }.resume()
+                }
+            } else if let data = Data(base64Encoded: imageString), let image = UIImage(data: data) {
+                itemImageView?.image = image
+            }
         }
     }
 
@@ -82,5 +95,3 @@ private extension UIColor {
         self.init(red: r, green: g, blue: b, alpha: 1.0)
     }
 }
-
-// MARK: - Image Loading Extension

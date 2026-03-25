@@ -1,10 +1,9 @@
 import UIKit
 import FirebaseFirestore
-import FirebaseStorage
 
 final class AddMenuItemViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet private weak var scrollView: UIScrollView?
     @IBOutlet private weak var titleLabel: UILabel?
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var choosePhotoButton: UIButton!
@@ -27,7 +26,6 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
 
     private let categories = ["Coffee", "Tea", "Pastries", "Others"]
     private let db = Firestore.firestore()
-    private let storage = Storage.storage()
     private let imagePicker = UIImagePickerController()
 
     private var selectedCategory: String?
@@ -35,11 +33,11 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
     private let activityIndicator = UIActivityIndicatorView(style: .medium)
 
     override func viewDidLoad() {
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 1000)
         super.viewDidLoad()
         setupAppearance()
         setupMode()
         setupDismissKeyboardGesture()
+        scrollView?.keyboardDismissMode = .onDrag
     }
 
     private func setupAppearance() {
@@ -87,9 +85,14 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
             availableSwitch.isOn = existingItem.isAvailable
             selectedCategory = existingItem.category
 
-            if let imageURL = existingItem.imageURL,
-               let url = URL(string: imageURL) {
-                loadImage(from: url)
+            if let imageString = existingItem.imageURL, !imageString.isEmpty {
+                if imageString.starts(with: "http"),
+                   let url = URL(string: imageString) {
+                    loadImage(from: url)
+                } else if let data = Data(base64Encoded: imageString),
+                          let image = UIImage(data: data) {
+                    itemImageView.image = image
+                }
             }
             updateCategoryButtonsUI()
             return
@@ -191,7 +194,6 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
 
         let saveData: (String?) -> Void = { [weak self] uploadedImageURL in
             guard let self else { return }
-
             let itemToSave = MenuItem(
                 id: self.menuItem?.id,
                 name: trimmedName,
@@ -201,20 +203,16 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
                 isAvailable: self.availableSwitch.isOn,
                 imageURL: uploadedImageURL
             )
-
             self.saveMenuItem(itemToSave)
         }
 
         if let selectedImage {
-            uploadImage(selectedImage) { [weak self] result in
-                switch result {
-                case .success(let imageURL):
-                    saveData(imageURL)
-                case .failure(let error):
-                    self?.setLoading(false)
-                    self?.showAlert(message: "Upload ảnh thất bại: \(error.localizedDescription)")
-                }
+            guard let base64String = encodedImageString(from: selectedImage) else {
+                setLoading(false)
+                showAlert(message: "Không thể xử lý ảnh. Vui lòng chọn ảnh khác.")
+                return
             }
+            saveData(base64String)
         } else {
             saveData(menuItem?.imageURL)
         }
@@ -283,35 +281,23 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
         picker.dismiss(animated: true)
     }
 
-    private func uploadImage(_ image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
-        guard let imageData = image.jpegData(compressionQuality: 0.7) else {
-            completion(.failure(NSError(domain: "AddMenu", code: -1, userInfo: [NSLocalizedDescriptionKey: "Không nén được ảnh."])))
-            return
+    private func encodedImageString(from image: UIImage) -> String? {
+        let resizedImage = resizedImageKeepingAspectRatio(from: image, maxWidth: 640)
+        guard let imageData = resizedImage.jpegData(compressionQuality: 0.3) else {
+            return nil
         }
+        return imageData.base64EncodedString()
+    }
 
-        let imageRef = storage.reference().child("MenuImages/\(UUID().uuidString).jpg")
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/jpeg"
+    private func resizedImageKeepingAspectRatio(from image: UIImage, maxWidth: CGFloat) -> UIImage {
+        guard image.size.width > maxWidth else { return image }
 
-        imageRef.putData(imageData, metadata: metadata) { _, error in
-            if let error {
-                completion(.failure(error))
-                return
-            }
+        let scale = maxWidth / image.size.width
+        let newSize = CGSize(width: maxWidth, height: image.size.height * scale)
 
-            imageRef.downloadURL { url, error in
-                if let error {
-                    completion(.failure(error))
-                    return
-                }
-
-                guard let url else {
-                    completion(.failure(NSError(domain: "AddMenu", code: -2, userInfo: [NSLocalizedDescriptionKey: "Không lấy được URL ảnh."])))
-                    return
-                }
-
-                completion(.success(url.absoluteString))
-            }
+        let renderer = UIGraphicsImageRenderer(size: newSize)
+        return renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: newSize))
         }
     }
 
