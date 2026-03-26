@@ -1,6 +1,6 @@
 import UIKit
 
-final class GeneratedOrderViewController: UIViewController {
+final class OrderPopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
