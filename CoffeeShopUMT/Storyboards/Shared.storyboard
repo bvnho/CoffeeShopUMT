@@ -23,7 +23,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Table"/>
                             </button>
                             <searchBar contentMode="redraw" placeholder="Tìm kiếm" translatesAutoresizingMaskIntoConstraints="NO" id="RRK-r3-3xM">
-                                <rect key="frame" x="16" y="222" width="361" height="44"/>
+                                <rect key="frame" x="16" y="222.33333333333334" width="361" height="44.000000000000028"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Byq-8C-JPg"/>
@@ -121,7 +121,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tabPosSafe"/>
-                        <color key="backgroundColor" red="0.070588235289999995" green="0.054901960780000002" blue="0.039215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.1200561523" green="0.09344482422" blue="0.06341552734" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Bk4-el-4Ib" firstAttribute="top" secondItem="RRK-r3-3xM" secondAttribute="bottom" constant="25.666666666666629" id="7bq-py-poj"/>
                             <constraint firstItem="Bk4-el-4Ib" firstAttribute="leading" secondItem="gO0-sf-voY" secondAttribute="leading" id="9CY-ZI-BKS"/>
@@ -164,31 +164,34 @@
                                 <rect key="frame" x="16" y="192" width="361" height="608"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UXG-KQ-EKV">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="135" height="117"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TableCell" id="sAM-Rr-KDw">
-                                        <rect key="frame" x="0.0" y="0.0" width="97.333333333333314" height="98.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="135" height="117"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hao-R4-Cme">
-                                            <rect key="frame" x="0.0" y="0.0" width="97.333333333333314" height="98.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="135" height="117"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7hq-b6-H7k">
-                                                    <rect key="frame" x="12" y="12" width="73.333333333333329" height="74.666666666666671"/>
+                                                    <rect key="frame" x="12" y="12" width="111" height="93"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Table" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAm-Cp-Wbf">
-                                                            <rect key="frame" x="0.0" y="0.0" width="73.333333333333329" height="38.333333333333336"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAm-Cp-Wbf">
+                                                            <rect key="frame" x="0.0" y="0.0" width="111" height="56.666666666666664"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="table" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="CpI-EC-ysz">
-                                                            <rect key="frame" x="0.0" y="55.999999999999986" width="73.333333333333329" height="17.333333333333329"/>
-                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Trống" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGu-WJ-M2Y">
+                                                            <rect key="frame" x="0.0" y="72.666666666666671" width="111" height="20.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -199,11 +202,12 @@
                                                 <constraint firstAttribute="bottom" secondItem="7hq-b6-H7k" secondAttribute="bottom" constant="12" id="xJj-uU-rHu"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="135" height="117"/>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zir-gY-M4B">
-                                <rect key="frame" x="347" y="246" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zir-gY-M4B">
+                                <rect key="frame" x="347" y="134" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Bsq-KP-qpS"/>
                                     <constraint firstAttribute="width" constant="30" id="ofo-gr-H48"/>
@@ -213,7 +217,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Zfe-WH-i30"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.12756349149999999" green="0.09930419922" blue="0.067382819950000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="rHv-tb-lb3" firstAttribute="top" secondItem="Zfe-WH-i30" secondAttribute="top" constant="16" id="MQV-Ue-BJu"/>
                             <constraint firstAttribute="trailing" secondItem="FTV-jF-cXr" secondAttribute="trailing" constant="16" id="NuP-gH-CXr"/>
@@ -268,7 +272,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yDg-Oy-9fc">
                                 <rect key="frame" x="0.0" y="184" width="393" height="499"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.1276855469" green="0.09936523438" blue="0.06744384766" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CartItemCell" rowHeight="87" id="IDL-o5-guG">
                                         <rect key="frame" x="0.0" y="50" width="393" height="87"/>
@@ -331,7 +335,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="apG-iq-9Rf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.1274414062" green="0.09924316406" blue="0.06732177734" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="pIK-ci-4xX" firstAttribute="bottom" secondItem="apG-iq-9Rf" secondAttribute="bottom" id="0iU-ek-zHo"/>
                             <constraint firstItem="pIK-ci-4xX" firstAttribute="bottom" secondItem="apG-iq-9Rf" secondAttribute="bottom" id="9Mx-hR-6xo"/>
@@ -375,7 +379,6 @@
     </scenes>
     <resources>
         <image name="desktopcomputer" catalog="system" width="128" height="101"/>
-        <image name="table" catalog="system" width="128" height="93"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <image name="xmark.bin.fill" catalog="system" width="128" height="92"/>
         <systemColor name="systemBackgroundColor">
