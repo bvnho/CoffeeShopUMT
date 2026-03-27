@@ -67,4 +67,82 @@ final class DatabaseService {
             .document(uid)
             .setData(payload, completion: completion)
     }
+
+    func saveOrder(
+        tableId: String,
+        tableName: String,
+        items: [OrderItem],
+        totalAmount: Double,
+        completion: @escaping (Result<Void, Error>) -> Void
+    ) {
+        let itemsData: [[String: Any]] = items.map { item in
+            var d: [String: Any] = [
+                "menuItemId": item.menuItemId,
+                "name": item.name,
+                "price": item.price,
+                "quantity": item.quantity
+            ]
+            if let note = item.note { d["note"] = note }
+            if let imageURL = item.imageURL { d["imageURL"] = imageURL }
+            return d
+        }
+        let payload: [String: Any] = [
+            "tableId": tableId,
+            "tableName": tableName,
+            "status": "pending",
+            "totalAmount": totalAmount,
+            "createdAt": Timestamp(date: Date()),
+            "items": itemsData
+        ]
+        db.collection("Orders").addDocument(data: payload) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+
+    func fetchMenuItems(completion: @escaping (Result<[MenuItem], Error>) -> Void) {
+        db.collection("MenuItems")
+            .getDocuments { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                let items: [MenuItem] = snapshot?.documents.compactMap { document in
+                    let data = document.data()
+                    guard let name = data["name"] as? String,
+                          let category = data["category"] as? String,
+                          let descriptionText = data["descriptionText"] as? String,
+                          let isAvailable = data["isAvailable"] as? Bool else {
+                        return nil
+                    }
+
+                    let rawPrice = data["price"]
+                    let priceValue: Double
+
+                    if let price = rawPrice as? Double {
+                        priceValue = price
+                    } else if let price = rawPrice as? Int {
+                        priceValue = Double(price)
+                    } else {
+                        priceValue = 0
+                    }
+
+                    return MenuItem(
+                        id: document.documentID,
+                        name: name,
+                        category: category,
+                        price: priceValue,
+                        descriptionText: descriptionText,
+                        isAvailable: isAvailable,
+                        imageURL: data["imageURL"] as? String
+                    )
+                } ?? []
+
+                completion(.success(items))
+            }
+    }
 }

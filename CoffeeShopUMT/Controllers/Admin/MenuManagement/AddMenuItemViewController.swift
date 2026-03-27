@@ -35,6 +35,7 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearance()
+        setupLayout()
         setupMode()
         setupDismissKeyboardGesture()
         scrollView?.keyboardDismissMode = .onDrag
@@ -108,6 +109,151 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
         selectedCategory = nil
         itemImageView.image = UIImage(systemName: "photo")
         updateCategoryButtonsUI()
+    }
+
+    // MARK: - Layout
+
+    private func setupLayout() {
+        guard let sv = scrollView,
+              let contentView = sv.subviews.first else { return }
+
+        // ── A. Add missing scrollView trailing constraint ─────────────────────────
+        sv.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+
+        // ── B. Locate views without direct outlets ────────────────────────────────
+        let childLabels   = contentView.subviews.compactMap { $0 as? UILabel }
+        let nameLabel     = childLabels.first { $0.text == "Item Name" }
+        let categoryLabel = childLabels.first { $0.text == "Category" }
+        let priceLabel    = childLabels.first { $0.text == "Price" }
+        let descLabel     = childLabels.first { $0.text == "Description" }
+        let categoryStack = coffeeButton?.superview          // UAy-HP-YPd
+        let availableStack = availableSwitch.superview       // 20R-g6-8gd
+
+        // ── C. Wipe all storyboard constraints (fixedFrame + conflicts + hardcoded) ─
+        NSLayoutConstraint.deactivate(contentView.constraints)
+        contentView.subviews.forEach { NSLayoutConstraint.deactivate($0.constraints) }
+
+        // ── D. Ensure TAMIC = NO for every view we'll constrain ──────────────────
+        [nameLabel, categoryLabel, priceLabel, descLabel,
+         itemImageView, choosePhotoButton, itemNameTextField,
+         categoryStack, priceTextField, descriptionTextView,
+         availableStack, saveButton, deleteButton]
+            .compactMap { $0 }
+            .forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
+
+        let pad   = CGFloat(20)
+        let lead  = contentView.leadingAnchor
+        let trail = contentView.trailingAnchor
+
+        // ── Image row ─────────────────────────────────────────────────────────────
+        NSLayoutConstraint.activate([
+            itemImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            itemImageView.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            itemImageView.heightAnchor.constraint(equalToConstant: 80),
+            itemImageView.widthAnchor.constraint(equalToConstant: 90),
+
+            choosePhotoButton.centerYAnchor.constraint(equalTo: itemImageView.centerYAnchor),
+            choosePhotoButton.leadingAnchor.constraint(equalTo: itemImageView.trailingAnchor, constant: 16),
+            choosePhotoButton.trailingAnchor.constraint(equalTo: trail, constant: -pad),
+            choosePhotoButton.heightAnchor.constraint(equalToConstant: 44),
+        ])
+
+        // ── Item Name ─────────────────────────────────────────────────────────────
+        var prevBottom: NSLayoutYAxisAnchor = itemImageView.bottomAnchor
+        if let nl = nameLabel {
+            NSLayoutConstraint.activate([
+                nl.topAnchor.constraint(equalTo: prevBottom, constant: 20),
+                nl.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            ])
+            prevBottom = nl.bottomAnchor
+        }
+        NSLayoutConstraint.activate([
+            itemNameTextField.topAnchor.constraint(equalTo: prevBottom, constant: 8),
+            itemNameTextField.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            itemNameTextField.trailingAnchor.constraint(equalTo: trail, constant: -pad),
+            itemNameTextField.heightAnchor.constraint(equalToConstant: 44),
+        ])
+
+        // ── Category ──────────────────────────────────────────────────────────────
+        prevBottom = itemNameTextField.bottomAnchor
+        if let cl = categoryLabel {
+            NSLayoutConstraint.activate([
+                cl.topAnchor.constraint(equalTo: prevBottom, constant: 16),
+                cl.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            ])
+            prevBottom = cl.bottomAnchor
+        }
+        if let cs = categoryStack {
+            cs.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                cs.topAnchor.constraint(equalTo: prevBottom, constant: 8),
+                cs.leadingAnchor.constraint(equalTo: lead, constant: pad),
+                cs.trailingAnchor.constraint(equalTo: trail, constant: -pad),
+                cs.heightAnchor.constraint(equalToConstant: 44),
+            ])
+            prevBottom = cs.bottomAnchor
+        }
+
+        // ── Price ─────────────────────────────────────────────────────────────────
+        if let pl = priceLabel {
+            NSLayoutConstraint.activate([
+                pl.topAnchor.constraint(equalTo: prevBottom, constant: 16),
+                pl.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            ])
+            prevBottom = pl.bottomAnchor
+        }
+        NSLayoutConstraint.activate([
+            priceTextField.topAnchor.constraint(equalTo: prevBottom, constant: 8),
+            priceTextField.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            priceTextField.trailingAnchor.constraint(equalTo: trail, constant: -pad),
+            priceTextField.heightAnchor.constraint(equalToConstant: 44),
+        ])
+
+        // ── Description ───────────────────────────────────────────────────────────
+        prevBottom = priceTextField.bottomAnchor
+        if let dl = descLabel {
+            NSLayoutConstraint.activate([
+                dl.topAnchor.constraint(equalTo: prevBottom, constant: 16),
+                dl.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            ])
+            prevBottom = dl.bottomAnchor
+        }
+        NSLayoutConstraint.activate([
+            descriptionTextView.topAnchor.constraint(equalTo: prevBottom, constant: 8),
+            descriptionTextView.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            descriptionTextView.trailingAnchor.constraint(equalTo: trail, constant: -pad),
+            descriptionTextView.heightAnchor.constraint(equalToConstant: 120),
+        ])
+
+        // ── Available in POS ──────────────────────────────────────────────────────
+        prevBottom = descriptionTextView.bottomAnchor
+        if let as_ = availableStack {
+            as_.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                as_.topAnchor.constraint(equalTo: prevBottom, constant: 20),
+                as_.leadingAnchor.constraint(equalTo: lead, constant: pad),
+                as_.trailingAnchor.constraint(equalTo: trail, constant: -pad),
+                as_.heightAnchor.constraint(equalToConstant: 44),
+            ])
+            prevBottom = as_.bottomAnchor
+        }
+
+        // ── Save ──────────────────────────────────────────────────────────────────
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: prevBottom, constant: 24),
+            saveButton.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            saveButton.trailingAnchor.constraint(equalTo: trail, constant: -pad),
+            saveButton.heightAnchor.constraint(equalToConstant: 50),
+        ])
+
+        // ── Delete (anchors contentView bottom = dynamic scroll height) ───────────
+        NSLayoutConstraint.activate([
+            deleteButton.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 12),
+            deleteButton.leadingAnchor.constraint(equalTo: lead, constant: pad),
+            deleteButton.trailingAnchor.constraint(equalTo: trail, constant: -pad),
+            deleteButton.heightAnchor.constraint(equalToConstant: 50),
+            deleteButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
+        ])
     }
 
     private func setupDismissKeyboardGesture() {

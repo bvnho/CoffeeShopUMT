@@ -1,42 +1,5 @@
-# CoffeeShopUMT
 
-## Cấu trúc thư mục (Folder Case)
-
-```text
-CoffeeShopUMT/
-├── AppDelegate.swift
-├── SceneDelegate.swift
-├── Info.plist
-├── GoogleService-Info.plist
-├── Assets.xcassets/
-├── Base.lproj/
-├── Controllers/
-│   ├── ViewController.swift
-│   ├── Admin/
-│   ├── Auth/
-│   ├── Shared/
-│   └── Staff/
-├── Extensions/
-├── Models/
-│   ├── MenuItem.swift
-│   ├── Order.swift
-│   ├── Table.swift
-│   └── User.swift
-├── Services/
-│   ├── AuthService.swift
-│   └── DatabaseService.swift
-├── Storyboards/
-│   ├── Admin.storyboard
-│   ├── Auth.storyboard
-│   ├── Shared.storyboard
-│   ├── Staff.storyboard
-│   └── Base.lproj/
-└── Views/
-		├── ItemCollectionViewCell.swift
-		├── MenuItemTableCell.swift
-		├── OrderTableViewCell.swift
-		├── StaffCell.swift
-		└── TableCollectionViewCell.swift
+│   └── User.swif
 ```
 
 ## Ý nghĩa từng thư mục
@@ -73,3 +36,4 @@ CoffeeShopUMT/
 ## Gợi ý chuẩn hóa
 
 - Có thể đổi tên `REAMD.md` thành `README.md` để đồng bộ chuẩn GitHub.
+

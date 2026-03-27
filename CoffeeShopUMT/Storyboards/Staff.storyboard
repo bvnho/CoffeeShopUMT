@@ -21,7 +21,6 @@
                     <connections>
                         <segue destination="SFb-b4-U74" kind="relationship" relationship="viewControllers" id="wUe-80-47P"/>
                         <segue destination="lEc-p5-heX" kind="relationship" relationship="viewControllers" id="tab-pos"/>
-                        <segue destination="g42-bm-9mw" kind="relationship" relationship="viewControllers" id="0kd-GN-zak"/>
                         <segue destination="X3W-VP-0oD" kind="relationship" relationship="viewControllers" id="FpR-s4-KX1"/>
                     </connections>
                 </tabBarController>
@@ -499,25 +498,6 @@
             </objects>
             <point key="canvasLocation" x="1028.2442748091603" y="922.53521126760563"/>
         </scene>
-        <!--Tables-->
-        <scene sceneID="toR-2O-Fbn">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="g42-bm-9mw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Tables" image="tablecells.fill" catalog="system" selectedImage="square.grid.2x2.fill" id="eQa-XN-161"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A73-Sc-LoN">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="dPi-cc-3t3" kind="relationship" relationship="rootViewController" id="dRY-hD-EqF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ebw-pg-i06" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1112" y="-534"/>
-        </scene>
         <!--Orders-->
         <scene sceneID="aDA-4K-o8i">
             <objects>
@@ -554,7 +534,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9T4-4x-PkV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1112" y="128"/>
+            <point key="canvasLocation" x="-969" y="18"/>
         </scene>
         <!--Settings-->
         <scene sceneID="tCc-nI-LfH">
@@ -586,7 +566,5 @@
         <image name="lock.rotation" catalog="system" width="128" height="119"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="109"/>
-        <image name="square.grid.2x2.fill" catalog="system" width="128" height="114"/>
-        <image name="tablecells.fill" catalog="system" width="128" height="93"/>
     </resources>
 </document>
