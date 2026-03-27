@@ -103,6 +103,71 @@ final class DatabaseService {
         }
     }
 
+    // MARK: - Orders
+
+    /// Real-time listener — trả về ListenerRegistration để caller gọi .remove() khi cần
+    @discardableResult
+    func listenToOrders(onChange: @escaping (Result<[Order], Error>) -> Void) -> ListenerRegistration {
+        return db.collection("Orders")
+            .order(by: "createdAt", descending: true)
+            .addSnapshotListener { [weak self] snapshot, error in
+                if let error = error {
+                    onChange(.failure(error))
+                    return
+                }
+                let orders = snapshot?.documents.compactMap { self?.parseOrder($0) } ?? []
+                onChange(.success(orders))
+            }
+    }
+
+    func updateOrderStatus(
+        orderId: String,
+        status: OrderStatus,
+        completion: @escaping (Error?) -> Void
+    ) {
+        db.collection("Orders")
+            .document(orderId)
+            .updateData(["status": status.rawValue, "updatedAt": Timestamp(date: Date())],
+                        completion: completion)
+    }
+
+    private func parseOrder(_ doc: QueryDocumentSnapshot) -> Order? {
+        let data = doc.data()
+        guard let tableId     = data["tableId"]     as? String,
+              let tableName   = data["tableName"]   as? String,
+              let status      = data["status"]      as? String,
+              let timestamp   = data["createdAt"]   as? Timestamp else { return nil }
+
+        let totalAmount = data["totalAmount"] as? Double ?? 0
+        let itemsData   = data["items"] as? [[String: Any]] ?? []
+        let items: [OrderItem] = itemsData.compactMap { d in
+            guard let menuItemId = d["menuItemId"] as? String,
+                  let name       = d["name"]       as? String,
+                  let quantity   = d["quantity"]   as? Int else { return nil }
+            let price = d["price"] as? Double ?? 0
+            return OrderItem(
+                menuItemId: menuItemId,
+                name:       name,
+                price:      price,
+                quantity:   quantity,
+                note:       d["note"]     as? String,
+                imageURL:   d["imageURL"] as? String
+            )
+        }
+        return Order(
+            id:          doc.documentID,
+            tableId:     tableId,
+            tableName:   tableName,
+            items:       items,
+            status:      status,
+            totalAmount: totalAmount,
+            createdAt:   timestamp.dateValue(),
+            updatedAt:   (data["updatedAt"] as? Timestamp)?.dateValue()
+        )
+    }
+
+    // MARK: - Menu
+
     func fetchMenuItems(completion: @escaping (Result<[MenuItem], Error>) -> Void) {
         db.collection("MenuItems")
             .getDocuments { snapshot, error in

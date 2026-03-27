@@ -1,5 +1,16 @@
 import Foundation
 
+enum OrderStatus: String, Codable {
+    case pending   = "pending"
+    case completed = "completed"
+}
+
+extension Order {
+    var statusEnum: OrderStatus { OrderStatus(rawValue: status) ?? .pending }
+    /// "Mang về" hoặc "Tại quán" dựa trên tableId
+    var orderType: String { tableId == "takeaway" ? "Mang về" : "Tại quán" }
+}
+
 struct CartItem {
     let menuItem: MenuItem
     var quantity: Int

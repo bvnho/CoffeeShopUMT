@@ -7,4 +7,5 @@ struct User: Codable {
     var role: String
     var salary: Double?
     var isActive: Bool
+    var profileImageURL: String?  // URL hoặc base64 data URI
 }

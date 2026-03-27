@@ -9,6 +9,26 @@ final class AnalyticsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addProfileTapButton()
+    }
+
+    /// Phủ UIButton trong suốt lên icon Person góc trên phải
+    /// (id="ckL-26-4Nn" trong storyboard: trailing=26, width=29, height≈23).
+    private func addProfileTapButton() {
+        let btn = UIButton(type: .system)
+        btn.frame = CGRect(x: view.bounds.width - 70, y: 108, width: 70, height: 70)
+        btn.autoresizingMask = [.flexibleLeftMargin]
+        btn.addTarget(self, action: #selector(openAdminProfile), for: .touchUpInside)
+        view.addSubview(btn)
+    }
+
+    @objc private func openAdminProfile() {
+        let sb = UIStoryboard(name: "Admin", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: "AdminProfileVC")
+                as? AdminProfileViewController else { return }
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle   = .coverVertical
+        present(vc, animated: true)
     }
 
     // Nối nút "Overview" trên giao diện vào hàm này
@@ -19,16 +39,3 @@ final class AnalyticsViewController: UIViewController {
     }
 }
 
-private extension UIColor {
-    convenience init?(hex: String) {
-        var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines)
-        if hexString.hasPrefix("#") { hexString.removeFirst() }
-        guard hexString.count == 6 else { return nil }
-        var rgb: UInt64 = 0
-        guard Scanner(string: hexString).scanHexInt64(&rgb) else { return nil }
-        let r = CGFloat((rgb & 0xFF0000) >> 16) / 255.0
-        let g = CGFloat((rgb & 0x00FF00) >> 8) / 255.0
-        let b = CGFloat(rgb & 0x0000FF) / 255.0
-        self.init(red: r, green: g, blue: b, alpha: 1.0)
-    }
-}

@@ -31,7 +31,7 @@
         <!--View Controller-->
         <scene sceneID="tQl-pA-DyT">
             <objects>
-                <viewController id="Kfu-Ld-wfU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KitchenDisplayViewController" id="Kfu-Ld-wfU" customClass="KitchenDisplayViewController" customModule="CoffeeShopUMT" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="On6-it-pOr">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,7 +79,7 @@
                                 <rect key="frame" x="16" y="321" width="361" height="414"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="240" id="TlR-cB-Pib">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderCell" rowHeight="240" customClass="OrderTableViewCell" customModule="CoffeeShopUMT" id="TlR-cB-Pib">
                                         <rect key="frame" x="0.0" y="50" width="361" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TlR-cB-Pib" id="0Op-ON-SIo">
@@ -229,6 +229,16 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="badgeLabel" destination="lbl-badge" id="oc-bg-lbl01"/>
+                                            <outlet property="badgeView" destination="badge-vw" id="oc-bg-vw01"/>
+                                            <outlet property="cardView" destination="card-vw" id="oc-cd-vw01"/>
+                                            <outlet property="itemsStackView" destination="stk-items" id="oc-stk-out01"/>
+                                            <outlet property="orderIdLabel" destination="lbl-orderId" id="oc-oid-out01"/>
+                                            <outlet property="pendingButton" destination="zhe-Kb-adE" id="oc-pnd-out01"/>
+                                            <outlet property="tableLabel" destination="lbl-table" id="oc-tbl-out01"/>
+                                            <outlet property="timeLabel" destination="lbl-time" id="oc-tm-out01"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -251,7 +261,11 @@
                             <constraint firstItem="92O-XJ-QvA" firstAttribute="trailing" secondItem="tbl-ord-list" secondAttribute="trailing" constant="16" id="tra-tb-01"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="7Z2-AL-99u"/>
+                    <navigationItem key="navigationItem" title="Đơn hàng" id="7Z2-AL-99u"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="seg-ord-tabs" id="kd-seg-out01"/>
+                        <outlet property="tableView" destination="tbl-ord-list" id="kd-tbl-out01"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QiQ-rK-WhA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -376,6 +390,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="c3w-mX-cdU"/>
+                    <connections>
+                        <outlet property="avatarImageView" destination="img-set-avatar" id="sp-av-out01"/>
+                        <outlet property="nameLabel" destination="lbl-set-name" id="sp-nm-out01"/>
+                        <outlet property="roleLabel" destination="lbl-set-role" id="sp-rl-out01"/>
+                        <outlet property="logoutButton" destination="btn-set-logout" id="sp-lg-out01"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tabStaffFirstResponder" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -493,6 +513,12 @@
                             <constraint firstItem="vw-pwd-dialog" firstAttribute="centerY" secondItem="vw-pwd-main" secondAttribute="centerY" id="cen-y-pwd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="btn-pwd-cancel" id="rp-cl-out01"/>
+                        <outlet property="confirmButton" destination="btn-pwd-confirm" id="rp-cf-out01"/>
+                        <outlet property="confirmPasswordTextField" destination="txt-pwd-conf" id="rp-cp-out01"/>
+                        <outlet property="newPasswordTextField" destination="txt-pwd-new" id="rp-np-out01"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ph-pwd-01" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
