@@ -15,8 +15,12 @@ final class KitchenDisplayViewController: UIViewController {
 
     private var displayedOrders: [Order] {
         switch segmentedControl?.selectedSegmentIndex {
-        case 0:  return allOrders.filter { $0.statusEnum == .pending }
-        default: return allOrders.filter { $0.statusEnum == .completed }
+        case 0:
+            // "Đang làm" — đơn bếp đang xử lý (chưa xong)
+            return allOrders.filter { $0.statusEnum == .pending }
+        default:
+            // "Đã xong" — bếp đã làm xong, chờ phục vụ/thanh toán
+            return allOrders.filter { $0.statusEnum == .ready || $0.statusEnum == .completed }
         }
     }
 
@@ -83,7 +87,8 @@ final class KitchenDisplayViewController: UIViewController {
     }
 
     private func confirmOrder(_ order: Order) {
-        DatabaseService.shared.updateOrderStatus(orderId: order.id, status: .completed) { [weak self] error in
+        // Bếp bấm "Hoàn thành" → chuyển sang ready (chờ phục vụ/thanh toán)
+        DatabaseService.shared.updateOrderStatus(orderId: order.id, status: .ready) { [weak self] error in
             DispatchQueue.main.async {
                 if let error = error {
                     self?.showAlert(message: "Lỗi cập nhật: \(error.localizedDescription)")
@@ -130,8 +135,8 @@ extension KitchenDisplayViewController: UITableViewDataSource, UITableViewDelega
     private func emptyStateLabel() -> UILabel {
         let lbl = UILabel()
         lbl.text = segmentedControl?.selectedSegmentIndex == 0
-            ? "Không có đơn đang chờ"
-            : "Chưa có đơn hoàn thành"
+            ? "Không có đơn đang làm"
+            : "Chưa có đơn nào xong"
         lbl.textColor = UIColor.white.withAlphaComponent(0.4)
         lbl.font = .systemFont(ofSize: 16)
         lbl.textAlignment = .center

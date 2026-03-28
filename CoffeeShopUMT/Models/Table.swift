@@ -68,4 +68,9 @@ final class TableStateStore {
         guard let index = options.firstIndex(where: { $0.id == id }) else { return }
         options[index].isOccupied = false
     }
+
+    func markTableOccupied(id: String) {
+        guard let index = options.firstIndex(where: { $0.id == id }) else { return }
+        options[index].isOccupied = true
+    }
 }

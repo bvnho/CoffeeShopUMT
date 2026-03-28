@@ -2,7 +2,8 @@ import Foundation
 
 enum OrderStatus: String, Codable {
     case pending   = "pending"
-    case completed = "completed"
+    case ready     = "ready"      // Bếp làm xong, chờ phục vụ / thanh toán
+    case completed = "completed"  // Giữ để tương thích dữ liệu cũ
 }
 
 extension Order {
@@ -34,4 +35,10 @@ struct Order: Codable {
     var totalAmount: Double
     var createdAt: Date
     var updatedAt: Date?
+    var paidAt: Date?             // nil = chưa thanh toán; có giá trị = đã thu tiền
+}
+
+extension Order {
+    var isTakeaway: Bool { tableId == "takeaway" }
+    var isPaid: Bool { paidAt != nil }
 }

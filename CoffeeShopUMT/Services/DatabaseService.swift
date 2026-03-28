@@ -73,6 +73,7 @@ final class DatabaseService {
         tableName: String,
         items: [OrderItem],
         totalAmount: Double,
+        paidAt: Date? = nil,
         completion: @escaping (Result<Void, Error>) -> Void
     ) {
         let itemsData: [[String: Any]] = items.map { item in
@@ -86,7 +87,7 @@ final class DatabaseService {
             if let imageURL = item.imageURL { d["imageURL"] = imageURL }
             return d
         }
-        let payload: [String: Any] = [
+        var payload: [String: Any] = [
             "tableId": tableId,
             "tableName": tableName,
             "status": "pending",
@@ -94,6 +95,7 @@ final class DatabaseService {
             "createdAt": Timestamp(date: Date()),
             "items": itemsData
         ]
+        if let paidAt { payload["paidAt"] = Timestamp(date: paidAt) }
         db.collection("Orders").addDocument(data: payload) { error in
             if let error = error {
                 completion(.failure(error))
@@ -103,7 +105,33 @@ final class DatabaseService {
         }
     }
 
+    /// Đánh dấu đơn hàng đã thanh toán (dùng cho dine-in sau khi bếp xong)
+    func markOrderPaid(orderId: String, completion: @escaping (Error?) -> Void) {
+        db.collection("Orders")
+            .document(orderId)
+            .updateData(["paidAt": Timestamp(date: Date()), "updatedAt": Timestamp(date: Date())],
+                        completion: completion)
+    }
+
     // MARK: - Orders
+
+    /// Real-time listener lọc theo khoảng thời gian paidAt — dùng cho RevenueDetailViewController
+    @discardableResult
+    func listenToOrders(
+        from start: Date,
+        to end: Date,
+        onChange: @escaping (Result<[Order], Error>) -> Void
+    ) -> ListenerRegistration {
+        return db.collection("Orders")
+            .whereField("paidAt", isGreaterThanOrEqualTo: Timestamp(date: start))
+            .whereField("paidAt", isLessThan: Timestamp(date: end))
+            .order(by: "paidAt", descending: true)
+            .addSnapshotListener { [weak self] snapshot, error in
+                if let error = error { onChange(.failure(error)); return }
+                let orders = snapshot?.documents.compactMap { self?.parseOrder($0) } ?? []
+                onChange(.success(orders))
+            }
+    }
 
     /// Real-time listener — trả về ListenerRegistration để caller gọi .remove() khi cần
     @discardableResult
@@ -162,7 +190,8 @@ final class DatabaseService {
             status:      status,
             totalAmount: totalAmount,
             createdAt:   timestamp.dateValue(),
-            updatedAt:   (data["updatedAt"] as? Timestamp)?.dateValue()
+            updatedAt:   (data["updatedAt"] as? Timestamp)?.dateValue(),
+            paidAt:      (data["paidAt"]    as? Timestamp)?.dateValue()
         )
     }
 

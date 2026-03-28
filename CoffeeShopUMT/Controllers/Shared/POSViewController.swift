@@ -1,4 +1,5 @@
 import UIKit
+import FirebaseFirestore
 
 final class POSViewController: UIViewController {
 
@@ -12,6 +13,16 @@ final class POSViewController: UIViewController {
 
     private var selectedTableOption: TableOption?
     private var selectedCategory: String?
+
+    // Real-time orders — dùng để theo dõi trạng thái bàn
+    private var activeOrders: [Order] = []
+    private var ordersListener: ListenerRegistration?
+
+    /// Đơn đang active (chưa thanh toán) của bàn hiện tại
+    private var unpaidOrderForCurrentTable: Order? {
+        guard let tableId = selectedTableOption?.id else { return nil }
+        return activeOrders.first { $0.tableId == tableId && !$0.isPaid }
+    }
 
     // Items for the currently selected table
     private var currentCartItems: [CartItem] {
@@ -43,11 +54,16 @@ final class POSViewController: UIViewController {
         locateStoryboardViews()
         addProductTableView()
         fetchMenuItems()
+        startListeningOrders()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchMenuItems()
+    }
+
+    deinit {
+        ordersListener?.remove()
     }
 
     // MARK: - Locate storyboard elements
@@ -115,6 +131,22 @@ final class POSViewController: UIViewController {
         ])
     }
 
+    // MARK: - Orders listener
+
+    private func startListeningOrders() {
+        ordersListener = DatabaseService.shared.listenToOrders { [weak self] result in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                if case .success(let orders) = result {
+                    // Chỉ giữ đơn chưa thanh toán (pending hoặc ready)
+                    self.activeOrders = orders.filter { !$0.isPaid }
+                    self.updateTableButtonTitle()
+                    self.updateOrderButton()
+                }
+            }
+        }
+    }
+
     // MARK: - Fetch
 
     private func fetchMenuItems() {
@@ -167,7 +199,14 @@ final class POSViewController: UIViewController {
             showAlert(message: "Vui lòng chọn bàn trước khi tạo đơn hàng.")
             return
         }
-        openOrderPopup()
+        let order = unpaidOrderForCurrentTable
+        if order?.statusEnum == .ready {
+            confirmPayment(for: order!)
+        } else if order?.statusEnum == .pending {
+            return  // Nút đã disabled — guard để chắc chắn không tạo thêm order
+        } else {
+            openOrderPopup()
+        }
     }
 
     private func openOrderPopup() {
@@ -177,24 +216,64 @@ final class POSViewController: UIViewController {
               ) as? OrderPopupViewController else { return }
 
         popup.selectedTableOption = table
-        popup.cartItems = currentCartItems   // loads this table's items (empty if none yet)
+        popup.cartItems = currentCartItems
 
         popup.onCartUpdated = { [weak self] updatedCart in
             self?.currentCartItems = updatedCart
         }
         popup.onOrderSaved = { [weak self] in
             guard let self else { return }
-            // Clear order for this table and mark it empty
+            // Xoá cart ngay sau khi order được tạo (cả dine-in lẫn takeaway)
             self.ordersByTableId[table.id] = nil
-            TableStateStore.shared.markTableEmpty(id: table.id)
-            if self.selectedTableOption?.id == table.id {
-                self.selectedTableOption?.isOccupied = false
+            if table.type == .takeaway {
+                TableStateStore.shared.markTableEmpty(id: table.id)
+                if self.selectedTableOption?.id == table.id {
+                    self.selectedTableOption?.isOccupied = false
+                }
+            } else {
+                // Dine-in: bàn vẫn occupied, chờ bếp xong rồi thanh toán
+                TableStateStore.shared.markTableOccupied(id: table.id)
             }
-            // Re-fetch menu so POS reflects latest availability changes
             self.fetchMenuItems()
+            self.updateOrderButton()
         }
         popup.modalPresentationStyle = .pageSheet
         present(popup, animated: true)
+    }
+
+    // MARK: - Thanh toán dine-in
+
+    private func confirmPayment(for order: Order) {
+        let alert = UIAlertController(
+            title: "Thanh toán",
+            message: "\(order.tableName)\nTổng tiền: \(formatPrice(order.totalAmount))",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Xác nhận", style: .default) { [weak self] _ in
+            self?.processPayment(for: order)
+        })
+        present(alert, animated: true)
+    }
+
+    private func processPayment(for order: Order) {
+        DatabaseService.shared.markOrderPaid(orderId: order.id) { [weak self] error in
+            guard let self else { return }
+            DispatchQueue.main.async {
+                if let error {
+                    self.showAlert(message: "Lỗi thanh toán: \(error.localizedDescription)")
+                    return
+                }
+                // Xoá cart và giải phóng bàn
+                self.ordersByTableId[order.tableId] = nil
+                TableStateStore.shared.markTableEmpty(id: order.tableId)
+                if self.selectedTableOption?.id == order.tableId {
+                    self.selectedTableOption?.isOccupied = false
+                }
+                self.updateTableButtonTitle()
+                self.updateOrderButton()
+            }
+        }
     }
 
     private func addToCart(item: MenuItem) {
@@ -212,15 +291,69 @@ final class POSViewController: UIViewController {
         currentCartItems = items
     }
 
-    // MARK: - Table button title
+    // MARK: - Table button title & order button
 
     private func updateTableButtonTitle() {
-        let title = selectedTableOption?.name ?? "Table"
+        guard let table = selectedTableOption else {
+            if var config = tableButton?.configuration {
+                config.title = "Table"
+                tableButton?.configuration = config
+            } else {
+                tableButton?.setTitle("Table", for: .normal)
+            }
+            return
+        }
+        // Thêm icon nếu bếp đã xong đơn của bàn này
+        let order = activeOrders.first { $0.tableId == table.id && !$0.isPaid }
+        let suffix = order?.statusEnum == .ready ? " ✓" : ""
+        let title = table.name + suffix
         if var config = tableButton?.configuration {
             config.title = title
             tableButton?.configuration = config
         } else {
             tableButton?.setTitle(title, for: .normal)
+        }
+        // Đổi màu nút khi bếp xong
+        let isReady = order?.statusEnum == .ready
+        tableButton?.tintColor = isReady ? UIColor.systemGreen : nil
+    }
+
+    private func updateOrderButton() {
+        let order = unpaidOrderForCurrentTable
+        switch order?.statusEnum {
+        case .pending:
+            // Bếp đang làm — khoá nút
+            orderButton?.isEnabled = false
+            if var config = orderButton?.configuration {
+                config.title = "Đang làm..."
+                config.baseBackgroundColor = UIColor.gray.withAlphaComponent(0.4)
+                orderButton?.configuration = config
+            } else {
+                orderButton?.setTitle("Đang làm...", for: .normal)
+                orderButton?.backgroundColor = UIColor.gray.withAlphaComponent(0.4)
+            }
+        case .ready:
+            // Bếp xong — nút thanh toán
+            orderButton?.isEnabled = true
+            if var config = orderButton?.configuration {
+                config.title = "Thanh toán"
+                config.baseBackgroundColor = UIColor.systemGreen
+                orderButton?.configuration = config
+            } else {
+                orderButton?.setTitle("Thanh toán", for: .normal)
+                orderButton?.backgroundColor = UIColor.systemGreen
+            }
+        default:
+            // Không có order active — bình thường
+            orderButton?.isEnabled = true
+            if var config = orderButton?.configuration {
+                config.title = "Đơn hàng"
+                config.baseBackgroundColor = UIColor(hex: "#BD660F")
+                orderButton?.configuration = config
+            } else {
+                orderButton?.setTitle("Đơn hàng", for: .normal)
+                orderButton?.backgroundColor = UIColor(hex: "#BD660F")
+            }
         }
     }
 
@@ -250,6 +383,7 @@ extension POSViewController: TableLayoutViewControllerDelegate {
     ) {
         selectedTableOption = option
         updateTableButtonTitle()
+        updateOrderButton()
     }
 }
 
@@ -421,18 +555,4 @@ extension POSViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: - UIView extension
-
-private extension UIView {
-    func findSubviews<T: UIView>(of type: T.Type) -> [T] {
-        var results: [T] = []
-        if let match = self as? T {
-            results.append(match)
-        }
-        for child in subviews {
-            results.append(contentsOf: child.findSubviews(of: type))
-        }
-        return results
-    }
-}
 

@@ -4,7 +4,9 @@ final class OrderPopupViewController: UIViewController {
 
     // MARK: - Public state
 
-    var selectedTableOption: TableOption?
+    var selectedTableOption: TableOption? {
+        didSet { if isViewLoaded { updateOrderButtonTitle() } }
+    }
 
     var cartItems: [CartItem] = [] {
         didSet {
@@ -54,6 +56,7 @@ final class OrderPopupViewController: UIViewController {
         orderButton = allButtons.dropFirst().first
         closeButton?.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
         orderButton?.addTarget(self, action: #selector(didTapPlaceOrder), for: .touchUpInside)
+        updateOrderButtonTitle()
 
         // 3. Summary labels the user added to the storyboard — found by their placeholder text
         let allLabels = view.findSubviews(of: UILabel.self)
@@ -164,6 +167,32 @@ final class OrderPopupViewController: UIViewController {
             return
         }
 
+        if table.type == .takeaway {
+            confirmTakeawayPayment(table: table)
+        } else {
+            sendToKitchen(table: table, paidAt: nil)
+        }
+    }
+
+    // MARK: - Takeaway: xác nhận thanh toán trước khi gửi bếp
+
+    private func confirmTakeawayPayment(table: TableOption) {
+        let total = cartItems.reduce(0.0) { $0 + $1.menuItem.price * Double($1.quantity) }
+        let alert = UIAlertController(
+            title: "Xác nhận thanh toán",
+            message: "Tổng tiền: \(formatPrice(total))\nThu tiền và gửi đơn cho bếp?",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Xác nhận", style: .default) { [weak self] _ in
+            self?.sendToKitchen(table: table, paidAt: Date())
+        })
+        present(alert, animated: true)
+    }
+
+    // MARK: - Gửi đơn lên Firebase
+
+    private func sendToKitchen(table: TableOption, paidAt: Date?) {
         let orderItems: [OrderItem] = cartItems.map { cart in
             OrderItem(
                 menuItemId: cart.menuItem.id ?? "",
@@ -180,19 +209,30 @@ final class OrderPopupViewController: UIViewController {
             tableId: table.id,
             tableName: table.name,
             items: orderItems,
-            totalAmount: total
+            totalAmount: total,
+            paidAt: paidAt
         ) { [weak self] result in
             guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success:
                     self.onOrderSaved?()
+                    // Dine-in: giữ lại cart vì chưa thanh toán
+                    // Takeaway: cart xoá (onOrderSaved xử lý bên POSViewController)
                     self.dismiss(animated: true)
                 case .failure(let error):
                     self.showAlert(message: "Lỗi lưu đơn hàng: \(error.localizedDescription)")
                 }
             }
         }
+    }
+
+    // MARK: - Cập nhật title nút theo loại bàn
+
+    func updateOrderButtonTitle() {
+        let isTakeaway = selectedTableOption?.type == .takeaway
+        let title = isTakeaway ? "Thanh toán" : "Gửi bếp"
+        orderButton?.setTitle(title, for: .normal)
     }
 
     @objc private func didTapMinus(_ sender: UIButton) {
@@ -378,18 +418,4 @@ extension OrderPopupViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-// MARK: - UIView extension
-
-private extension UIView {
-    func findSubviews<T: UIView>(of type: T.Type) -> [T] {
-        var results: [T] = []
-        if let match = self as? T {
-            results.append(match)
-        }
-        for child in subviews {
-            results.append(contentsOf: child.findSubviews(of: type))
-        }
-        return results
-    }
-}
 

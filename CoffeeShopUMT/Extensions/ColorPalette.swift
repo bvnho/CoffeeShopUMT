@@ -1,5 +1,16 @@
 import UIKit
 
+// MARK: - UIView helper — dùng chung toàn app
+
+extension UIView {
+    func findSubviews<T: UIView>(of type: T.Type) -> [T] {
+        var results: [T] = []
+        if let match = self as? T { results.append(match) }
+        for child in subviews { results.append(contentsOf: child.findSubviews(of: type)) }
+        return results
+    }
+}
+
 extension UIColor {
 
     // MARK: - App Palette
