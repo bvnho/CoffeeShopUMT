@@ -481,7 +481,7 @@ extension POSViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        72
+        80
     }
 
     private func configureProductCell(_ cell: UITableViewCell, item: MenuItem, row: Int) {
@@ -489,19 +489,29 @@ extension POSViewController: UITableViewDataSource, UITableViewDelegate {
         cell.selectionStyle = .none
         cell.contentView.subviews.forEach { $0.removeFromSuperview() }
 
+        // Thumbnail
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
+        imageView.image = UIImage(systemName: "cup.and.saucer.fill")
+        imageView.tintColor = UIColor.white.withAlphaComponent(0.3)
+
         // Name label
         let nameLabel = UILabel()
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.text = item.name
-        nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        nameLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
         nameLabel.textColor = .white
-        nameLabel.numberOfLines = 1
+        nameLabel.numberOfLines = 2
 
         // Price label
         let priceLabel = UILabel()
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.text = formatPrice(item.price)
-        priceLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        priceLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         priceLabel.textColor = UIColor(hex: "#BD660F") ?? .systemOrange
 
         // Add button
@@ -515,16 +525,22 @@ extension POSViewController: UITableViewDataSource, UITableViewDelegate {
         addButton.tag = row
         addButton.addTarget(self, action: #selector(didTapAddItem(_:)), for: .touchUpInside)
 
+        cell.contentView.addSubview(imageView)
         cell.contentView.addSubview(nameLabel)
         cell.contentView.addSubview(priceLabel)
         cell.contentView.addSubview(addButton)
 
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16),
+            imageView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 12),
+            imageView.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 56),
+            imageView.heightAnchor.constraint(equalToConstant: 56),
+
+            nameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 12),
             nameLabel.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 14),
             nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: addButton.leadingAnchor, constant: -8),
 
-            priceLabel.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16),
+            priceLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 12),
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4),
             priceLabel.trailingAnchor.constraint(lessThanOrEqualTo: addButton.leadingAnchor, constant: -8),
 
@@ -533,6 +549,58 @@ extension POSViewController: UITableViewDataSource, UITableViewDelegate {
             addButton.widthAnchor.constraint(equalToConstant: 32),
             addButton.heightAnchor.constraint(equalToConstant: 32)
         ])
+
+        // Load ảnh bất đồng bộ
+        if let urlStr = item.imageURL, !urlStr.isEmpty {
+            loadImage(urlStr, into: imageView, expectedRow: row)
+        }
+    }
+
+    // MARK: - Image loading
+
+    private static var imageCache: [String: UIImage] = [:]
+
+    private func loadImage(_ urlStr: String, into imageView: UIImageView, expectedRow: Int) {
+        if let cached = POSViewController.imageCache[urlStr] {
+            imageView.image = cached
+            imageView.tintColor = nil
+            return
+        }
+
+        // Base64 với prefix "data:image/...;base64,"
+        if urlStr.hasPrefix("data:image") {
+            let b64 = urlStr.components(separatedBy: ",").last ?? ""
+            if let data = Data(base64Encoded: b64), let image = UIImage(data: data) {
+                POSViewController.imageCache[urlStr] = image
+                imageView.image = image
+                imageView.tintColor = nil
+            }
+            return
+        }
+
+        // Base64 thuần (không có prefix) — menu management lưu kiểu này
+        if !urlStr.hasPrefix("http"), let data = Data(base64Encoded: urlStr), let image = UIImage(data: data) {
+            POSViewController.imageCache[urlStr] = image
+            imageView.image = image
+            imageView.tintColor = nil
+            return
+        }
+
+        // HTTP/HTTPS URL bình thường
+        guard let url = URL(string: urlStr) else { return }
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, _ in
+            guard let data, let image = UIImage(data: data) else { return }
+            POSViewController.imageCache[urlStr] = image
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                if let cell = self.productTableView?.cellForRow(at: IndexPath(row: expectedRow, section: 0)) {
+                    if let iv = cell.contentView.findSubviews(of: UIImageView.self).first {
+                        iv.image = image
+                        iv.tintColor = nil
+                    }
+                }
+            }
+        }.resume()
     }
 
     @objc private func didTapAddItem(_ sender: UIButton) {

@@ -1,7 +1,10 @@
 import UIKit
 import FirebaseAuth
+import PhotosUI
 
 final class StaffListViewController: UIViewController {
+
+    private var pendingAvatarUser: User?
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -23,6 +26,10 @@ final class StaffListViewController: UIViewController {
         tableView.delegate   = self
         tableView.dataSource = self
         tableView.rowHeight  = 179          // keep storyboard fixed height
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchUsers()
     }
 
@@ -109,61 +116,25 @@ extension StaffListViewController: UISearchBarDelegate {
 
 extension StaffListViewController: StaffCellDelegate {
 
-    func resetTapped(for user: User) {
+    func editTapped(for user: User) {
+        let sb = UIStoryboard(name: "Admin", bundle: nil)
+        guard let vc = sb.instantiateViewController(withIdentifier: "CreateStaffViewController")
+                as? CreateStaffViewController else { return }
+        vc.editingUser = user
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func deleteTapped(for user: User) {
         let alert = UIAlertController(
-            title: "Đặt lại mật khẩu",
-            message: "Gửi email đặt lại mật khẩu tới \(user.email)?",
+            title: "Xóa nhân viên",
+            message: "Bạn có chắc muốn xóa \(user.fullName) khỏi hệ thống?",
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Gửi", style: .default) { [weak self] _ in
-            Auth.auth().sendPasswordReset(withEmail: user.email) { error in
+        alert.addAction(UIAlertAction(title: "Xóa", style: .destructive) { [weak self] _ in
+            DatabaseService.shared.deleteStaffDocument(userId: user.id) { error in
                 DispatchQueue.main.async {
-                    if let error = error {
-                        self?.showAlert(title: "Lỗi", message: error.localizedDescription)
-                    } else {
-                        self?.showAlert(title: "Thành công", message: "Đã gửi email đặt lại mật khẩu.")
-                    }
-                }
-            }
-        })
-        present(alert, animated: true)
-    }
-
-    func editRoleTapped(for user: User) {
-        let alert = UIAlertController(title: "Cập nhật vai trò", message: nil, preferredStyle: .actionSheet)
-        for role in ["Admin", "Staff"] {
-            alert.addAction(UIAlertAction(title: role, style: .default) { [weak self] _ in
-                guard user.role != role else { return }
-                DatabaseService.shared.updateUserRole(userId: user.id, role: role) { error in
-                    DispatchQueue.main.async {
-                        if let error = error {
-                            self?.showAlert(title: "Lỗi", message: error.localizedDescription)
-                        } else {
-                            self?.fetchUsers()
-                        }
-                    }
-                }
-            })
-        }
-        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel))
-        if let pop = alert.popoverPresentationController {
-            pop.sourceView = view
-            pop.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
-            pop.permittedArrowDirections = []
-        }
-        present(alert, animated: true)
-    }
-
-    func disableTapped(for user: User) {
-        let next = !user.isActive
-        let msg  = next ? "Kích hoạt tài khoản này?" : "Vô hiệu hoá tài khoản này?"
-        let alert = UIAlertController(title: "Xác nhận", message: msg, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Xác nhận", style: .destructive) { [weak self] _ in
-            DatabaseService.shared.toggleUserStatus(userId: user.id, isActive: next) { error in
-                DispatchQueue.main.async {
-                    if let error = error {
+                    if let error {
                         self?.showAlert(title: "Lỗi", message: error.localizedDescription)
                     } else {
                         self?.fetchUsers()
@@ -174,14 +145,43 @@ extension StaffListViewController: StaffCellDelegate {
         present(alert, animated: true)
     }
 
-    /// Avatar tap: Admin xem / cập nhật ảnh nhân viên.
-    /// Kiến trúc đồng bộ: upload lên Firebase Storage → lưu download URL
-    /// vào Firestore "Users/{uid}.profileImageURL" → Staff app tự đọc field
-    /// này trong StaffProfileViewController.loadUserData() khi viewWillAppear.
     func avatarTapped(for user: User) {
-        showAlert(
-            title: user.fullName,
-            message: "Để thay ảnh: upload lên Firebase Storage, lưu URL vào Firestore Users/\(user.id).profileImageURL — Staff app tự đồng bộ khi mở lại màn hình Profile."
-        )
+        pendingAvatarUser = user
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        config.selectionLimit = 1
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+}
+
+// MARK: - PHPickerViewControllerDelegate
+
+extension StaffListViewController: PHPickerViewControllerDelegate {
+
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        guard let user = pendingAvatarUser,
+              let provider = results.first?.itemProvider,
+              provider.canLoadObject(ofClass: UIImage.self) else {
+            pendingAvatarUser = nil
+            return
+        }
+        provider.loadObject(ofClass: UIImage.self) { [weak self] object, _ in
+            guard let self, let image = object as? UIImage else { return }
+            guard let data = image.jpegData(compressionQuality: 0.6) else { return }
+            let base64 = "data:image/jpeg;base64," + data.base64EncodedString()
+            DatabaseService.shared.updateUserProfileImage(userId: user.id, profileImageURL: base64) { error in
+                DispatchQueue.main.async {
+                    self.pendingAvatarUser = nil
+                    if let error {
+                        self.showAlert(title: "Lỗi", message: error.localizedDescription)
+                    } else {
+                        self.fetchUsers()
+                    }
+                }
+            }
+        }
     }
 }

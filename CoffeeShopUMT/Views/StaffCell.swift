@@ -3,9 +3,8 @@ import UIKit
 // MARK: - Delegate
 
 protocol StaffCellDelegate: AnyObject {
-    func resetTapped(for user: User)
-    func editRoleTapped(for user: User)
-    func disableTapped(for user: User)
+    func editTapped(for user: User)
+    func deleteTapped(for user: User)
     func avatarTapped(for user: User)
 }
 
@@ -22,9 +21,6 @@ final class StaffCell: UITableViewCell {
     weak var delegate: StaffCellDelegate?
     private var currentUser: User?
 
-    /// Giữ tham chiếu nút Disable để đổi màu theo trạng thái isActive
-    private weak var disableBtn: UIButton?
-
     // MARK: - Setup
 
     override func awakeFromNib() {
@@ -35,7 +31,6 @@ final class StaffCell: UITableViewCell {
         wireAndStyleButtons()
     }
 
-    // Card nền tối bo góc nằm bên dưới các subview hiện có
     private func addCardBackground() {
         backgroundColor         = .clear
         contentView.backgroundColor = .clear
@@ -57,7 +52,6 @@ final class StaffCell: UITableViewCell {
 
     private func styleAvatar() {
         guard let iv = avatarImageView else { return }
-        // Avatar trong storyboard: fixedFrame 90×76 → cornerRadius ≈ 38 để gần tròn
         iv.layer.cornerRadius   = 38
         iv.clipsToBounds        = true
         iv.layer.borderWidth    = 2
@@ -79,45 +73,37 @@ final class StaffCell: UITableViewCell {
         emailLabel?.font      = .systemFont(ofSize: 13)
     }
 
-    /// Duyệt cây subview để tìm 3 UIButton (Reset, Edit, Disable) theo thứ tự
-    /// khai báo trong storyboard, rồi đặt style + addTarget programmatically.
-    /// Lý do: storyboard dùng buttonConfiguration (iOS 15+) style="gray" nhưng
-    /// không có <action> connection nối vào IBAction → nút không hoạt động.
     private func wireAndStyleButtons() {
         let btns = collectButtons(in: contentView)
-        guard btns.count >= 3 else { return }
+        guard btns.count >= 2 else { return }
 
-        apply(config: makeConfig(title: "Reset", bg: .appDisabled), to: btns[0])
-        btns[0].addTarget(self, action: #selector(resetTapped(_:)), for: .touchUpInside)
+        // Edit button (index 0)
+        apply(config: makeConfig(title: "Sửa", bg: UIColor(hex: "#1e3a5f")!), to: btns[0])
+        btns[0].addTarget(self, action: #selector(editBtnTapped(_:)), for: .touchUpInside)
 
-        apply(config: makeConfig(title: "Edit",  bg: UIColor(hex: "#1e3a5f")!), to: btns[1])
-        btns[1].addTarget(self, action: #selector(editRoleTapped(_:)), for: .touchUpInside)
-
-        disableBtn = btns[2]
-        apply(config: makeConfig(title: "Disable", bg: .appDanger), to: btns[2])
-        btns[2].addTarget(self, action: #selector(disableTapped(_:)), for: .touchUpInside)
+        // Delete button (index 1)
+        apply(config: makeConfig(title: "Xóa", bg: .appDanger), to: btns[1])
+        btns[1].addTarget(self, action: #selector(deleteBtnTapped(_:)), for: .touchUpInside)
     }
 
     private func makeConfig(title: String, bg: UIColor) -> UIButton.Configuration {
         var c = UIButton.Configuration.filled()
-        c.title              = title
+        c.title               = title
         c.baseBackgroundColor = bg
         c.baseForegroundColor = .white
-        c.cornerStyle        = .capsule
-        c.contentInsets      = NSDirectionalEdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8)
+        c.cornerStyle         = .capsule
+        c.contentInsets       = NSDirectionalEdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 8)
         c.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { attr in
-            var a = attr; a.font = .systemFont(ofSize: 12, weight: .semibold); return a
+            var a = attr; a.font = .systemFont(ofSize: 13, weight: .semibold); return a
         }
         return c
     }
 
     private func apply(config: UIButton.Configuration, to button: UIButton) {
-        // Xoá target cũ (nếu có) trước khi thêm
         button.removeTarget(nil, action: nil, for: .allEvents)
         button.configuration = config
     }
 
-    /// Duyệt theo chiều sâu (depth-first) — giữ đúng thứ tự Reset/Edit/Disable
     private func collectButtons(in view: UIView) -> [UIButton] {
         var result: [UIButton] = []
         for sub in view.subviews {
@@ -135,29 +121,14 @@ final class StaffCell: UITableViewCell {
         roleLabel.text  = user.role
         emailLabel.text = user.email
 
-        // Cần layout xong mới tính cornerRadius chính xác theo bounds thực
         layoutIfNeeded()
         avatarImageView.layer.cornerRadius = min(avatarImageView.bounds.width,
                                                   avatarImageView.bounds.height) / 2
 
-        // Avatar: placeholder rồi load từ URL / base64
         avatarImageView.image    = UIImage(systemName: "person.circle.fill")
         avatarImageView.tintColor = .appTextSecondary
         if let url = user.profileImageURL, !url.isEmpty {
             loadAvatar(urlString: url)
-        }
-
-        // Đổi màu + title nút Disable theo isActive
-        if let btn = disableBtn {
-            let active = user.isActive
-            apply(
-                config: makeConfig(
-                    title: active ? "Disable" : "Enable",
-                    bg:    active ? .appDanger : .appSuccess
-                ),
-                to: btn
-            )
-            btn.addTarget(self, action: #selector(disableTapped(_:)), for: .touchUpInside)
         }
     }
 
@@ -177,21 +148,16 @@ final class StaffCell: UITableViewCell {
         }
     }
 
-    // MARK: - Actions (IBAction + @objc để storyboard hoặc addTarget đều dùng được)
+    // MARK: - Button actions
 
-    @IBAction func resetTapped(_ sender: UIButton) {
+    @objc private func editBtnTapped(_ sender: UIButton) {
         guard let user = currentUser else { return }
-        delegate?.resetTapped(for: user)
+        delegate?.editTapped(for: user)
     }
 
-    @IBAction func editRoleTapped(_ sender: UIButton) {
+    @objc private func deleteBtnTapped(_ sender: UIButton) {
         guard let user = currentUser else { return }
-        delegate?.editRoleTapped(for: user)
-    }
-
-    @IBAction func disableTapped(_ sender: UIButton) {
-        guard let user = currentUser else { return }
-        delegate?.disableTapped(for: user)
+        delegate?.deleteTapped(for: user)
     }
 
     @objc private func handleAvatarTap() {

@@ -79,9 +79,16 @@ final class OrdersViewController: UIViewController {
 
     private func applyFilter() {
         switch filterSegmentedControl?.selectedSegmentIndex {
-        case 0:  displayedOrders = allOrders.filter { !$0.isPaid }   // Processing: chưa thanh toán
-        case 1:  displayedOrders = allOrders.filter {  $0.isPaid }   // Completed: đã thanh toán
-        default: displayedOrders = allOrders
+        case 0:
+            // "Đang làm" — bếp đang xử lý, chưa xong
+            displayedOrders = allOrders.filter { $0.statusEnum == .pending }
+        case 1:
+            // "Hoàn thành" — bếp xong (ready) hoặc đã thanh toán
+            displayedOrders = allOrders.filter {
+                $0.statusEnum == .ready || $0.statusEnum == .completed || $0.isPaid
+            }
+        default:
+            displayedOrders = allOrders
         }
         updateStats()
         ordersTableView?.reloadData()

@@ -298,7 +298,15 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
     }
 
     @IBAction private func closeButtonTapped(_ sender: UIButton) {
-        dismiss(animated: true)
+        pop()
+    }
+
+    private func pop() {
+        if let nav = navigationController {
+            nav.popViewController(animated: true)
+        } else {
+            dismiss(animated: true)
+        }
     }
 
     @IBAction func choosePhotoButtonTapped(_ sender: UIButton) {
@@ -383,7 +391,7 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
                     return
                 }
                 self.onDelete?(itemID)
-                self.dismiss(animated: true)
+                self.pop()
             }
         }))
 
@@ -472,7 +480,7 @@ final class AddMenuItemViewController: UIViewController, UIImagePickerController
         }
 
         onSave?(savedItem)
-        dismiss(animated: true)
+        pop()
     }
 
     private func loadImage(from url: URL) {

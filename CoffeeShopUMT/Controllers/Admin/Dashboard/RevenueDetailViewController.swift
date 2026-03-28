@@ -33,6 +33,14 @@ final class RevenueDetailViewController: UIViewController {
         startListening()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Đồng bộ segment với period hiện tại, sau đó re-filter
+        filterSegment?.selectedSegmentIndex = { switch period { case .day: return 0; case .month: return 1; case .year: return 2 } }()
+        subtitleLabel?.text = periodSubtitleText()
+        refilterOrders()
+    }
+
     deinit {
         ordersListener?.remove()
     }
@@ -98,19 +106,39 @@ final class RevenueDetailViewController: UIViewController {
         default: period = .year
         }
         subtitleLabel?.text = periodSubtitleText()
-        ordersListener?.remove()
-        startListening()
+        // Listener vẫn giữ nguyên (all orders), chỉ cần re-filter client-side
+        refilterOrders()
+    }
+
+    private var allLoadedOrders: [Order] = []
+
+    private func refilterOrders() {
+        let (start, end) = dateRange(for: period)
+        paidOrders = allLoadedOrders.filter { order in
+            // Ưu tiên paidAt; fallback sang createdAt cho đơn cũ (completed) chưa có paidAt
+            let date: Date
+            if let paid = order.paidAt {
+                date = paid
+            } else if order.statusEnum == .completed || order.statusEnum == .ready {
+                date = order.createdAt
+            } else {
+                return false
+            }
+            return date >= start && date < end
+        }
+        updateUI()
     }
 
     // MARK: - Firestore listener
+    // Dùng listenToOrders() toàn bộ rồi filter client-side để tránh cần Firestore composite index
 
     private func startListening() {
-        let (start, end) = dateRange(for: period)
-        ordersListener = DatabaseService.shared.listenToOrders(from: start, to: end) { [weak self] result in
+        ordersListener = DatabaseService.shared.listenToOrders { [weak self] result in
             DispatchQueue.main.async {
+                guard let self else { return }
                 if case .success(let orders) = result {
-                    self?.paidOrders = orders
-                    self?.updateUI()
+                    self.allLoadedOrders = orders
+                    self.refilterOrders()
                 }
             }
         }

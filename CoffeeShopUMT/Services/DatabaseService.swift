@@ -22,13 +22,15 @@ final class DatabaseService {
                     let email = data["email"] as? String ?? ""
                     let role = data["role"] as? String ?? "Staff"
                     let isActive = data["isActive"] as? Bool ?? true
+                    let profileImageURL = data["profileImageURL"] as? String
 
                     return User(
                         id: document.documentID,
                         fullName: fullName,
                         email: email,
                         role: role,
-                        isActive: isActive
+                        isActive: isActive,
+                        profileImageURL: profileImageURL
                     )
                 } ?? []
 
@@ -54,18 +56,36 @@ final class DatabaseService {
         email: String,
         role: String,
         isActive: Bool,
+        profileImageURL: String? = nil,
         completion: @escaping (Error?) -> Void
     ) {
-        let payload: [String: Any] = [
+        var payload: [String: Any] = [
             "fullName": fullName,
             "email": email,
             "role": role,
             "isActive": isActive
         ]
+        if let profileImageURL { payload["profileImageURL"] = profileImageURL }
 
         db.collection("Users")
             .document(uid)
             .setData(payload, completion: completion)
+    }
+
+    func updateUserProfileImage(userId: String, profileImageURL: String, completion: @escaping (Error?) -> Void) {
+        db.collection("Users")
+            .document(userId)
+            .updateData(["profileImageURL": profileImageURL], completion: completion)
+    }
+
+    func updateStaffInfo(userId: String, fullName: String, profileImageURL: String?, completion: @escaping (Error?) -> Void) {
+        var data: [String: Any] = ["fullName": fullName]
+        if let profileImageURL { data["profileImageURL"] = profileImageURL }
+        db.collection("Users").document(userId).updateData(data, completion: completion)
+    }
+
+    func deleteStaffDocument(userId: String, completion: @escaping (Error?) -> Void) {
+        db.collection("Users").document(userId).delete(completion: completion)
     }
 
     func saveOrder(
